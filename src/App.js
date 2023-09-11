@@ -6,6 +6,8 @@ import SignUp from './pages/SignUp';
 import Team from './pages/Team';
 import Test from './pages/Test';
 import CookingRegistration1 from './pages/CookingRegistration1';
+import CookingRegistration2 from './pages/CookingRegistration2';
+import ContentDetail from './pages/ContentDetail';
 
 
 
@@ -21,6 +23,8 @@ export default function App() {
         <Route path='/team' element={<Team />}></Route>
         <Route path='/test' element={<Test />}></Route>
         <Route path='/cookingregistration1' element={<CookingRegistration1 />}></Route>
+        <Route path='/cookingregistration2' element={<CookingRegistration2 />}></Route>
+        <Route path='/contentdetail' element={<ContentDetail />}></Route>
       </Routes>
     </BrowserRouter>
   );

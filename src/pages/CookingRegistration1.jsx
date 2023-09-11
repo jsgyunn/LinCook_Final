@@ -1,7 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import InputYoutubeLink from '../components/InputYoutubeLink'
 
 export default function CookingRegistration1() {
     return (
-        <div>첫 요리 등록 페이지</div>
+        <div>
+            <InputYoutubeLink />
+        </div>
     )
 }
