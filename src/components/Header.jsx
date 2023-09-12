@@ -103,10 +103,10 @@ export default function Header() {
                                 </img>
                             </a>
                             <span>
-                                <UseCurrentLocation
+                                {/* <UseCurrentLocation
                                     addressChecked={addressChecked}
                                     setAddressChecked={setAddressChecked}
-                                />
+                                /> */}
                             </span>
 
                             <div className="sm:flex sm:gap-4 ml-6">
