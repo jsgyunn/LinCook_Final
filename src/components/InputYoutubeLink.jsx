@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function InputYoutubeLink() {
     return (
-        <footer className="bg-white">
+        <footer className="bg-white rounded-xl">
             <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-md">
                     <strong

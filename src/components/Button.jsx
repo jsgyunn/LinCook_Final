@@ -1,11 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-
-
-
-
-
 export default function Button() {
     return (
         <>
@@ -41,15 +36,6 @@ export default function Button() {
                 </Link>
             </div>
             {/* Border */}
-
-
-
-
-
-
-
-
-
 
             <div>
                 <a

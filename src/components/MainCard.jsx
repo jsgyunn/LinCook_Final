@@ -43,6 +43,60 @@ export default function MainCard() {
             imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
             imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
         },
+        {
+            id: 6,
+            name: '거짓말 아니고 이걸로 밥 3공기 먹었습니다.',
+            href: 'https://www.youtube.com/watch?v=09li1coY4As',
+            price: '설명',
+            imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
+            imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+        },
+
+        {
+            id: 7,
+            name: '거짓말 아니고 이걸로 밥 3공기 먹었습니다.',
+            href: 'https://www.youtube.com/watch?v=09li1coY4As',
+            price: '설명',
+            imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
+            imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+        },
+
+        {
+            id: 8,
+            name: '거짓말 아니고 이걸로 밥 3공기 먹었습니다.',
+            href: 'https://www.youtube.com/watch?v=09li1coY4As',
+            price: '설명',
+            imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
+            imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+        },
+
+        {
+            id: 9,
+            name: '거짓말 아니고 이걸로 밥 3공기 먹었습니다.',
+            href: 'https://www.youtube.com/watch?v=09li1coY4As',
+            price: '설명',
+            imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
+            imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+        },
+
+        {
+            id: 10,
+            name: '거짓말 아니고 이걸로 밥 3공기 먹었습니다.',
+            href: 'https://www.youtube.com/watch?v=09li1coY4As',
+            price: '설명',
+            imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
+            imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+        },
+
+        {
+            id: 11,
+            name: '거짓말 아니고 이걸로 밥 3공기 먹었습니다.',
+            href: 'https://www.youtube.com/watch?v=09li1coY4As',
+            price: '설명',
+            imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
+            imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
+        },
+
 
 
     ]
@@ -55,7 +109,7 @@ export default function MainCard() {
                 <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <h2 className="sr-only">Products</h2>
 
-                    <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                    <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
                         {products.map((product) => (
                             <a key={product.id} href={product.href} className="group">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function InputYoutubeLink2() {
     return (
-        <footer className="bg-white">
+        <footer className="bg-white rounded-xl">
             <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-md">
                     <strong
@@ -22,7 +22,7 @@ export default function InputYoutubeLink2() {
                                 type="url"
                                 placeholder="https://www.youtube.com/watch?v=HzOBdBzah_8"
                             />
-                            <Link to='/cookingregistration2'>
+                            <Link to='#'>
                                 <button
                                     className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700"
                                 >
