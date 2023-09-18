@@ -9,15 +9,6 @@ import ExceptButton from '../components/ExceptButton';
 export default function CookingRegistration2() {
     const cardCount = 3; // 반복할 컴포넌트의 개수s
 
-
-
-
-
-
-
-
-
-
     return (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
             {/* 이미지 */}
