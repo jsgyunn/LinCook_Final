@@ -70,33 +70,6 @@ export default function MainCard() {
             imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
         },
 
-        {
-            id: 9,
-            name: '거짓말 아니고 이걸로 밥 3공기 먹었습니다.',
-            href: 'https://www.youtube.com/watch?v=09li1coY4As',
-            price: '설명',
-            imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
-            imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
-        },
-
-        {
-            id: 10,
-            name: '거짓말 아니고 이걸로 밥 3공기 먹었습니다.',
-            href: 'https://www.youtube.com/watch?v=09li1coY4As',
-            price: '설명',
-            imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
-            imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
-        },
-
-        {
-            id: 11,
-            name: '거짓말 아니고 이걸로 밥 3공기 먹었습니다.',
-            href: 'https://www.youtube.com/watch?v=09li1coY4As',
-            price: '설명',
-            imageSrc: 'https://img.youtube.com/vi/09li1coY4As/maxresdefault.jpg',
-            imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
-        },
-
 
 
     ]
