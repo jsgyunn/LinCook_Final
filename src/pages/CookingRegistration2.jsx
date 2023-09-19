@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import InputYoutubeLink2 from '../components/InputYoutubeLink2';
 import CookingRegistrationCard from '../components/CookingRegistrationCard';
 import registrationlogo from '../assets/registrationlogo.png';
-import ChoiceButton from '../components/ChoiceButton';
-import ExceptButton from '../components/ExceptButton';
 
 export default function CookingRegistration2() {
-    const cardCount = 3; // 반복할 컴포넌트의 개수s
+    const cardCount = 3; // 반복할 컴포넌트의 개수
 
     return (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
@@ -30,9 +28,6 @@ export default function CookingRegistration2() {
                     <CookingRegistrationCard />
                 </div>
             ))}
-
-            {/* <ExceptButton /> */}
-
 
             <div className="absolute top-1/4 right-0 mr-6 h-full rounded-lg bg-gray-100 shadow-2xl">
                 {/* 나머지 코드는 그대로 유지 */}
