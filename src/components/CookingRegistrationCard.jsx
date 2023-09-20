@@ -87,6 +87,9 @@ export default function CookingRegistrationCard() {
     return (
         <>
             <div className="bg-white">
+
+
+
                 <div className="bg-white border border-gray-200 border-2 mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-8 lg:max-w-3xl lg:px-1 lg:py-2 rounded-lg">
                     <h2 className="sr-only">Ingredients</h2>
 
@@ -124,6 +127,10 @@ export default function CookingRegistrationCard() {
                         ))}
                     </div>
                 </div>
+
+
+
+
             </div>
         </>);
 }
