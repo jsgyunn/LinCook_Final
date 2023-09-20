@@ -93,7 +93,8 @@ export default function CookingRegistrationCard() {
                     <div className="flex justify-between mb-2">
                         <div className="flex">
                             <div className="mr-auto">
-                                <span>{ingredients[0].name}</span> <br />
+                                <span className="font-bold">
+                                    {ingredients[0].name}</span> <br />
                                 <span>재료 수량</span>
                             </div>
 

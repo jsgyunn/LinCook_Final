@@ -5,14 +5,13 @@ import CookingRegistrationCard from '../components/CookingRegistrationCard';
 
 
 export default function CookingRegistration2() {
-    const cardCount = 3; // 반복할 컴포넌트의 개수s
+    const cardCount = 2; // 반복할 컴포넌트의 개수s
 
     const youtube = [
         {
             id: 1,
             name: '물 끓이는 시간보다 만드는 시간이 더 빨라요~ 90초 볶음라면!',
             href: 'https://www.youtube.com/watch?v=78AQ-ten9lE',
-            price: '설명',
             imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
             imageAlt: '백종원이 요리비책',
             description: `삼겹살 300g, 통마늘 8알(50g),
@@ -90,6 +89,7 @@ export default function CookingRegistration2() {
 
                 <div className="flex justify-left mt-5 text-lg font-semibold">
                     📄설명 <br />
+
                     [재료]
                 </div>
 
@@ -104,7 +104,7 @@ export default function CookingRegistration2() {
                     </div>
                 </div>
 
-                {/* <div className="mb-3 h-0.5 bg-gray-200"></div> */}
+
             </div>
         </div>
     );
