@@ -3,11 +3,18 @@ import logo from '../assets/logo.png'
 import location from '../assets/location.png'
 import UseCurrentLocation from '../hooks/UseCurrentLocation'
 import { Link } from 'react-router-dom'
+import ShoppingCarts from './ShoppingCarts'
 
 
 export default function Header() {
 
     const [addressChecked, setAddressChecked] = useState(false);
+    const [showShoppingCart, setShowShoppingCart] = useState(false);
+
+    const handleButtonClick = () => {
+        setShowShoppingCart(true);
+    }
+
 
     console.log(addressChecked)
 
@@ -33,15 +40,6 @@ export default function Header() {
                     <div className="hidden md:block">
                         <nav aria-label="Global">
                             <ul className="flex items-center gap-6 text-sm">
-
-                                <li className='ml-1'>
-                                    <Link
-                                        className="text-black transition hover:text-gray-500/75"
-                                        to="/"
-                                    >
-                                        장바구니
-                                    </Link>
-                                </li>
 
                                 <li className='ml-4'>
                                     <Link
@@ -79,6 +77,7 @@ export default function Header() {
                                     </Link>
                                 </li>
 
+
                                 <li className='ml-4'>
                                     <a
                                         className="text-black transition hover:text-gray-500/75"
@@ -87,6 +86,17 @@ export default function Header() {
                                         회원가입
                                     </a>
                                 </li>
+
+                                <li className='ml-4'>
+                                    <p
+                                        className="text-black transition hover:text-gray-500/75"
+                                        onClick={handleButtonClick}
+                                    >
+                                        장바구니
+                                    </p>
+                                </li>
+                                {showShoppingCart && <ShoppingCarts />}
+
 
                             </ul>
                         </nav>
