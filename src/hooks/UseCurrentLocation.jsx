@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { locationState } from "../recoil/atoms";
 import Kakao from "../api/Kakao";
 
 
 const useCurrentLocation = ({ addressChecked, setAddressChecked }) => {
 
-    const [location, setLocation] = useState(null);
+    const [location, setLocation] = useRecoilState(locationState);
     const [error, setError] = useState(null);
 
     //성공
@@ -23,7 +25,7 @@ const useCurrentLocation = ({ addressChecked, setAddressChecked }) => {
 
     useEffect(() => {
         if (addressChecked === true) {
-            console.log("if yo")
+            // console.log(location)
         } else {
             const { geolocation } = navigator;
             if (!geolocation) {
@@ -38,13 +40,15 @@ const useCurrentLocation = ({ addressChecked, setAddressChecked }) => {
     }, [location]);
 
     return (
+
         <>
-            {location ? <Kakao location={location} /> : <span>주소 확인하는 중.....</span>}
+            {location ? <Kakao location={location} /> : <span>주소 확인하는 중.....</span>
+            }
         </>
     )
 
 
-    // return { location, error };
+    return { location, error };
 };
 
 

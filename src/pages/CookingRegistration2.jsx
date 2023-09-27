@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import InputYoutubeLink2 from '../components/InputYoutubeLink2';
 import CookingRegistrationCard from '../components/CookingRegistrationCard';
+import axios from 'axios'
+import { useRecoilValue } from 'recoil'
+import { registrationDataState } from '../recoil/atoms'
+import { youtubeVideoIdState } from '../recoil/atoms';
+import { useNavigate } from 'react-router-dom'
+
 
 
 export default function CookingRegistration2() {
+
+    const registrationData = useRecoilValue(registrationDataState);
+    // console.log(registrationData.description_2)
+
+    const youtubeVideoIdState = useRecoilValue(youtubeVideoIdState);
+    // console.log(youtubeVideoIdState)
+
+
+
+
+
+
     const cardCount = 2; // 반복할 컴포넌트의 개수s
 
     const youtube = [
@@ -12,7 +30,7 @@ export default function CookingRegistration2() {
             id: 1,
             name: '물 끓이는 시간보다 만드는 시간이 더 빨라요~ 90초 볶음라면!',
             href: 'https://www.youtube.com/watch?v=78AQ-ten9lE',
-            imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
+            imageSrc: 'https://img.youtube.com/vi/8O7odQbvqWA/maxresdefault.jpg',
             imageAlt: '백종원이 요리비책',
             description: `삼겹살 300g, 통마늘 8알(50g),
             청양고추 3개(20g),
@@ -28,7 +46,6 @@ export default function CookingRegistration2() {
             깨소금 적당량`,
         }
     ]
-
 
     return (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
@@ -73,7 +90,7 @@ export default function CookingRegistration2() {
                 <div className="flex justify-center mt-3">
                     <img
                         className="rounded-lg w-72 h-48"
-                        src={youtube[0].imageSrc}
+                        src={`https://img.youtube.com/vi/${youtubeVideoIdState}/maxresdefault.jpg`}
                         alt="#"
                     />
                 </div>
@@ -81,7 +98,7 @@ export default function CookingRegistration2() {
                 <div className="flex justify-center mt-3">
                     <div className="text-center">
                         <p className=" w-72 h-20 break-words font-semibold overflow-y-auto">
-                            {youtube[0].name}
+                            {registrationData.title}
                         </p>
                     </div>
                 </div>
@@ -93,17 +110,17 @@ export default function CookingRegistration2() {
                     [재료]
                 </div>
 
+
                 <div className="flex justify-center mt-3">
                     <div className="text-center">
-                        {/* description 내용을 ','로 분할하여 각 항목을 보여줌 */}
-                        {youtube[0].description.split(',').map((item, index) => (
+                        {/* description 내용을 '\n'로 분할하여 각 항목을 보여줌 */}
+                        {registrationData.description_2.split('\n').map((item, index) => (
                             <p key={index} className="w-72 h-8 break-words font-medium">
                                 {item.trim()} {/* 각 항목 앞뒤 공백 제거 */}
                             </p>
                         ))}
                     </div>
                 </div>
-
 
             </div>
         </div>
