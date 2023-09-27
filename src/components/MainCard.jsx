@@ -33,10 +33,12 @@ export default function MainCard() {
             });
     }, []);
 
+
+
     const navigateToContentDetail = (productId) => {
         // Use the locationData from Recoil state
         axios
-            .get('http://3.37.4.231:8080/detail-content', {
+            .get('http://localhost:8080/detail-content', {
                 params: {
                     contents_id: productId,
                     url: '',
