@@ -15,7 +15,7 @@ export default function CookingRegistration2() {
     const registrationData = useRecoilValue(registrationDataState);
     // console.log(registrationData.description_2)
 
-    const youtubeVideoIdState = useRecoilValue(youtubeVideoIdState);
+    const youtubeVideoId = useRecoilValue(youtubeVideoIdState);
     // console.log(youtubeVideoIdState)
 
 
@@ -90,7 +90,7 @@ export default function CookingRegistration2() {
                 <div className="flex justify-center mt-3">
                     <img
                         className="rounded-lg w-72 h-48"
-                        src={`https://img.youtube.com/vi/${youtubeVideoIdState}/maxresdefault.jpg`}
+                        src={`https://img.youtube.com/vi/${youtubeVideoId}/maxresdefault.jpg`}
                         alt="#"
                     />
                 </div>
@@ -113,12 +113,16 @@ export default function CookingRegistration2() {
 
                 <div className="flex justify-center mt-3">
                     <div className="text-center">
-                        {/* description 내용을 '\n'로 분할하여 각 항목을 보여줌 */}
-                        {registrationData.description_2.split('\n').map((item, index) => (
-                            <p key={index} className="w-72 h-8 break-words font-medium">
-                                {item.trim()} {/* 각 항목 앞뒤 공백 제거 */}
-                            </p>
-                        ))}
+                        {registrationData.description_2 ? (
+                            // description 내용을 '\n'로 분할하여 각 항목을 보여줌
+                            registrationData.description_2.split('\n').map((item, index) => (
+                                <p key={index} className="w-72 h-8 break-words font-medium">
+                                    {item.trim()} {/* 각 항목 앞뒤 공백 제거 */}
+                                </p>
+                            ))
+                        ) : (
+                            <p>설명이 없습니다.</p>
+                        )}
                     </div>
                 </div>
 

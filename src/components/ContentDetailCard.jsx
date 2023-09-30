@@ -13,41 +13,52 @@ export default function ContentDetailCard() {
     return (
         <div className="bg-white">
             {contentDetailProduct.data.map((data, index) => (
-                <div key={index} className="border border-solid rounded-lg border-black w-4/5 mx-auto mt-10">
-                    <div className="max-w-2xl flex flex-col items-center sm:flex-row px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                        <img
-                            className="w-60 h-80 sm:w-80 sm:h-120 md:w-96 md:h-160 lg:w-120 lg:h-200 object-contain"
-                            src={data.productDto.img_url}
-                            alt="상품"
-                        />
-                        <div className="mt-4 text-center sm:mt-0 sm:ml-4 flex flex-col justify-between h-full">
-                            <div>
+                <div key={index} className="border border-solid rounded-lg border-gray-300 w-4/5 mx-auto mt-10">
+                    <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
+                        <div className="flex flex-col sm:flex-row items-center justify-between">
+                            <div className="w-full sm:w-1/3">
+                                <img
+                                    className="w-full h-auto"
+                                    src={data.productDto.img_url}
+                                    alt="상품"
+                                />
+                            </div>
+                            <div className="mt-4 text-center sm:mt-0 sm:ml-4 sm:w-2/3">
                                 <p className="text-lg lg:text-xl">
                                     {data.productDto.name} <br />
                                     {data.productDto.capacity}
                                 </p>
-                            </div>
-
-                            <div className="mt-4 flex justify-center sm:justify-between">
-                                <button
-                                    type="submit"
-                                    className="group flex items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-white transition hover:bg-green-700"
-                                >
-                                    <span className="text-sm font-medium">자세히 보기</span>
-                                </button>
-                            </div>
-
-                            <div className="mt-4 flex justify-center sm:justify-between">
-                                <button
-                                    type="button"
-                                    className="group flex items-center justify-center gap-2 rounded-md bg-gray-300 px-5 py-3 text-black transition"
-                                >
-                                    <span className="text-sm font-medium">평균 판매가</span>
-                                </button>
-                                <p>{`${data.productDto.sale_price}원`}</p>
+                                <div className="mt-4 flex justify-center sm:justify-between">
+                                    <button
+                                        type="submit"
+                                        className="group flex items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-white transition hover:bg-green-700"
+                                    >
+                                        <span className="text-sm font-medium">자세히 보기</span>
+                                    </button>
+                                </div>
+                                <div className="mt-4 flex justify-center sm:justify-between">
+                                    <button
+                                        type="button"
+                                        className="group flex items-center justify-center gap-2 rounded-md bg-gray-300 px-5 py-3 text-black transition"
+                                    >
+                                        <span className="text-sm font-medium">평균 판매가</span>
+                                    </button>
+                                    <p>{`${data.productDto.sale_price}원`}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
