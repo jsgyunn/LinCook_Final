@@ -14,7 +14,7 @@ export default function Toast() {
 
         timer = setTimeout(() => {
             setOpen(false);
-        }, 9000);
+        }, 3000);
     };
 
     const closeToast = () => {
@@ -32,14 +32,16 @@ export default function Toast() {
                 <button
                     type="button"
                     onClick={closeToast}
-                    className="fixed right-4 top-12 z-50 rounded-md bg-green-500 px-4 py-2 text-white transition hover:bg-green-600"
+                    className="fixed right-4 top-20 z-50 rounded-md bg-green-500 px-1 py-1 text-white transition hover:bg-green-600 text-sm"
                     style={{ transitionDuration: '300ms' }}
                 >
                     <div className="flex items-center space-x-2">
                         <span className="text-3xl">
                             <i className="bx bx-check"></i>
                         </span>
-                        <p className="font-bold">Item Created Successfully!</p>
+                        <p className="font-bold">
+                            복사 성공! <br /> 이제 Crtl + V 키를 눌러 붙여넣기 해 보세요.
+                        </p>
                     </div>
                 </button>
             )}
