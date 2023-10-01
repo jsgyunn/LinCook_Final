@@ -15,106 +15,19 @@ export default function CookingRegistrationCard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('http://13.125.174.235:5000/', {
-            params: {
-                description_1
-            },
+        axios.post('http://13.125.174.235:5000/', {
+            description: description_1
         })
             .then((response) => {
                 SetdescriptionCard(response.data);
-                setLoading(false)
-                console.log(response.data)
-                // console.log(response.data[0]._source)
-                // console.log(response.data)
-                // console.log(descriptionCard._source.product_id)
+                setLoading(false);
+                console.log(response.data);
             })
             .catch((error) => {
                 console.log('데이터를 불러오는 중 에러 발생:', error);
                 setLoading(false);
             });
-    }, [])
-
-
-
-    const ingredients = [
-        {
-            id: 1,
-            name: '사골곰탕',
-            detailName: '비비고사골곰탕',
-            href: '#',
-            price: '500G(100g 당 240원)',
-            imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
-            imageAlt: '사골곰탕',
-        },
-        {
-            id: 2,
-            name: '사골곰탕',
-            detailName: '비비고사골곰탕',
-            href: '#',
-            price: '500G(100g 당 240원)',
-            imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
-            imageAlt: '사골곰탕',
-        },
-        {
-            id: 3,
-            name: '사골곰탕',
-            detailName: '비비고사골곰탕',
-            href: '#',
-            price: '500G(100g 당 240원)',
-            imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
-            imageAlt: '사골곰탕',
-        },
-        {
-            id: 4,
-            name: '사골곰탕',
-            detailName: '비비고사골곰탕',
-            href: '#',
-            price: '500G(100g 당 240원)',
-            imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
-            imageAlt: '사골곰탕',
-        },
-        {
-            id: 5,
-            name: '사골곰탕',
-            detailName: '비비고사골곰탕',
-            href: '#',
-            price: '500G(100g 당 240원)',
-            imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
-            imageAlt: '사골곰탕',
-        },
-
-        {
-            id: 6,
-            name: '사골곰탕',
-            detailName: '비비고사골곰탕',
-            href: '#',
-            price: '500G(100g 당 240원)',
-            imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
-            imageAlt: '사골곰탕',
-        },
-
-        {
-            id: 7,
-            name: '사골곰탕',
-            detailName: '비비고사골곰탕',
-            href: '#',
-            price: '500G(100g 당 240원)',
-            imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
-            imageAlt: '사골곰탕',
-        },
-
-        {
-            id: 8,
-            name: '사골곰탕',
-            detailName: '비비고사골곰탕',
-            href: '#',
-            price: '500G(100g 당 240원)',
-            imageSrc: 'https://img.youtube.com/vi/78AQ-ten9lE/maxresdefault.jpg',
-            imageAlt: '사골곰탕',
-        },
-
-    ]
-
+    }, []);
 
     return (
         <>
@@ -127,11 +40,11 @@ export default function CookingRegistrationCard() {
 
                     <div className="flex justify-between mb-2">
                         <div className="flex">
-                            <div className="mr-auto">
+                            {/* <div className="mr-auto">
                                 <span className="font-bold">
                                     {ingredients[0].name}</span> <br />
                                 <span>재료 수량</span>
-                            </div>
+                            </div> */}
 
                         </div>
                         <span>
@@ -166,5 +79,6 @@ export default function CookingRegistrationCard() {
 
 
             </div>
-        </>);
+        </>
+    );
 }

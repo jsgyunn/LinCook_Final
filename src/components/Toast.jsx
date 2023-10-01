@@ -35,7 +35,7 @@ export default function Toast() {
                     className="fixed right-4 top-20 z-50 rounded-md bg-green-500 px-1 py-1 text-white transition hover:bg-green-600 text-sm"
                     style={{ transitionDuration: '300ms' }}
                 >
-                    <div className="flex items-center space-x-2">
+                    <div className=" flex items-center space-x-2">
                         <span className="text-3xl">
                             <i className="bx bx-check"></i>
                         </span>

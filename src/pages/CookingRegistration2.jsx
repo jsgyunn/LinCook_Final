@@ -13,7 +13,8 @@ import { useNavigate } from 'react-router-dom'
 export default function CookingRegistration2() {
 
     const registrationData = useRecoilValue(registrationDataState);
-    // console.log(registrationData.description_2)
+    console.log(registrationData.title)
+    console.log(registrationData.description_2)
 
     const youtubeVideoId = useRecoilValue(youtubeVideoIdState);
     // console.log(youtubeVideoIdState)
