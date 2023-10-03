@@ -4,16 +4,28 @@ import AddButton from './AddButton';
 import location2 from '../assets/location2.png';
 import phone from '../assets/phone.png';
 import user from '../assets/User.png';
-import { useRecoilValue } from 'recoil';
-import { contentDetailProductState } from '../recoil/atoms';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { contentDetailProductState, cartItemState } from '../recoil/atoms';
 
 export default function ContentDetailCard() {
     const contentDetailProduct = useRecoilValue(contentDetailProductState);
     const [selectedTab, setSelectedTab] = useState('전체'); // 초기 탭을 '전체'로 설정
+    const setCartItem = useSetRecoilState(cartItemState); // cartItemState 업데이트 함수
+
+
+
 
     const handleTabClick = (tabName) => {
         setSelectedTab(tabName); // 탭 클릭 시 선택된 탭을 변경
     };
+
+    // 장바구니에 상품 추가하는 함수
+    const addToCart = (product) => {
+        // 현재 장바구니 상태를 Recoil 상태로 업데이트
+        setCartItem((prevCart) => [...prevCart, product]);
+        console.log("상품이 장바구니에 추가되었습니다:", product)
+    };
+
 
     return (
         <>
@@ -129,7 +141,9 @@ export default function ContentDetailCard() {
                                             />
                                             {`지금까지 32명이 담았습니다.`}
                                             <div className="ml-auto">
-                                                <AddButton />
+                                                <AddButton
+                                                    onClick={() => addToCart(data)}
+                                                />
                                             </div>
                                         </h3>
                                     </div>

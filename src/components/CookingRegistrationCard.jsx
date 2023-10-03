@@ -15,9 +15,9 @@ export default function CookingRegistrationCard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.post('http://13.125.174.235:5000/', {
-            description: description_1
-        })
+        axios.post('http://13.125.174.235:5000/',
+            description_1
+        )
             .then((response) => {
                 SetdescriptionCard(response.data);
                 setLoading(false);
@@ -32,12 +32,8 @@ export default function CookingRegistrationCard() {
     return (
         <>
             <div className="bg-white">
-
-
-
                 <div className="bg-white border border-gray-200 border-2 mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-8 lg:max-w-3xl lg:px-1 lg:py-2 rounded-lg">
                     <h2 className="sr-only">descriptionCards</h2>
-
                     <div className="flex justify-between mb-2">
                         <div className="flex">
                             {/* <div className="mr-auto">
@@ -45,14 +41,12 @@ export default function CookingRegistrationCard() {
                                     {ingredients[0].name}</span> <br />
                                 <span>재료 수량</span>
                             </div> */}
-
                         </div>
                         <span>
                             <ExceptButton />
                         </span>
                     </div>
                     <div className="mb-4 h-0.5 bg-gray-200"></div>
-
                     <div className="flex overflow-x-auto">
                         {descriptionCard.map((descriptionCard) => (
                             <a key={descriptionCard._source.product_id} className="group flex-shrink-0 mr-6">
@@ -74,10 +68,6 @@ export default function CookingRegistrationCard() {
                         ))}
                     </div>
                 </div>
-
-
-
-
             </div>
         </>
     );

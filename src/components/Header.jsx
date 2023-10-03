@@ -12,9 +12,8 @@ export default function Header() {
     const [showShoppingCart, setShowShoppingCart] = useState(false);
 
     const handleButtonClick = () => {
-        setShowShoppingCart(true);
+        setShowShoppingCart(!showShoppingCart); // 다이얼로그를 열고 닫는 상태를 토글합니다.
     }
-
 
     console.log(addressChecked)
 
@@ -95,7 +94,7 @@ export default function Header() {
                                         장바구니
                                     </p>
                                 </li>
-                                {showShoppingCart && <ShoppingCarts />}
+                                <ShoppingCarts open={showShoppingCart} onClose={() => setShowShoppingCart(false)} />
 
 
                             </ul>

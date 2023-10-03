@@ -20,3 +20,8 @@ export const contentDetailProductState = atom({
     key: 'contentDetailProductState',
     default: [],
 });
+
+export const cartItemState = atom({
+    key: 'cartItemState',
+    default: [],
+})
