@@ -50,6 +50,7 @@ export default function ContentDetailCard() {
                 ))}
             </div>
 
+
             <div className="bg-white">
                 {contentDetailProduct.data.map((data, index) => (
                     <div key={index} className={`border border-solid rounded-lg border-gray-300 w-4/5 mx-auto mt-10 ${selectedTab === '전체' || selectedTab === data.productDto.name ? 'block' : 'hidden'}`}>
@@ -153,6 +154,11 @@ export default function ContentDetailCard() {
                     </div>
                 ))}
             </div>
+
+
+
+
+
         </>
     );
 }
