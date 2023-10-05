@@ -6,7 +6,7 @@ import { contentDetailProductState, locationState } from '../recoil/atoms'; // i
 
 export default function MainCard() {
     const navigate = useNavigate();
-    const [products, setProducts] = useState([]);
+    const [contents, setContents] = useState([]);
     const [loading, setLoading] = useState(true);
     const [contentDetailProduct, setContentDetailProduct] = useRecoilState(contentDetailProductState);
 
@@ -22,10 +22,10 @@ export default function MainCard() {
                 },
             })
             .then((response) => {
-                const productList = response.data.result;
-                setProducts(productList);
+                const contentList = response.data.result;
+                setContents(contentList);
                 setLoading(false);
-                console.log(productList);
+                console.log("콘텐츠 리스트:", contentList);
             })
             .catch((error) => {
                 console.error('메인 데이터를 불러오는 중 에러 발생:', error);
@@ -35,12 +35,12 @@ export default function MainCard() {
 
 
 
-    const navigateToContentDetail = (productId) => {
+    const navigateToContentDetail = (contentId) => {
         // Use the locationData from Recoil state
         axios
             .get('http://3.37.4.231:8080/detail-content', {
                 params: {
-                    contents_id: productId,
+                    contents_id: contentId,
                     url: '',
                     latitude: locationData.latitude, // Use latitude from Recoil state
                     longitude: locationData.longitude, // Use longitude from Recoil state
@@ -50,7 +50,7 @@ export default function MainCard() {
                 const detailProduct = response.data.result;
                 setContentDetailProduct(detailProduct);
                 setLoading(false);
-                console.log(detailProduct);
+                console.log("디테일:", detailProduct);
                 // console.log(contentDetailProduct.contentsDto)
                 navigate('/contentdetail');
             })
@@ -63,27 +63,27 @@ export default function MainCard() {
     return (
         <div className="bg-white">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                <h2 className="sr-only">Products</h2>
+                <h2 className="sr-only">Contents</h2>
                 {loading ? (
                     <p>Loading...</p>
                 ) : (
                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
-                        {products.map((product) => (
+                        {contents.map((content) => (
                             <a
-                                key={product.id}
-                                href={product.href}
-                                member_id={product.member_id}
+                                key={content.id}
+                                href={content.href}
+                                member_id={content.member_id}
                                 className="group"
-                                onClick={() => navigateToContentDetail(product.id)}
+                                onClick={() => navigateToContentDetail(content.id)}
                             >
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                                     <img
-                                        src={`https://img.youtube.com/vi/${product.url}/maxresdefault.jpg`}
+                                        src={`https://img.youtube.com/vi/${content.url}/maxresdefault.jpg`}
                                         alt="이미지 없음"
                                         className="h-full w-full object-cover object-center group-hover:opacity-75"
                                     />
                                 </div>
-                                <h3 className="mt-4 text-base font-semibold text-gray-700">{product.title}</h3>
+                                <h3 className="mt-4 text-base font-semibold text-gray-700">{content.title}</h3>
                             </a>
                         ))}
                     </div>

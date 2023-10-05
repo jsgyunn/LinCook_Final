@@ -4,18 +4,48 @@ import location from '../assets/location.png'
 import UseCurrentLocation from '../hooks/UseCurrentLocation'
 import { Link } from 'react-router-dom'
 import ShoppingCarts from './ShoppingCarts'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { basketInfoState, locationState } from '../recoil/atoms'
+import axios from 'axios'
 
 
 export default function Header() {
+
+
+    const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
+    const locationData = useRecoilValue(locationState);
+
 
     const [addressChecked, setAddressChecked] = useState(false);
     const [showShoppingCart, setShowShoppingCart] = useState(false);
 
     const handleButtonClick = () => {
         setShowShoppingCart(!showShoppingCart); // 다이얼로그를 열고 닫는 상태를 토글합니다.
+        console.log("문이 열립니다!")
+    }
+    console.log(addressChecked)
+
+
+
+    const handleBasketInfo = () => {
+        axios
+            .get('http://3.37.4.231:8080/basket-info', {
+                params: {
+                    memberId: 1,
+                    latitude: locationData.latitude, // Use latitude from Recoil state
+                    longitude: locationData.longitude, // Use longitude from Recoil state
+                },
+            })
+            .then((response) => {
+                const basket = response.data.result;
+                setBasketInfo(basket);
+                console.log("장바구니 정보:", basket)
+            })
+            .catch((error) => {
+                console.error('장바구니 정보 불러오는 중 에러 발생:', error);
+            });
     }
 
-    console.log(addressChecked)
 
     return (
         <header className="bg-white">
@@ -89,7 +119,10 @@ export default function Header() {
                                 <li className='ml-4'>
                                     <p
                                         className="text-black transition hover:text-gray-500/75"
-                                        onClick={handleButtonClick}
+                                        onClick={() => {
+                                            handleButtonClick();
+                                            handleBasketInfo();
+                                        }}
                                     >
                                         장바구니
                                     </p>

@@ -1,114 +1,42 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Fragment } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { cartItemState } from '../recoil/atoms';
+import { basketInfoState, cartItemState, locationState } from '../recoil/atoms';
+import axios from 'axios';
+
 
 export default function ShoppingCarts({ open, onClose }) {
+
+    //Header 컴포넌트에서 통신함
+    const basketInfo = useRecoilValue(basketInfoState);
+    console.log("바스켓인포:", basketInfo)
+
     const cartItems = useRecoilValue(cartItemState);
-    console.log(cartItems);
-
-
+    console.log("이건 뭐니?", cartItems);
 
     // Recoil의 useSetRecoilState 훅을 사용하여 상태를 업데이트합니다.
     const setCartItemState = useSetRecoilState(cartItemState);
+
 
     // 합계 계산을 위한 useMemo를 사용합니다.
     const totalAmount = useMemo(() => {
         // 장바구니에 담긴 모든 상품의 가격을 합산
         return cartItems.reduce((total, cartItem) => {
-            return total + cartItem.productDto.sale_price * cartItem.quantity;
+            return total + cartItem.productDto.sale_price;
         }, 0); // 초기값을 0으로 설정
     }, [cartItems]);
 
-    // 상품 수량을 관리할 상태
-    const [productQuantities, setProductQuantities] = useState({});
-
-    // 상품을 장바구니에 추가하는 함수
-    const addToCart = (productId) => {
-        // 이미 장바구니에 추가된 상품인지 확인
-        const existingCartItem = cartItems.find((item) => item.productDto.id === productId);
-
-        if (existingCartItem) {
-            // 이미 추가된 상품이면 수량만 증가
-            setCartItemState((prevCartItems) => {
-                return prevCartItems.map((item) => {
-                    if (item.productDto.id === productId) {
-                        return {
-                            ...item,
-                            quantity: item.quantity + 1,
-                        };
-                    }
-                    return item;
-                });
-            });
-
-            // 상품 수량 상태도 업데이트
-            setProductQuantities((prevQuantities) => ({
-                ...prevQuantities,
-                [productId]: (prevQuantities[productId] || 0) + 1,
-            }));
-        } else {
-            // 새로운 상품을 추가
-            const productToAdd = cartItems.find((item) => item.productDto.id === productId);
-            if (productToAdd) {
-                setCartItemState((prevCartItems) => [
-                    ...prevCartItems,
-                    {
-                        ...productToAdd,
-                        quantity: 1, // 처음으로 추가되는 경우 수량 1로 설정
-                    },
-                ]);
-
-                // 상품 수량 상태도 업데이트
-                setProductQuantities((prevQuantities) => ({
-                    ...prevQuantities,
-                    [productId]: 1,
-                }));
-            }
-        }
-    };
-
     // 상품을 장바구니에서 제거하는 함수
-    const removeFromCart = (productId) => {
-        // 장바구니에서 productId와 일치하는 상품을 찾습니다.
-        const cartItemToRemove = cartItems.find((item) => item.productDto.id === productId);
+    const removeFromCart = (martId) => {
+        // 장바구니에서 productId와 일치하는 상품을 제거합니다.
+        const updatedCartItems = cartItems.filter((item) => item.martDto.mart.id !== martId);
 
-        if (cartItemToRemove) {
-            if (cartItemToRemove.quantity > 1) {
-                // 수량이 1 이상일 때만 수량을 1씩 감소시킵니다.
-                setCartItemState((prevCartItems) => {
-                    return prevCartItems.map((item) => {
-                        if (item.productDto.id === productId) {
-                            return {
-                                ...item,
-                                quantity: item.quantity - 1,
-                            };
-                        }
-                        return item;
-                    });
-                });
-
-                // 상품 수량 상태도 업데이트
-                setProductQuantities((prevQuantities) => ({
-                    ...prevQuantities,
-                    [productId]: (prevQuantities[productId] || 0) - 1,
-                }));
-            } else {
-                // 수량이 1일 때 상품을 삭제합니다.
-                const updatedCartItems = cartItems.filter((item) => item.productDto.id !== productId);
-                // Recoil의 useSetRecoilState를 사용하여 장바구니 상태를 업데이트합니다.
-                setCartItemState(updatedCartItems);
-                // 상품 수량 상태에서 해당 상품 제거
-                setProductQuantities((prevQuantities) => {
-                    const newQuantities = { ...prevQuantities };
-                    delete newQuantities[productId];
-                    return newQuantities;
-                });
-            }
-        }
+        // Recoil의 useSetRecoilState를 사용하여 장바구니 상태를 업데이트합니다.
+        setCartItemState(updatedCartItems);
     };
+
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -155,8 +83,18 @@ export default function ShoppingCarts({ open, onClose }) {
                                                 </div>
                                             </div>
 
+                                            <div className="mt-3">
+                                                <h2 className="text-lg font-medium text-gray-900 text-center">요리 제목</h2> {/* "요리 제목" 추가 */}
+                                            </div>
+
                                             <div className="mt-8">
                                                 <div className="flow-root">
+
+
+
+
+
+
                                                     <ul role="list" className="-my-6 divide-y divide-gray-200">
                                                         {cartItems.map((cartItem, index) => (
                                                             <li key={index} className="flex py-6">
@@ -174,8 +112,8 @@ export default function ShoppingCarts({ open, onClose }) {
                                                                             <h3>
                                                                                 <a href={cartItem.productDto.name}>{cartItem.productDto.name}</a>
                                                                             </h3>
-                                                                            <p className="ml-4 font-medium text-2xl">
-                                                                                {`${cartItem.productDto.sale_price.toLocaleString()}원`}
+                                                                            <p className="ml-4 font-medium text-xl">
+                                                                                {`${cartItem.martDto.price.toLocaleString()}원`}
                                                                             </p>
                                                                         </div>
                                                                         <p className="mt-1 text-sm text-gray-500">{cartItem.productDto.capacity}</p>
@@ -185,42 +123,33 @@ export default function ShoppingCarts({ open, onClose }) {
                                                                             <button
                                                                                 type="button"
                                                                                 className="font-medium text-red-600 hover:text-red-500"
-                                                                                onClick={() => removeFromCart(cartItem.productDto.id)}
+                                                                                onClick={() =>
+                                                                                    removeFromCart(cartItem.martDto.mart.id)
+                                                                                }
                                                                             >
                                                                                 빼기
                                                                             </button>
                                                                         </div>
-                                                                        <div className="flex items-center">
-                                                                            <button
-                                                                                type="button"
-                                                                                className="px-2 py-1 text-gray-500 border border-gray-300 rounded-md hover:bg-gray-100"
-                                                                                onClick={() => addToCart(cartItem.productDto.id)}
-                                                                            >
-                                                                                +
-                                                                            </button>
-                                                                            <span className="mx-2 text-gray-700">
-                                                                                {productQuantities[cartItem.productDto.id] || 0}
-                                                                            </span>
-                                                                            <button
-                                                                                type="button"
-                                                                                className="px-2 py-1 text-gray-500 border border-gray-300 rounded-md hover:bg-gray-100"
-                                                                                onClick={() => removeFromCart(cartItem.productDto.id)}
-                                                                            >
-                                                                                -
-                                                                            </button>
-                                                                        </div>
                                                                     </div>
-
-                                                                    <div className="mt-2 text-sm text-gray-500">
-                                                                        {`${cartItem.productDto.name} - ${cartItem.productDto.distance}km`}
-                                                                    </div>
-
                                                                 </div>
                                                             </li>
                                                         ))}
                                                     </ul>
+
+
+
+
+
+
+
+
+
+
                                                 </div>
                                             </div>
+
+
+
 
                                         </div>
 
@@ -250,5 +179,5 @@ export default function ShoppingCarts({ open, onClose }) {
                 </div>
             </Dialog>
         </Transition.Root>
-    );
+    )
 }

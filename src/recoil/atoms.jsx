@@ -24,4 +24,14 @@ export const contentDetailProductState = atom({
 export const cartItemState = atom({
     key: 'cartItemState',
     default: [],
-})
+});
+
+export const selectedProductsState = atom({
+    key: 'selectedProductsState',
+    default: [], // 초기 값은 빈 배열
+});
+
+export const basketInfoState = atom({
+    key: 'basketInfoState',
+    default: [], // 초기 값은 빈 배열
+});

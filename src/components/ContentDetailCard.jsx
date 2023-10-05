@@ -6,11 +6,28 @@ import phone from '../assets/phone.png';
 import user from '../assets/User.png';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { contentDetailProductState, cartItemState } from '../recoil/atoms';
+import axios from 'axios';
 
 export default function ContentDetailCard() {
+
     const contentDetailProduct = useRecoilValue(contentDetailProductState);
+    const contentID = contentDetailProduct.contentsDto.id;
+    // console.log("ewqejnqwjkenjqwknejkwqnjk:", contentID)
+
     const [selectedTab, setSelectedTab] = useState('전체'); // 초기 탭을 '전체'로 설정
     const setCartItem = useSetRecoilState(cartItemState); // cartItemState 업데이트 함수
+    const [shoppingData, setShoppingData] = useState([]);
+
+
+    const cartItems = useRecoilValue(cartItemState);
+    // const productID = cartItems.martDto.mart.productId;
+    // const martID = cartItems.martDto.mart.id;
+    console.log("담기 버튼 누르면 저장되는 상품, 마트 정보:", cartItems);
+
+
+
+
+
 
 
 
@@ -19,11 +36,39 @@ export default function ContentDetailCard() {
         setSelectedTab(tabName); // 탭 클릭 시 선택된 탭을 변경
     };
 
+
+
+
     // 장바구니에 상품 추가하는 함수
-    const addToCart = (product) => {
+    const addToCart = (productDto, martDto) => {
         // 현재 장바구니 상태를 Recoil 상태로 업데이트
-        setCartItem((prevCart) => [...prevCart, product]);
-        console.log("상품이 장바구니에 추가되었습니다:", product)
+        setCartItem((prevCart) => [...prevCart, { productDto, martDto }]);
+        console.log("상품이 장바구니에 추가되었습니다:", productDto, "마트 정보:", martDto);
+    };
+
+
+    //create-basket 통신 
+    const handleShopping = (martDto) => {
+
+        const productID = martDto.productId;
+        const martID = martDto.mart.id;
+
+
+        axios
+            .post('http://3.37.4.231:8080/create-basket', {
+                memberId: 1,
+                contentsId: contentID,
+                productId: productID,
+                martId: martID,
+            })
+            .then((response) => {
+                // 요청이 성공하면 처리
+                console.log('장바구니 요청 성공:', response.data);
+                setShoppingData("쇼핑 데이터:", response.data)
+            })
+            .catch((error) => {
+                console.error('장바구니 요청 중 에러 발생:', error);
+            });
     };
 
 
@@ -49,6 +94,16 @@ export default function ContentDetailCard() {
                     </button>
                 ))}
             </div>
+
+
+
+
+
+
+
+
+
+
 
 
             <div className="bg-white">
@@ -143,7 +198,11 @@ export default function ContentDetailCard() {
                                             {`지금까지 32명이 담았습니다.`}
                                             <div className="ml-auto">
                                                 <AddButton
-                                                    onClick={() => addToCart(data)}
+                                                    onClick={() => {
+                                                        addToCart(data.productDto, martDtoList);
+                                                        console.log("프로덕트:", data.productDto, "마트:", martDtoList);
+                                                        handleShopping(martDtoList);
+                                                    }}
                                                 />
                                             </div>
                                         </h3>
