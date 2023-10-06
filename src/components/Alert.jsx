@@ -2,7 +2,7 @@ import { Fragment, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react'
 
-export default function Alert() {
+export default function Alert({ duId }) {
     const [open, setOpen] = useState(true)
     const navigate = useNavigate();
     const [isRedirected, setIsRedirected] = useState(false);
@@ -11,7 +11,8 @@ export default function Alert() {
 
     const redirectToContentDetail = () => {
         setIsRedirected(true);
-        navigate('/contentdetail')
+        navigate('/contentdetail/' + duId)
+        // navigate("/contentdetail")
     };
 
 

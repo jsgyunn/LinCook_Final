@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ChoiceButton from '../components/ChoiceButton';
 import ExceptButton from './ExceptButton';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState, } from 'recoil';
 import { registrationDataState } from '../recoil/atoms';
 import { selectedProductsState } from '../recoil/atoms';
-
-
-
-
-
-
-
 import axios from 'axios';
 
 export default function CookingRegistrationCard() {
@@ -45,6 +38,10 @@ export default function CookingRegistrationCard() {
             )
         );
     };
+
+
+
+
 
     useEffect(() => {
         axios

@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CopyButton from './CopyButton';
 import AddButton from './AddButton';
 import location2 from '../assets/location2.png';
 import phone from '../assets/phone.png';
 import user from '../assets/User.png';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { contentDetailProductState, cartItemState } from '../recoil/atoms';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { locationState } from '../recoil/atoms'; // im
 
 export default function ContentDetailCard() {
+    const params = useParams();
+    // const contentDetailProduct = useRecoilValue(contentDetailProductState);
 
+    const locationData = useRecoilValue(locationState);
     const contentDetailProduct = useRecoilValue(contentDetailProductState);
     const contentID = contentDetailProduct.contentsDto.id;
+
     // console.log("ewqejnqwjkenjqwknejkwqnjk:", contentID)
 
     const [selectedTab, setSelectedTab] = useState('전체'); // 초기 탭을 '전체'로 설정
@@ -23,6 +29,29 @@ export default function ContentDetailCard() {
     // const productID = cartItems.martDto.mart.productId;
     // const martID = cartItems.martDto.mart.id;
     console.log("담기 버튼 누르면 저장되는 상품, 마트 정보:", cartItems);
+
+    // useEffect(() => {
+    //     // Use the locationData from Recoil state
+    //     axios
+    //         .get('http://3.37.4.231:8080/detail-content', {
+    //             params: {
+    //                 contents_id: params.id,
+    //                 url: '',
+    //                 latitude: locationData.latitude, // Use latitude from Recoil state
+    //                 longitude: locationData.longitude, // Use longitude from Recoil state
+    //             },
+    //         })
+    //         .then((response) => {
+    //             const detailProduct = response.data.result;
+    //             console.log(detailProduct)
+    //             setContentDetailProduct(detailProduct);
+    //             console.log("디테일:", detailProduct);
+    //             // console.log(contentDetailProduct.contentsDto)
+    //         })
+    //         .catch((error) => {
+    //             console.error('디테일 데이터를 불러오는 중 에러 발생:', error);
+    //         });
+    // }, [])
 
 
 
@@ -49,11 +78,8 @@ export default function ContentDetailCard() {
 
     //create-basket 통신 
     const handleShopping = (martDto) => {
-
         const productID = martDto.productId;
         const martID = martDto.mart.id;
-
-
         axios
             .post('http://3.37.4.231:8080/create-basket', {
                 memberId: 1,
@@ -94,17 +120,6 @@ export default function ContentDetailCard() {
                     </button>
                 ))}
             </div>
-
-
-
-
-
-
-
-
-
-
-
 
             <div className="bg-white">
                 {contentDetailProduct.data.map((data, index) => (
@@ -213,11 +228,6 @@ export default function ContentDetailCard() {
                     </div>
                 ))}
             </div>
-
-
-
-
-
         </>
     );
 }

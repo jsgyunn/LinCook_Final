@@ -18,11 +18,11 @@ export default function ContentDetailHeader() {
             <div className="flex flex-col flex-1 gap-5 sm:p-4">
                 <div className="flex flex-col flex-1 gap-4">
                     <div className="w-full bg-white  h-5 rounded-2xl flex items-center justify-center break-words text-2xl">
-                        {contentDetailProduct.contentsDto.title}
+                        {contentDetailProduct && contentDetailProduct.contentsDto.title}
                     </div>
 
                     <div className="w-full h-40 bg-gray-100 rounded-md flex items-center justify-center break-words overflow-y-auto mt-5 text-center">
-                        {contentDetailProduct.contentsDto.description}
+                        {contentDetailProduct && contentDetailProduct.contentsDto.description}
                     </div>
                 </div>
             </div>

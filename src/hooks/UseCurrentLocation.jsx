@@ -7,6 +7,7 @@ import Kakao from "../api/Kakao";
 const useCurrentLocation = ({ addressChecked, setAddressChecked }) => {
 
     const [location, setLocation] = useRecoilState(locationState);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
     //성공
@@ -16,6 +17,7 @@ const useCurrentLocation = ({ addressChecked, setAddressChecked }) => {
             latitude,
             longitude,
         });
+        setIsLoading(true);
     };
 
     //실패
@@ -42,8 +44,7 @@ const useCurrentLocation = ({ addressChecked, setAddressChecked }) => {
     return (
 
         <>
-            {location ? <Kakao location={location} /> : <span>주소 확인하는 중.....</span>
-            }
+            {isLoading ? <Kakao location={location} /> : <span>주소 확인하는 중.....</span>}
         </>
     )
 

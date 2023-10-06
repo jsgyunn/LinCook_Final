@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 export default function Kakao({ location }) {
     const { kakao } = window;
     const [address, setAddress] = useState(null);
+    console.log("KaKao 컴포넌트: ", location);
     const lat = location.latitude;
     const lng = location.longitude
     // console.log(location.longitude);

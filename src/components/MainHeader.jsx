@@ -16,6 +16,7 @@ export default function MainHeader() {
     const [showAlert, setShowAlert] = useState(false);
     // 클라이언트가 입력한 유튜브 링크 저장
     const [youtubeLink, setYoutubeLink] = useState('');
+    const [duplicateId, setDuplicateId] = useState("");
     // 유튜브 동영상 ID 값 저장
     const [youtubeVideoId, setYoutubeVideoId] = useRecoilState(youtubeVideoIdState);
     // 서버에서 받은 동영상 데이터 저장
@@ -53,6 +54,7 @@ export default function MainHeader() {
                 .catch((error) => {
                     console.log('서버 요청 오류: ', error);
                     // 등록된 유튜브 링크일 경우, 경고창 표시
+                    setDuplicateId(error.response.data.contentsId)
                     setShowAlert(true);
                     setLoading(false);
                 });
@@ -101,7 +103,7 @@ export default function MainHeader() {
                             <span className="text-sm font-medium">적용</span>
                         </button>
                         {loading && <Loading />}
-                        {showAlert && <Alert />}
+                        {showAlert && <Alert duId={duplicateId} />}
                     </div>
                 </div>
             </div>

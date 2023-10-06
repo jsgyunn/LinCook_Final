@@ -14,6 +14,7 @@ export default function Header() {
 
     const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
     const locationData = useRecoilValue(locationState);
+    console.log(locationData);
 
 
     const [addressChecked, setAddressChecked] = useState(false);

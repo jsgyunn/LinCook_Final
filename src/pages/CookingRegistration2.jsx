@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import InputYoutubeLink2 from '../components/InputYoutubeLink2';
 import CookingRegistrationCard from '../components/CookingRegistrationCard';
 import axios from 'axios';
-import { useRecoilValue } from 'recoil';
-import { registrationDataState, selectedProductsState } from '../recoil/atoms';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
+import { locationState, registrationDataState, selectedProductsState } from '../recoil/atoms';
 import { youtubeVideoIdState } from '../recoil/atoms';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,40 +16,52 @@ export default function CookingRegistration2() {
     const registrationData = useRecoilValue(registrationDataState);
     const selectedProducts = useRecoilValue(selectedProductsState);
 
-
     const { title, description_2 } = registrationData;
     const productIds = selectedProducts.map(product => product.product_id)
     const [uniqueID, setUniqueID] = useState("")
-
-
-
+    const locationData = useRecoilValue(locationState);
 
     console.log(registrationData.title);
     console.log(registrationData.description_2);
 
 
+    useEffect(() => {
+        // 새로고침을 감지하는 코드 추가
+        // navigate("/");
+    }, [locationData])
+
+
+    const resetSelectedProducts = useResetRecoilState(selectedProductsState)
+
 
     const navigateToContentDetail = () => {
-        axios
-            .post('http://3.37.4.231:8080/create-contents', {
-                member_id: 1,
-                title: title,
-                description: description_2,
-                url: youtubeVideoId,
-                name: "꽃게탕",
-                ids: productIds, // ids 값을 요청 본문에 포함
-            })
-            .then((response) => {
-                // 요청이 성공하면 처리
-                console.log('요리 생성 요청 성공:', response.data);
-                setUniqueID("유니크 아이디:", response.data)
-                navigate('/contentdetail')
-                // 필요한 처리 추가
-            })
-            .catch((error) => {
-                console.error('요리 생성 요청 중 에러 발생:', error);
-            });
+        if (selectedProducts.length === 0) {
+            alert("재료를 선택헤주세요.")
+        } else {
+            axios
+                .post('http://3.37.4.231:8080/create-contents', {
+                    member_id: 1,
+                    title: title,
+                    description: description_2,
+                    url: youtubeVideoId,
+                    name: "꽃게탕",
+                    ids: productIds, // ids 값을 요청 본문에 포함
+                })
+                .then((response) => {
+                    console.log(response);
+                    // 요청이 성공하면 처리
+                    console.log('요리 생성 요청 성공:', response.data);
+                    // setUniqueID("유니크 아이디:", response.data)
+                    navigate('/contentdetail/' + response.data.result.id)
+                    resetSelectedProducts()
+                })
+                .catch((error) => {
+                    console.error('요리 생성 요청 중 에러 발생:', error);
+                });
+        }
     };
+
+
 
     return (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">

@@ -26,7 +26,7 @@ export default function App() {
           <Route path='/test' element={<Test />}></Route>
           <Route path='/cookingregistration1' element={<CookingRegistration1 />}></Route>
           <Route path='/cookingregistration2' element={<CookingRegistration2 />}></Route>
-          <Route path='/contentdetail' element={<ContentDetail />}></Route>
+          <Route path='/contentdetail/:id' element={<ContentDetail />}></Route>
         </Routes>
       </BrowserRouter>
     </RecoilRoot>
