@@ -36,7 +36,7 @@ export default function CookingRegistration2() {
 
     const navigateToContentDetail = () => {
         if (selectedProducts.length === 0) {
-            alert("재료를 선택헤주세요.")
+            alert("재료를 선택해주세요.")
         } else {
             axios
                 .post('http://3.37.4.231:8080/create-contents', {

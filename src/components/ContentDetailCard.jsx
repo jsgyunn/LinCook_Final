@@ -170,7 +170,7 @@ export default function ContentDetailCard() {
                                             <div>
                                                 {martDtoList.mart.name}
                                                 <div className="text-sm font-normal text-green-500 mt-1">
-                                                    {`집으로부터 ${martDtoList.mart.distance}km`}
+                                                    {`현 위치로부터 ${martDtoList.mart.distance}km`}
                                                 </div>
                                             </div>
                                             <div className="mt-5 text-green-500">

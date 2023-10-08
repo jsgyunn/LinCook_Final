@@ -39,10 +39,6 @@ export default function CookingRegistrationCard() {
         );
     };
 
-
-
-
-
     useEffect(() => {
         axios
             .post('http://13.125.174.235:5000/', description_1)

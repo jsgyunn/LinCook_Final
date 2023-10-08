@@ -16,6 +16,7 @@ export default function MainHeader() {
     const [showAlert, setShowAlert] = useState(false);
     // 클라이언트가 입력한 유튜브 링크 저장
     const [youtubeLink, setYoutubeLink] = useState('');
+    //메인 카드에 중복된 콘텐츠 검사
     const [duplicateId, setDuplicateId] = useState("");
     // 유튜브 동영상 ID 값 저장
     const [youtubeVideoId, setYoutubeVideoId] = useRecoilState(youtubeVideoIdState);
@@ -30,9 +31,9 @@ export default function MainHeader() {
         setYoutubeLink(e.target.value);
     };
 
-    const navigateToCookingRegistration2 = () => {
-        navigate.push('/cookingregistration2');
-    };
+    // const navigateToCookingRegistration2 = () => {
+    //     navigate.push('/cookingregistration2');
+    // };
 
     // 유튜브 동영상 링크에서 동영상 ID 추출 -> 해당 ID를 사용하여 서버에 GET 요청
     const extractVideoId = () => {
@@ -58,6 +59,8 @@ export default function MainHeader() {
                     setShowAlert(true);
                     setLoading(false);
                 });
+        } else {
+            alert('올바른 주소가 아닙니다.')
         }
     };
 
