@@ -69,6 +69,23 @@ export default function ShoppingCarts({ open, onClose }) {
         return <div>loading ...</div>;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -100,7 +117,41 @@ export default function ShoppingCarts({ open, onClose }) {
                                     <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                                         <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                                             <div className="flex items-start justify-between">
-                                                <Dialog.Title className="text-lg font-medium text-gray-900">장바구니</Dialog.Title>
+                                                <Dialog.Title
+                                                    className="text-lg font-medium text-gray-900">
+                                                    장바구니
+                                                </Dialog.Title>
+
+
+
+
+
+
+
+                                                <div>
+                                                    <label htmlFor="HeadlineAct" className="block text-lg font-medium text-gray-900">
+                                                        영상 제목
+                                                    </label>
+                                                    <select
+                                                        name="HeadlineAct"
+                                                        id="HeadlineAct"
+                                                        className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-m"
+                                                        value={basketData.length > 0 ? basketData[0].contentsDto.title : ""}
+                                                    >
+                                                        {basketData.map((basket, basketIndex) => (
+                                                            <option key={basketIndex} value={basket.contentsDto.title}>
+                                                                {basket.contentsDto.title}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+
+
+
+
+
+
+
                                                 <div className="ml-3 flex h-7 items-center">
                                                     <button
                                                         type="button"
@@ -113,6 +164,15 @@ export default function ShoppingCarts({ open, onClose }) {
                                                     </button>
                                                 </div>
                                             </div>
+
+
+
+
+
+
+
+
+
 
                                             {basketData.map((basket, basketIndex) => (
                                                 <div key={basketIndex} className="mt-3">
@@ -135,6 +195,7 @@ export default function ShoppingCarts({ open, onClose }) {
                                                             ▼
                                                         </div>
                                                     </div>
+
                                                     {isOpen && basketIndex === selectedBasketIndex && (
                                                         <div className="mt-8">
                                                             <div className="flow-root">
@@ -185,6 +246,15 @@ export default function ShoppingCarts({ open, onClose }) {
                                                         </div>
                                                     )}
                                                 </div>
+
+
+
+
+
+
+
+
+
                                             ))}
                                         </div>
 
