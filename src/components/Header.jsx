@@ -12,9 +12,9 @@ import axios from 'axios'
 export default function Header() {
 
 
-    const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
-    const locationData = useRecoilValue(locationState);
-    console.log(locationData);
+    // const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
+    // const locationData = useRecoilValue(locationState);
+    // console.log("위치 데이터:", locationData);
 
 
     const [addressChecked, setAddressChecked] = useState(false);
@@ -24,29 +24,28 @@ export default function Header() {
         setShowShoppingCart(!showShoppingCart); // 다이얼로그를 열고 닫는 상태를 토글합니다.
         console.log("문이 열립니다!")
     }
-    console.log(addressChecked)
+    // console.log(addressChecked)
 
 
 
-    const handleBasketInfo = () => {
-        axios
-            .get('http://3.37.4.231:8080/basket-info', {
-                params: {
-                    memberId: 1,
-                    latitude: locationData.latitude, // Use latitude from Recoil state
-                    longitude: locationData.longitude, // Use longitude from Recoil state
-                },
-            })
-            .then((response) => {
-                const basket = response.data.result;
-                setBasketInfo(basket);
-                console.log("장바구니 정보:", basket)
-            })
-            .catch((error) => {
-                console.error('장바구니 정보 불러오는 중 에러 발생:', error);
-            });
-    }
-
+    // const handleBasketInfo = () => {
+    //     axios
+    //         .get('http://3.37.4.231:8080/basket-info', {
+    //             params: {
+    //                 memberId: 1,
+    //                 latitude: locationData.latitude, // Use latitude from Recoil state
+    //                 longitude: locationData.longitude, // Use longitude from Recoil state
+    //             },
+    //         })
+    //         .then((response) => {
+    //             const basket = response.data.result;
+    //             setBasketInfo(basket);
+    //             console.log("장바구니 정보:", basket)
+    //         })
+    //         .catch((error) => {
+    //             console.error('장바구니 정보 불러오는 중 에러 발생:', error);
+    //         });
+    // }
 
     return (
         <header className="bg-white">
@@ -97,7 +96,6 @@ export default function Header() {
                                         테스트
                                     </Link>
                                 </li>
-
                                 <li className='ml-4'>
                                     <Link
                                         className="text-black transition hover:text-gray-500/75"
@@ -106,8 +104,6 @@ export default function Header() {
                                         로그인
                                     </Link>
                                 </li>
-
-
                                 <li className='ml-4'>
                                     <a
                                         className="text-black transition hover:text-gray-500/75"
@@ -117,20 +113,26 @@ export default function Header() {
                                     </a>
                                 </li>
 
+
+
                                 <li className='ml-4'>
+                                    {/* <Link */}
+                                    {/* to={"/shoppingcarts"}> */}
                                     <p
-                                        className="text-black transition hover:text-gray-500/75"
-                                        onClick={() => {
-                                            handleButtonClick();
-                                            handleBasketInfo();
-                                        }}
+                                        className="text-black transition hover:text-gray-500/75 cursor-pointer"
+                                        onClick={handleButtonClick}
                                     >
-                                        장바구니
-                                    </p>
+                                        <div className="relative py-2">
+                                            <div className="absolute left-4 top-0">
+                                                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-green-600 p-2 text-xs text-white">1</p>
+                                            </div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                            </svg>
+                                        </div>
+                                    </p>                                    {/* </Link> */}
                                 </li>
                                 <ShoppingCarts open={showShoppingCart} onClose={() => setShowShoppingCart(false)} />
-
-
                             </ul>
                         </nav>
                     </div>
@@ -169,3 +171,5 @@ export default function Header() {
         </header >
     )
 }
+
+

@@ -9,6 +9,7 @@ import CookingRegistration1 from './pages/CookingRegistration1';
 import CookingRegistration2 from './pages/CookingRegistration2';
 import ContentDetail from './pages/ContentDetail';
 import { RecoilRoot } from 'recoil';
+import ShoppingCarts from './components/ShoppingCarts';
 
 
 
@@ -26,6 +27,7 @@ export default function App() {
           <Route path='/test' element={<Test />}></Route>
           <Route path='/cookingregistration1' element={<CookingRegistration1 />}></Route>
           <Route path='/cookingregistration2' element={<CookingRegistration2 />}></Route>
+          <Route path='/shoppingcarts' element={<ShoppingCarts />}></Route>
           <Route path='/contentdetail/:id' element={<ContentDetail />}></Route>
         </Routes>
       </BrowserRouter>

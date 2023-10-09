@@ -1,42 +1,73 @@
-import React, { useEffect, useMemo } from 'react';
-import { Fragment, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { basketInfoState, cartItemState, locationState } from '../recoil/atoms';
 import axios from 'axios';
 
-
 export default function ShoppingCarts({ open, onClose }) {
 
-    //Header 컴포넌트에서 통신함
-    const basketInfo = useRecoilValue(basketInfoState);
-    console.log("바스켓인포:", basketInfo)
+
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedBasketIndex, setSelectedBasketIndex] = useState(0);
+    const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
+    const locationData = useRecoilValue(locationState);
+    const [isLoading, setIsLoading] = useState(false);
+
+
+    const toggleDialog = () => {
+        setIsOpen(!isOpen);
+        // 드롭다운을 닫을 때 selectedBasketIndex도 초기화합니다.
+        setSelectedBasketIndex(0);
+    };
 
     const cartItems = useRecoilValue(cartItemState);
-    console.log("이건 뭐니?", cartItems);
-
-    // Recoil의 useSetRecoilState 훅을 사용하여 상태를 업데이트합니다.
     const setCartItemState = useSetRecoilState(cartItemState);
 
-
-    // 합계 계산을 위한 useMemo를 사용합니다.
     const totalAmount = useMemo(() => {
-        // 장바구니에 담긴 모든 상품의 가격을 합산
         return cartItems.reduce((total, cartItem) => {
             return total + cartItem.productDto.sale_price;
-        }, 0); // 초기값을 0으로 설정
+        }, 0);
     }, [cartItems]);
 
-    // 상품을 장바구니에서 제거하는 함수
     const removeFromCart = (martId) => {
-        // 장바구니에서 productId와 일치하는 상품을 제거합니다.
         const updatedCartItems = cartItems.filter((item) => item.martDto.mart.id !== martId);
-
-        // Recoil의 useSetRecoilState를 사용하여 장바구니 상태를 업데이트합니다.
         setCartItemState(updatedCartItems);
     };
 
+    const loadBasketData = () => {
+        axios
+            .get('http://3.37.4.231:8080/basket-info', {
+                params: {
+                    memberId: 1,
+                    latitude: locationData.latitude, // Use latitude from Recoil state
+                    longitude: locationData.longitude, // Use longitude from Recoil state
+                },
+            })
+            .then((response) => {
+                const basket = response.data.result;
+                setBasketInfo(basket);
+                console.log("장바구니 정보:", basket);
+                setIsLoading(true);
+            })
+            .catch((error) => {
+                console.error('장바구니 정보 불러오는 중 에러 발생:', error);
+            });
+    };
+
+    useEffect(() => {
+        loadBasketData();
+    }, []);
+
+    const basketInfoData = useRecoilValue(basketInfoState);
+    const basketData = basketInfoData.data;
+    console.log("바스켓데이터:", basketData);
+
+    if (!isLoading) {
+        return <div>loading ...</div>;
+    }
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -83,74 +114,78 @@ export default function ShoppingCarts({ open, onClose }) {
                                                 </div>
                                             </div>
 
-                                            <div className="mt-3">
-                                                <h2 className="text-lg font-medium text-gray-900 text-center">요리 제목</h2> {/* "요리 제목" 추가 */}
-                                            </div>
-
-                                            <div className="mt-8">
-                                                <div className="flow-root">
-
-
-
-
-
-
-                                                    <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                                        {cartItems.map((cartItem, index) => (
-                                                            <li key={index} className="flex py-6">
-
-                                                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                                    <img
-                                                                        src={cartItem.productDto.img_url}
-                                                                        alt={cartItem.productDto.name}
-                                                                        className="h-full w-full object-cover object-center"
-                                                                    />
-                                                                </div>
-                                                                <div className="ml-4 flex flex-1 flex-col">
-                                                                    <div>
-                                                                        <div className="flex justify-between text-base font-medium text-gray-900">
-                                                                            <h3>
-                                                                                <a href={cartItem.productDto.name}>{cartItem.productDto.name}</a>
-                                                                            </h3>
-                                                                            <p className="ml-4 font-medium text-xl">
-                                                                                {`${cartItem.martDto.price.toLocaleString()}원`}
-                                                                            </p>
-                                                                        </div>
-                                                                        <p className="mt-1 text-sm text-gray-500">{cartItem.productDto.capacity}</p>
-                                                                    </div>
-                                                                    <div className="flex flex-1 items-end justify-between text-sm">
-                                                                        <div className="flex">
-                                                                            <button
-                                                                                type="button"
-                                                                                className="font-medium text-red-600 hover:text-red-500"
-                                                                                onClick={() =>
-                                                                                    removeFromCart(cartItem.martDto.mart.id)
-                                                                                }
-                                                                            >
-                                                                                빼기
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-
-
-
-
-
-
-
-
-
-
+                                            {basketData.map((basket, basketIndex) => (
+                                                <div key={basketIndex} className="mt-3">
+                                                    <div
+                                                        className={`flex items-center justify-between cursor-pointer`}
+                                                        onClick={() => {
+                                                            toggleDialog();
+                                                            setSelectedBasketIndex(basketIndex);
+                                                        }}
+                                                    >
+                                                        <h2 className="text-lg font-medium text-gray-900">
+                                                            {basket.contentsDto.title}
+                                                        </h2>
+                                                        <div
+                                                            className={`transform transition-transform duration-300 ${isOpen && basketIndex === selectedBasketIndex
+                                                                ? 'rotate-180'
+                                                                : ''
+                                                                }`}
+                                                        >
+                                                            ▼
+                                                        </div>
+                                                    </div>
+                                                    {isOpen && basketIndex === selectedBasketIndex && (
+                                                        <div className="mt-8">
+                                                            <div className="flow-root">
+                                                                <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                                                    {basket.basketMartProductList.map((product, productIndex) => (
+                                                                        <li key={productIndex} className="flex py-6">
+                                                                            {product.basketProductDtoList.map((productItem, productItemIndex) => (
+                                                                                <Fragment key={productItemIndex}>
+                                                                                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                                                        <img
+                                                                                            src={productItem.imgUrl}
+                                                                                            alt={productItem.name}
+                                                                                            className="h-full w-full object-cover object-center"
+                                                                                        />
+                                                                                    </div>
+                                                                                    <div className="ml-4 flex flex-1 flex-col">
+                                                                                        <div>
+                                                                                            <div className="flex justify-between text-base font-medium text-gray-900">
+                                                                                                <h3>
+                                                                                                    <a href={productItem.name}>{productItem.name}</a>
+                                                                                                </h3>
+                                                                                                <p className="ml-4 font-medium text-xl">
+                                                                                                    {`${productItem.salePrice.toLocaleString()}원`}
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <p className="mt-1 text-sm text-gray-500">{productItem.capacity}</p>
+                                                                                        </div>
+                                                                                        <div className="flex flex-1 items-end justify-between text-sm">
+                                                                                            <div className="flex">
+                                                                                                <button
+                                                                                                    type="button"
+                                                                                                    className="font-medium text-red-600 hover:text-red-500"
+                                                                                                    onClick={() =>
+                                                                                                        removeFromCart(product.martDto.name)
+                                                                                                    }
+                                                                                                >
+                                                                                                    빼기
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </Fragment>
+                                                                            ))}
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            </div>
-
-
-
-
+                                            ))}
                                         </div>
 
                                         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
@@ -179,5 +214,5 @@ export default function ShoppingCarts({ open, onClose }) {
                 </div>
             </Dialog>
         </Transition.Root>
-    )
+    );
 }
