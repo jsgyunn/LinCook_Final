@@ -49,27 +49,36 @@ export default function ShoppingCarts({ open, onClose }) {
 
 
 
-    const handleRemoveProduct = (productToRemove) => {
+    const handleRemoveProduct = (productIdToRemove) => {
+        // 현재 선택한 비디오 제목
         const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedVideoTitle);
 
         if (selectedBasket) {
-            const updatedBasketItems = selectedBasket.basketMartProductList.filter(
-                (product) => product !== productToRemove
-            );
+            // 선택한 바구니에서 상품을 찾아서 삭제
+            const updatedBasketMartProductList = selectedBasket.basketMartProductList.map((product) => {
+                // 상품의 productId가 삭제하려는 productIdToRemove와 일치하지 않으면 유지
+                const updatedBasketProductDtoList = product.basketProductDtoList.filter(
+                    (basketProduct) => basketProduct.productId !== productIdToRemove
+                );
 
+                return { ...product, basketProductDtoList: updatedBasketProductDtoList };
+            });
+
+            // 새로운 basketData 배열 생성
+            const updatedBasketData = basketData.map((basket) => {
+                if (basket.contentsDto.title === selectedVideoTitle) {
+                    return { ...basket, basketMartProductList: updatedBasketMartProductList };
+                }
+                return basket;
+            });
+
+            // 상태 업데이트
             setBasketInfo((prevBasketInfo) => ({
                 ...prevBasketInfo,
-                data: prevBasketInfo.data.map((basket) =>
-                    basket.contentsDto.title === selectedVideoTitle
-                        ? { ...basket, basketMartProductList: updatedBasketItems }
-                        : basket
-                ),
+                data: updatedBasketData,
             }));
         }
     };
-
-
-
 
 
 
@@ -117,7 +126,7 @@ export default function ShoppingCarts({ open, onClose }) {
                                     </div>
                                     <button
                                         className="ml-4 text-red-500 font-medium"
-                                        onClick={() => handleRemoveProduct(product)}
+                                        onClick={() => handleRemoveProduct(basketProduct.productId)}
                                     >
                                         빼기
                                     </button>
