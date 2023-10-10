@@ -44,6 +44,11 @@ export default function ShoppingCarts({ open, onClose }) {
     const basketInfoData = useRecoilValue(basketInfoState);
     const basketData = basketInfoData.data || [];
 
+
+
+
+
+
     const handleRemoveProduct = (productToRemove) => {
         const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedVideoTitle);
 
@@ -62,6 +67,12 @@ export default function ShoppingCarts({ open, onClose }) {
             }));
         }
     };
+
+
+
+
+
+
 
     const renderBasketItemsForSelectedVideo = () => {
         const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedVideoTitle);

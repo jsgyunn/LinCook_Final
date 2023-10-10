@@ -63,9 +63,11 @@ export default function ContentDetailCard() {
                 // 요청이 성공하면 처리
                 console.log('장바구니 요청 성공:', response.data);
                 setShoppingData("쇼핑 데이터:", response.data)
+                alert("상품이 담겼습니다.")
             })
             .catch((error) => {
                 console.error('장바구니 요청 중 에러 발생:', error);
+                alert("이미 상품이 담겼습니다.")
             });
     };
 
