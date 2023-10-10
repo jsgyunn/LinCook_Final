@@ -43,7 +43,7 @@ export default function ContentDetail() {
                 console.log(response);
                 const detailProduct = response.data.result;
                 setContentDetailProduct(detailProduct);
-                console.log(contentDetailProduct)
+                console.log("컨텐트디테일프로덕트:", contentDetailProduct)
                 setIsLoading(true);
                 // console.log(contentDetailProduct.contentsDto)
             })

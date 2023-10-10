@@ -35,3 +35,8 @@ export const basketInfoState = atom({
     key: 'basketInfoState',
     default: [], // 초기 값은 빈 배열
 });
+
+export const addressState = atom({
+    key: 'addressState',
+    default: [null], // 초기 값은 빈 배열
+});

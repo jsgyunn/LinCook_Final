@@ -5,16 +5,22 @@ import location2 from '../assets/location2.png';
 import phone from '../assets/phone.png';
 import user from '../assets/User.png';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { contentDetailProductState, cartItemState } from '../recoil/atoms';
+import { contentDetailProductState, cartItemState, addressState } from '../recoil/atoms';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { locationState } from '../recoil/atoms'; // im
+import FindMap from './FindMap';
 
 export default function ContentDetailCard() {
     const params = useParams();
     // const contentDetailProduct = useRecoilValue(contentDetailProductState);
 
+
+    const addressName = useRecoilValue(addressState)
+    console.log("주소값:", addressName)
+    console.log("이름값:", addressName.address_name)
     const locationData = useRecoilValue(locationState);
+    console.log(locationData)
     const contentDetailProduct = useRecoilValue(contentDetailProductState);
     const contentID = contentDetailProduct.contentsDto.id;
 
@@ -70,6 +76,7 @@ export default function ContentDetailCard() {
                 alert("이미 상품이 담겼습니다.")
             });
     };
+
 
 
     return (
@@ -162,7 +169,14 @@ export default function ContentDetailCard() {
                                                 {martDtoList.mart.address}
                                             </p>
                                             <div className="ml-auto">
-                                                <CopyButton />
+                                                <a
+                                                    className="text-gray-500 underline text-sm"
+                                                    // onClick={handleMapNavigation}
+                                                    href={`http://map.naver.com/index.nhn?slng=${locationData.longitude}&slat=${locationData.latitude}&stext=${encodeURIComponent(addressName.address_name)}&elng=${martDtoList.longitude}&elat=${martDtoList.latitude}&pathType=0&showMap=true&etext=${encodeURIComponent(martDtoList.mart.name)}&menu=route&pathType=3`}
+                                                    target="_blank"
+                                                >
+                                                    길찾기
+                                                </a>
                                             </div>
                                         </h3>
 
@@ -199,9 +213,18 @@ export default function ContentDetailCard() {
                                 ))}
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    </div >
+                ))
+                }
+            </div >
         </>
     );
 }
+
+
+
+
+
+
+
+
