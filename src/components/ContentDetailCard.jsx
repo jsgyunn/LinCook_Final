@@ -30,34 +30,6 @@ export default function ContentDetailCard() {
     // const martID = cartItems.martDto.mart.id;
     console.log("담기 버튼 누르면 저장되는 상품, 마트 정보:", cartItems);
 
-    // useEffect(() => {
-    //     // Use the locationData from Recoil state
-    //     axios
-    //         .get('http://3.37.4.231:8080/detail-content', {
-    //             params: {
-    //                 contents_id: params.id,
-    //                 url: '',
-    //                 latitude: locationData.latitude, // Use latitude from Recoil state
-    //                 longitude: locationData.longitude, // Use longitude from Recoil state
-    //             },
-    //         })
-    //         .then((response) => {
-    //             const detailProduct = response.data.result;
-    //             console.log(detailProduct)
-    //             setContentDetailProduct(detailProduct);
-    //             console.log("디테일:", detailProduct);
-    //             // console.log(contentDetailProduct.contentsDto)
-    //         })
-    //         .catch((error) => {
-    //             console.error('디테일 데이터를 불러오는 중 에러 발생:', error);
-    //         });
-    // }, [])
-
-
-
-
-
-
 
 
 
