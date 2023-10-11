@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { basketInfoState, cartItemState, locationState } from '../recoil/atoms';
 import axios from 'axios';
+// import dotenv from "dotenv";
 
 export default function ShoppingCarts({ open, onClose }) {
     const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
@@ -12,6 +13,7 @@ export default function ShoppingCarts({ open, onClose }) {
     const setCartItemState = useSetRecoilState(cartItemState);
     const [selectedBasketIndex, setSelectedBasketIndex] = useState(0);
     const [selectedVideoTitle, setSelectedVideoTitle] = useState('');
+    // dotenv.config()
 
     const handleVideoTitleChange = (event) => {
         const selectedTitle = event.target.value;
@@ -44,8 +46,52 @@ export default function ShoppingCarts({ open, onClose }) {
     const basketInfoData = useRecoilValue(basketInfoState);
     const basketData = basketInfoData.data || [];
 
+    const kakaoShare = () => {
+        // 현재 선택된 영상 제목
+        const selectedTitle = selectedVideoTitle;
+        // 선택된 영상 제목으로 해당 정보 가져오기
+        const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedTitle);
+        selectedBasket.basketMartProductList.forEach((mart) => {
+            // console.log(mart.martDto.name)
+            mart.basketProductDtoList.forEach((element) => {
+                // console.log(element)
+                const name = element.name
+                const price = element.salePrice
+                const capacity = element.capacity
+                console.log('여기를 보세용')
+            })
 
-
+        })
+        
+        if (window.Kakao) {
+            const kakao = window.Kakao;
+            if (!kakao.isInitialized()) {
+                kakao.init("1c3cec44f2e4537ecfc7b9f23f6fc3a0");
+            }
+            
+            // 공유하기 기능 구현
+            kakao.Link.sendDefault({
+                objectType: "feed",
+                content: {
+                    title: "title",
+                    imageUrl: "imageUrl",
+                    link: {
+                        mobileWebUrl: "route",
+                        webUrl: "route",
+                    },
+                },
+                buttons: [
+                    {
+                        title: "title",
+                        link: {
+                            mobileWebUrl: "route",
+                            webUrl: "route",
+                        },
+                    },
+                ],
+            });
+        }
+    };
 
 
 
@@ -218,8 +264,9 @@ export default function ShoppingCarts({ open, onClose }) {
                                             </div>
                                             <div className="mt-6">
                                                 <a
-                                                    href="#"
+                                                    href="javascript:void(0);"
                                                     className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-500"
+                                                    onClick={() => kakaoShare()}
                                                 >
                                                     공유하기
                                                 </a>
