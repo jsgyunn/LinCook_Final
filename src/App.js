@@ -10,14 +10,14 @@ import CookingRegistration2 from './pages/CookingRegistration2';
 import ContentDetail from './pages/ContentDetail';
 import { RecoilRoot } from 'recoil';
 import ShoppingCarts from './components/ShoppingCarts';
-
-
-
+import RouteChangeTracker from "./RouteChangeTracker";
 
 export default function App() {
+  RouteChangeTracker();
+
   return (
     <RecoilRoot>
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
         <Header />
         <Routes>
           <Route path='/' element={<Main />}></Route>
@@ -30,7 +30,7 @@ export default function App() {
           <Route path='/shoppingcarts' element={<ShoppingCarts />}></Route>
           <Route path='/contentdetail/:id' element={<ContentDetail />}></Route>
         </Routes>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </RecoilRoot>
   );
 }
