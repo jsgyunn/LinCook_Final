@@ -1,11 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import logo from '../assets/logo.png';
-import LoginAlert from "../components/LoginAlert";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
-    const { register, handleSubmit, formState: { isSubmitting, isSubmitted, errors } } = useForm();
-    const [alerted, setAlerted] = useState(false);
+    const navigate = useNavigate();
+    const { register, handleSubmit, getValues, formState: { isSubmitting, isSubmitted, errors } } = useForm();
+
+    const [loginInfo, setLoginInfo] = useState({});
+    const [accessToken, setAccessToken] = useState("");
+
+
+
+    useEffect(() => {
+        console.log("로그인 정보:", loginInfo);
+    }, [loginInfo])
+
+
+    const onSubmit = (data) => {
+        const Email = getValues('email');
+        const Password = getValues('password');
+
+        console.log(Email)
+        console.log(Password)
+
+        axios
+            .post('http://3.37.4.231:8080/auth/signin', {
+                email: Email,
+                password: Password,
+            })
+            .then((response) => {
+                // 요청이 성공하면 처리
+                console.log('로그인 성공:', response.data.result);
+                setLoginInfo(response.data.result);
+                setAccessToken(response.data.result.token);
+                console.log("토큰 정보 : ", accessToken);
+                console.log("로그인 인포:", loginInfo);
+
+                alert('로그인 성공!');
+                navigate('/');
+            })
+            .catch((error) => {
+                console.error('로그인 에러 발생:', error);
+            });
+    }
 
     return (
         <div className="flex">
@@ -32,15 +71,11 @@ export default function Login() {
                     <h2 className="mt-10 text-center text-5xl font-bold leading-9 tracking-tight text-green-500">
                         LinCook
                     </h2>
-                    {alerted && <LoginAlert />}
+
                 </div>
 
                 <div className="w-full max-w-md mx-auto mt-5">
-                    <form onSubmit={handleSubmit(async (data, event) => {
-                        event.preventDefault()
-                        setAlerted(true);
-                        await new Promise((r) => setTimeout(r, 1_000));
-                    })}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         {/* 이메일 입력 부분 */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
@@ -62,7 +97,7 @@ export default function Login() {
                                     autoComplete="email"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6 h-11"
                                 />
-                                {errors.email && <small role="alert">{errors.email.message}</small>}
+                                {errors.email && <small className="text-red-600" role="alert">{errors.email.message}</small>}
                             </div>
                         </div>
 
@@ -86,7 +121,8 @@ export default function Login() {
                                     {...register('password', {
                                         required: '비밀번호는 필수 입력입니다.',
                                         pattern: {
-                                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                                            value: 6,
+                                            // value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
                                             message: '비밀번호 형식에 맞지 않습니다.'
                                         }
                                     })}
@@ -94,7 +130,7 @@ export default function Login() {
                                     autoComplete="current-password"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6 h-11"
                                 />
-                                {errors.password && <small role="alert">{errors.password.message}</small>}
+                                {errors.password && <small className="text-red-600" role="alert">{errors.password.message}</small>}
                             </div>
                         </div>
 
@@ -118,17 +154,17 @@ export default function Login() {
                     </div>
 
                     {/* 구글로 시작하기 버튼 */}
-                    <div className="mt-6">
+                    {/* <div className="mt-6">
                         <button
                             type="submit"
                             className="flex w-full justify-center rounded-md bg-gray-200 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-green-600 mt-4"
                         >
                             구글로 시작하기
                         </button>
-                    </div>
+                    </div> */}
 
                     {/* 회원 가입 링크 */}
-                    <p className="mt-10 text-center text-sm text-gray-500">
+                    <p className="mt-5 text-center text-sm text-gray-500">
                         계정이 없으신가요?{' '}
                         <a href="/signup" className="font-semibold leading-6 text-green-600 hover:text-green-500">
                             가입하기

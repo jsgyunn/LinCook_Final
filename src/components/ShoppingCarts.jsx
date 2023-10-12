@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { constSelector, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { basketInfoState, cartItemState, locationState } from '../recoil/atoms';
 import axios from 'axios';
 // import dotenv from "dotenv";
@@ -13,12 +13,17 @@ export default function ShoppingCarts({ open, onClose }) {
     const setCartItemState = useSetRecoilState(cartItemState);
     const [selectedBasketIndex, setSelectedBasketIndex] = useState(0);
     const [selectedVideoTitle, setSelectedVideoTitle] = useState('');
+    // Deleted basketIds 배열을 선언
+    const deletedBasketIds = [];
+
+
     // dotenv.config()
 
     const handleVideoTitleChange = (event) => {
         const selectedTitle = event.target.value;
         setSelectedVideoTitle(selectedTitle);
     };
+
 
     const loadBasketData = () => {
         axios
@@ -31,6 +36,10 @@ export default function ShoppingCarts({ open, onClose }) {
             })
             .then((response) => {
                 const basket = response.data.result;
+                console.log("바스켓:", basket)
+                const initialVideoTitle = basket.data[0].contentsDto.title;
+                console.log(initialVideoTitle)
+                setSelectedVideoTitle(initialVideoTitle)
                 setBasketInfo(basket);
                 setIsLoading(true);
             })
@@ -39,9 +48,10 @@ export default function ShoppingCarts({ open, onClose }) {
             });
     };
 
+
     useEffect(() => {
         loadBasketData();
-    }, []);
+    }, [basketInfo]);
 
     const basketInfoData = useRecoilValue(basketInfoState);
     const basketData = basketInfoData.data || [];
@@ -62,13 +72,13 @@ export default function ShoppingCarts({ open, onClose }) {
             })
 
         })
-        
+
         if (window.Kakao) {
             const kakao = window.Kakao;
             if (!kakao.isInitialized()) {
                 kakao.init("1c3cec44f2e4537ecfc7b9f23f6fc3a0");
             }
-            
+
             // 공유하기 기능 구현
             kakao.Link.sendDefault({
                 objectType: "feed",
@@ -93,22 +103,33 @@ export default function ShoppingCarts({ open, onClose }) {
         }
     };
 
-
-
     const handleRemoveProduct = (productIdToRemove) => {
         // 현재 선택한 비디오 제목
         const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedVideoTitle);
 
         if (selectedBasket) {
+            // 삭제된 basketId를 저장할 배열 생성
+            const deletedBasketIds = [];
+
             // 선택한 바구니에서 상품을 찾아서 삭제
             const updatedBasketMartProductList = selectedBasket.basketMartProductList.map((product) => {
                 // 상품의 productId가 삭제하려는 productIdToRemove와 일치하지 않으면 유지
                 const updatedBasketProductDtoList = product.basketProductDtoList.filter(
-                    (basketProduct) => basketProduct.productId !== productIdToRemove
+                    (basketProduct) => {
+                        if (basketProduct.productId === productIdToRemove) {
+                            // 삭제된 상품의 basketId를 배열에 추가
+                            deletedBasketIds.push(basketProduct.basketId);
+                            return false; // 이 항목은 유지하지 않음
+                        }
+                        return true; // 이 항목은 유지
+                    }
                 );
 
                 return { ...product, basketProductDtoList: updatedBasketProductDtoList };
             });
+
+            // 삭제된 basketId 배열을 출력
+            console.log('삭제된 basketIds:', deletedBasketIds);
 
             // 새로운 basketData 배열 생성
             const updatedBasketData = basketData.map((basket) => {
@@ -123,70 +144,86 @@ export default function ShoppingCarts({ open, onClose }) {
                 ...prevBasketInfo,
                 data: updatedBasketData,
             }));
+
+            console.log(deletedBasketIds[0])
+
+            axios
+                .post('http://3.37.4.231:8080/delete-basket', {
+                    memberId: 1,
+                    basketId: deletedBasketIds[0],
+                })
+                .then((response) => {
+                    console.log("성공:", response.data);
+                })
+                .catch((error) => {
+                    console.log("서버 오류:", error)
+                })
+            // handleBasketDelet(deletedBasketIds);
         }
     };
-
-
 
 
     const renderBasketItemsForSelectedVideo = () => {
+
+        console.log("basketData: ", basketData);
+        console.log("selectedVideoTitle: ", selectedVideoTitle);
+
         const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedVideoTitle);
 
+        console.log("selectedBasket: ", selectedBasket);
+
         if (!selectedBasket) {
-            return <p className='mt-28 text-center font-semibold'>잠시만 기다려주세요 ...</p>;
-        }
+            return <p className='mt-28 text-center font-semibold'>재료를 추가해주세요.</p>;
+        } else {
+            const basketItemsForSelectedVideo = selectedBasket.basketMartProductList;
 
-        const basketItemsForSelectedVideo = selectedBasket.basketMartProductList;
-
-        return (
-            <div>
-                {basketItemsForSelectedVideo.map((product, index) => (
-                    <div key={`${product.martDto.name}-${index}`}>
-                        <h2 className="text-xl font-semibold mt-6">{product.martDto.name}</h2>
-                        <ul role="list" className="mt-3 -my-6 divide-y divide-gray-200">
-                            {product.basketProductDtoList.map((basketProduct, innerIndex) => (
-                                <li key={`${basketProduct.name}-${innerIndex}`} className="flex py-6">
-                                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                        <img
-                                            src={basketProduct.imgUrl}
-                                            alt={basketProduct.name}
-                                            className="h-full w-full object-cover object-center"
-                                        />
-                                    </div>
-                                    <div className="ml-4 flex flex-1 flex-col">
-                                        <div>
-                                            <div className="flex justify-between text-base font-medium text-gray-900">
-                                                <h3>
-                                                    <a href={basketProduct.name}>{basketProduct.name}</a>
-                                                </h3>
-                                                <p className="ml-4 font-medium text-xl">
-                                                    {`${basketProduct.salePrice.toLocaleString()}원`}
-                                                </p>
+            return (
+                <div>
+                    {basketItemsForSelectedVideo.map((product, index) => (
+                        <div key={`${product.martDto.name}-${index}`}>
+                            <h2 className="text-xl font-semibold mt-6">{product.martDto.name}</h2>
+                            <ul role="list" className="mt-3 -my-6 divide-y divide-gray-200">
+                                {product.basketProductDtoList.map((basketProduct, innerIndex) => (
+                                    <li key={`${basketProduct.name}-${innerIndex}`} className="flex py-6">
+                                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                            <img
+                                                src={basketProduct.imgUrl}
+                                                alt={basketProduct.name}
+                                                className="h-full w-full object-cover object-center"
+                                            />
+                                        </div>
+                                        <div className="ml-4 flex flex-1 flex-col">
+                                            <div>
+                                                <div className="flex justify-between text-base font-medium text-gray-900">
+                                                    <h3>
+                                                        <a href={basketProduct.name}>{basketProduct.name}</a>
+                                                    </h3>
+                                                    <p className="ml-4 font-medium text-xl">
+                                                        {`${basketProduct.salePrice.toLocaleString()}원`}
+                                                    </p>
+                                                </div>
+                                                <p className="mt-1 text-sm text-gray-500">{basketProduct.capacity}</p>
                                             </div>
-                                            <p className="mt-1 text-sm text-gray-500">{basketProduct.capacity}</p>
+                                            <div className="mt-1 text-sm text-gray-500">
+                                                <p>{product.martDto.name}</p>
+                                                <p>{product.martDto.distance} km</p>
+                                            </div>
                                         </div>
-                                        <div className="mt-1 text-sm text-gray-500">
-                                            <p>{product.martDto.name}</p>
-                                            <p>{product.martDto.distance} km</p>
-                                        </div>
-                                    </div>
-                                    <button
-                                        className="ml-4 text-red-500 font-medium"
-                                        onClick={() => handleRemoveProduct(basketProduct.productId)}
-                                    >
-                                        빼기
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </div>
-        );
-    };
-
-    if (!isLoading) {
-        return <div>loading ...</div>;
+                                        <button
+                                            className="ml-4 text-red-500 font-medium"
+                                            onClick={() => handleRemoveProduct(basketProduct.productId)}
+                                        >
+                                            빼기
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
+                    }
+                </div >
+            );
+        };
     }
 
     return (

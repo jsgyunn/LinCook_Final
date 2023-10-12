@@ -1,26 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
+    const navigate = useNavigate();
     const { control, handleSubmit, register, setValue, getValues, formState: { errors } } = useForm();
-    const [signupInfo, setSignupInfo] = useState([]);
+    const [signupInfo, setSignupInfo] = useState("");
 
 
-    useEffect(() => {
-        // signupInfo 상태가 업데이트될 때마다 이 부분이 실행됩니다.
-        console.log("회원 정보:", signupInfo);
-    }, [signupInfo]);
+    // useEffect(() => {
+    //     // signupInfo 상태가 업데이트될 때마다 이 부분이 실행됩니다.
+    //     console.log("회원 정보:", signupInfo);
+    // }, [signupInfo]);
 
-    const onSubmit = (data) => {
-        // 사용자가 입력한 정보를 변수에 담음
-        const Email = getValues('email');
-        const Password = getValues('password');
-        const Name = getValues('name');
-        const Gender = getValues('gender');
 
-        axios
-            .post('http://3.37.4.231:8080/auth/signup', {
+    const onSubmit = async (data) => {
+        const Email = data.email;
+        const Password = data.password;
+        const Name = data.name;
+        const Gender = data.gender;
+
+        console.log(Email);
+        console.log(Password);
+        console.log(Name);
+        console.log(Gender);
+
+        try {
+            const response = await axios.post('http://3.37.4.231:8080/auth/signup', {
                 email: Email,
                 password: Password,
                 address: null,
@@ -28,26 +35,82 @@ export default function SignUp() {
                 name: Name,
                 latitude: 37.57002838826,
                 longitude: 126.97962084516
-            })
-            .then((response) => {
-                // 요청이 성공하면 처리
-                console.log('회원가입 성공:', response.data);
-                setSignupInfo(response.data);
-            })
-            .catch((error) => {
-                console.error('회원가입 에러 발생:', error);
             });
+
+            console.log('회원가입 성공:', response.data.result.email);
+            const test = response.data.result.email
+            console.log("테스트:", test)
+            setSignupInfo(response.data.result.email);
+            console.log("회원정보:", signupInfo)
+            alert('회원가입 성공!');
+            navigate('/login');
+        } catch (error) {
+            console.error('회원가입 에러 발생:', error);
+            console.log("이미 등록된 회원입니다.");
+            alert("이미 등록된 회원입니다.");
+        }
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const onSubmit = async (data) => {
+    //     // 사용자가 입력한 정보를 변수에 담음
+    //     const Email = getValues('email');
+    //     const Password = getValues('password');
+    //     const Name = getValues('name');
+    //     const Gender = getValues('gender');
+
+    //     console.log("이메일:", Email)
+    //     console.log(Password)
+    //     console.log(Name)
+    //     console.log(Gender)
+
+
+    //     axios
+    //         .post('http://3.37.4.231:8080/auth/signup', {
+    //             email: Email,
+    //             password: Password,
+    //             address: null,
+    //             gender: Gender,
+    //             name: Name,
+    //             latitude: 37.57002838826,
+    //             longitude: 126.97962084516
+    //         })
+    //         .then((response) => {
+    //             // 요청이 성공하면 처리
+    //             console.log('회원가입 성공:', response.data.result);
+    //             setSignupInfo(response.data.result);
+    //             alert('회원가입 성공!')
+    //             navigate('/login');
+    //         })
+    //         .catch((error) => {
+    //             console.error('회원가입 에러 발생:', error);
+    //             console.log("이미 등록된 회원입니다.")
+    //             alert("이미 등록된 회원입니다.")
+    //         });
+    // };
 
 
     return (
         <div className="bg-gray-200 w-full min-h-screen flex items-center justify-center">
             <div className="w-full py-8">
-                <div className="flex items-center justify-center space-x-2">
-                    <h1 className="text-3xl font-bold text-green-600 tracking-wider">LinCook</h1>
-                </div>
                 <div className="bg-white w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 py-8 rounded-lg shadow-2xl">
-                    <h2 className="text-center text-2xl font-bold tracking-wide text-gray-800">회원가입</h2>
+                    <h2 className="text-center text-3xl font-bold tracking-wide text-gray-800">회원가입</h2>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="my-8 text-sm">
                         <div className="flex flex-col my-4">
