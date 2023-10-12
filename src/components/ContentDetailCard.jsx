@@ -7,7 +7,7 @@ import user from '../assets/User.png';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { contentDetailProductState, cartItemState, addressState } from '../recoil/atoms';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { locationState } from '../recoil/atoms'; // im
 import FindMap from './FindMap';
 
@@ -29,7 +29,7 @@ export default function ContentDetailCard() {
     const [selectedTab, setSelectedTab] = useState('전체'); // 초기 탭을 '전체'로 설정
     const setCartItem = useSetRecoilState(cartItemState); // cartItemState 업데이트 함수
     const [shoppingData, setShoppingData] = useState([]);
-
+    // const navigate = useNavigate();
 
     const cartItems = useRecoilValue(cartItemState);
     // const productID = cartItems.martDto.mart.productId;
@@ -70,6 +70,7 @@ export default function ContentDetailCard() {
                 console.log('장바구니 요청 성공:', response.data);
                 setShoppingData("쇼핑 데이터:", response.data)
                 alert("상품이 담겼습니다.")
+                // navigate(0);
             })
             .catch((error) => {
                 console.error('장바구니 요청 중 에러 발생:', error);

@@ -19,7 +19,7 @@ export default function Header() {
 
     const [addressChecked, setAddressChecked] = useState(false);
     const [showShoppingCart, setShowShoppingCart] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
     const handleButtonClick = () => {
         setShowShoppingCart(!showShoppingCart); // 다이얼로그를 열고 닫는 상태를 토글합니다.
@@ -41,7 +41,7 @@ export default function Header() {
             .then((response) => {
                 const basket = response.data.result;
                 setBasketInfo(basket);
-                setIsLoading(true);
+                // setIsLoading(true);
                 console.log("장바구니 정보1:", basket)
             })
             .catch((error) => {
@@ -95,26 +95,18 @@ export default function Header() {
                                 <li className='ml-4'>
                                     <Link
                                         className="text-black transition hover:text-gray-500/75"
-                                        to="/test"
-                                    >
-                                        테스트
-                                    </Link>
-                                </li>
-                                <li className='ml-4'>
-                                    <Link
-                                        className="text-black transition hover:text-gray-500/75"
                                         to="/login"
                                     >
                                         로그인
                                     </Link>
                                 </li>
                                 <li className='ml-4'>
-                                    <a
+                                    <Link
                                         className="text-black transition hover:text-gray-500/75"
-                                        href="/signup"
+                                        to="/signup"
                                     >
                                         회원가입
-                                    </a>
+                                    </Link>
                                 </li>
 
 
@@ -140,7 +132,7 @@ export default function Header() {
                                         </div>
                                     </p>                                    {/* </Link> */}
                                 </li>
-                                {isLoading && <ShoppingCarts
+                                {<ShoppingCarts
                                     open={showShoppingCart} onClose={() => setShowShoppingCart(false)} />}
                                 {/* <ShoppingCarts
                                     open={showShoppingCart} onClose={() => setShowShoppingCart(false)} /> */}
@@ -150,14 +142,14 @@ export default function Header() {
 
                     <div className="flex items-center gap-6 text-sm mt-0">
                         <div className="sm:flex sm:gap-4 mr-20">
-                            <a href="/">
+                            <Link to="/">
                                 <img
                                     className="h-5"
                                     src={location}
                                     alt='location'
                                 >
                                 </img>
-                            </a>
+                            </Link>
                             <span>
                                 <UseCurrentLocation
                                     addressChecked={addressChecked}
@@ -166,12 +158,12 @@ export default function Header() {
                             </span>
 
                             <div className="sm:flex sm:gap-4 ml-6">
-                                <a
+                                <Link
                                     className="text-black transition"
-                                    href="/signup"
+                                    to="/signup"
                                 >
 
-                                </a>
+                                </Link>
                             </div>
 
                         </div>

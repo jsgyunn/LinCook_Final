@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { constSelector, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { basketInfoState, cartItemState, locationState } from '../recoil/atoms';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 // import dotenv from "dotenv";
 
 export default function ShoppingCarts({ open, onClose }) {
@@ -36,11 +37,12 @@ export default function ShoppingCarts({ open, onClose }) {
             })
             .then((response) => {
                 const basket = response.data.result;
-                console.log("바스켓:", basket)
+                // console.log("바스켓:", basket)
                 const initialVideoTitle = basket.data[0].contentsDto.title;
                 console.log(initialVideoTitle)
                 setSelectedVideoTitle(initialVideoTitle)
                 setBasketInfo(basket);
+                // console.log("인포:", basketInfo)
                 setIsLoading(true);
             })
             .catch((error) => {
@@ -51,7 +53,7 @@ export default function ShoppingCarts({ open, onClose }) {
 
     useEffect(() => {
         loadBasketData();
-    }, [basketInfo]);
+    }, []);
 
     const basketInfoData = useRecoilValue(basketInfoState);
     const basketData = basketInfoData.data || [];
@@ -196,7 +198,7 @@ export default function ShoppingCarts({ open, onClose }) {
                                             <div>
                                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                                     <h3>
-                                                        <a href={basketProduct.name}>{basketProduct.name}</a>
+                                                        <Link to={basketProduct.name}>{basketProduct.name}</Link>
                                                     </h3>
                                                     <p className="ml-4 font-medium text-xl">
                                                         {`${basketProduct.salePrice.toLocaleString()}원`}

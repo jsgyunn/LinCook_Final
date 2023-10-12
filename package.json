@@ -27,6 +27,7 @@
     "react-scripts": "5.0.1",
     "react-youtube": "^10.1.0",
     "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "tw-elements-react": "^1.0.0-alpha1",
     "web-vitals": "^2.1.4"
   },
