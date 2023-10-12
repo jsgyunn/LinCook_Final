@@ -27,7 +27,7 @@ export default function SignUp() {
         console.log(Gender);
 
         try {
-            const response = await axios.post('http://3.37.4.231:8080/auth/signup', {
+            const response = await axios.post('http://3.37.4.231:8080/api/auth/signup', {
                 email: Email,
                 password: Password,
                 address: null,

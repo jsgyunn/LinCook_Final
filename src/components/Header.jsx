@@ -5,15 +5,21 @@ import UseCurrentLocation from '../hooks/UseCurrentLocation'
 import { Link } from 'react-router-dom'
 import ShoppingCarts from './ShoppingCarts'
 import { useRecoilValue, useRecoilState } from 'recoil'
-import { basketInfoState, locationState } from '../recoil/atoms'
+import { basketInfoState, isloginState, locationState } from '../recoil/atoms'
 import axios from 'axios'
 
 
 export default function Header() {
 
+    const handleLogout = () => {
+        localStorage.removeItem("localStorage");
+    }
 
-    const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
+
+
+    const isloginData = useRecoilValue(isloginState);
     const locationData = useRecoilValue(locationState);
+    const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
     // console.log("위치 데이터:", locationData);
 
 
@@ -92,14 +98,22 @@ export default function Header() {
                                     </Link>
                                 </li>
 
-                                <li className='ml-4'>
-                                    <Link
-                                        className="text-black transition hover:text-gray-500/75"
-                                        to="/login"
-                                    >
-                                        로그인
-                                    </Link>
-                                </li>
+
+                                {isloginData ? (
+                                    <li className='ml-4'>
+                                        <button onClick={handleLogout} className="text-black transition hover:text-gray-500/75">로그아웃</button>
+                                    </li>
+                                ) : (
+                                    <li className='ml-4'>
+                                        <Link
+                                            className="text-black transition hover:text-gray-500/75"
+                                            to="/login"
+                                        >
+                                            로그인
+                                        </Link>
+                                    </li>
+                                )}
+
                                 <li className='ml-4'>
                                     <Link
                                         className="text-black transition hover:text-gray-500/75"
@@ -108,7 +122,6 @@ export default function Header() {
                                         회원가입
                                     </Link>
                                 </li>
-
 
 
                                 <li className='ml-4'>
