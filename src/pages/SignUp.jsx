@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export default function SignUp() {
     const navigate = useNavigate();
     const { control, handleSubmit, register, setValue, getValues, formState: { errors } } = useForm();
-    const [signupInfo, setSignupInfo] = useState("");
+    const [signupInfo, setSignupInfo] = useState();
 
 
     // useEffect(() => {
@@ -31,16 +31,15 @@ export default function SignUp() {
                 email: Email,
                 password: Password,
                 address: null,
+                role: "USER",
                 gender: Gender,
                 name: Name,
                 latitude: 37.57002838826,
                 longitude: 126.97962084516
             });
 
-            console.log('회원가입 성공:', response.data.result.email);
-            const test = response.data.result.email
-            console.log("테스트:", test)
-            setSignupInfo(response.data.result.email);
+            console.log('회원가입 성공:', response.data.result);
+            setSignupInfo(response.data.result);
             console.log("회원정보:", signupInfo)
             alert('회원가입 성공!');
             navigate('/login');

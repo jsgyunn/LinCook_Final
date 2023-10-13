@@ -298,8 +298,16 @@ export default function ShoppingCarts({ open, onClose }) {
                                             <div className="flex justify-between text-base font-medium text-gray-900">
                                                 <p>총 합계</p>
                                                 <p>
-                                                    금액
-                                                </p>
+                                                    {basketData.reduce((total, current) => {
+                                                        if (current.contentsDto.title === selectedVideoTitle) {
+                                                            return total + current.basketMartProductList.reduce((acc, product) => {
+                                                                return acc + product.basketProductDtoList.reduce((innerAcc, innerProduct) => {
+                                                                    return innerAcc + innerProduct.salePrice;
+                                                                }, 0);
+                                                            }, 0);
+                                                        }
+                                                        return total;
+                                                    }, 0).toLocaleString()}원                                                </p>
                                             </div>
                                             <div className="mt-6">
                                                 <a

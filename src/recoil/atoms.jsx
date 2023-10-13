@@ -43,5 +43,10 @@ export const addressState = atom({
 
 export const isloginState = atom({
     key: 'isloginState',
-    default: (false),
+    default: false,
+});
+
+export const memberIdState = atom({
+    key: 'memberIdState',
+    default: -1,
 });

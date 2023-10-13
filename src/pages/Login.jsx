@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { tokenState } from "../recoil/persist";
+import { accessTokenState, refreshTokenState } from "../recoil/persist";
 import { useForm } from "react-hook-form";
 import logo from '../assets/logo.png';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { isloginState } from "../recoil/atoms";
+import { isloginState, memberIdState } from "../recoil/atoms";
 
 
 export default function Login() {
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, formState: { isSubmitting, isSubmitted, errors } } = useForm();
+    const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+    const [refreshToken, setRefreshToken] = useRecoilState(refreshTokenState);
 
 
 
 
-    const [token, setToken] = useRecoilState(tokenState);
+
+    const [memberId, setMemberId] = useRecoilState(memberIdState);
+
 
 
     const [isLogin, setIsLogin] = useRecoilState(isloginState);
-
 
 
     const onSubmit = (data) => {
@@ -30,20 +33,35 @@ export default function Login() {
         console.log(Password)
 
         axios
-            .post('http://3.37.4.231:8080/auth/signin', {
+            //.post('http://3.37.4.231:8080/api/auth/login', {
+            .post('http://localhost:8080/api/auth/login', {
                 email: Email,
                 password: Password,
             })
             .then((response) => {
                 // 요청이 성공하면 처리
-                console.log('로그인 성공:', response.data.result.token);
-                setToken(response.data.result.token);
-                setIsLogin(true); //사용자 로그인 상태 변경
+                console.log('로그인 성공:');
+                console.log("asd:", response.headers)
+
+                const accesstoken = response.headers['asuthorization']; // 엑세스 토큰 가져오기
+                console.log("엑세스 토큰:", accesstoken);
+                setAccessToken(accesstoken);
+
+                const refreshtoken = response.headers['Set-cookie']; // 리프레시 토큰 가져오기
+                console.log("리프레시 토큰:", refreshtoken);
+                setRefreshToken(refreshtoken);
+
+                // const memberId = response.headers['set-cookie']; // 멤버 ID 가져오기
+                // console.log("멤버 ID:", memberId);
+                // setMemberId(memberId);
+
+                setIsLogin(true); // 사용자 로그인 상태 변경
                 alert('로그인 성공!');
                 navigate('/');
             })
             .catch((error) => {
                 console.error('로그인 에러 발생:', error);
+                alert('이메일, 비밀번호를 확인해주세요.')
             });
     }
 

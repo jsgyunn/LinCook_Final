@@ -11,13 +11,7 @@ import axios from 'axios'
 
 export default function Header() {
 
-    const handleLogout = () => {
-        localStorage.removeItem("localStorage");
-    }
-
-
-
-    const isloginData = useRecoilValue(isloginState);
+    const [isLogin, setIsLogin] = useRecoilState(isloginState);
     const locationData = useRecoilValue(locationState);
     const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
     // console.log("위치 데이터:", locationData);
@@ -26,6 +20,14 @@ export default function Header() {
     const [addressChecked, setAddressChecked] = useState(false);
     const [showShoppingCart, setShowShoppingCart] = useState(false);
     // const [isLoading, setIsLoading] = useState(false);
+
+
+    const handleLogout = () => {
+        localStorage.removeItem("localStorage");
+        setIsLogin(false);
+        window.location.href = '/';
+    };
+
 
     const handleButtonClick = () => {
         setShowShoppingCart(!showShoppingCart); // 다이얼로그를 열고 닫는 상태를 토글합니다.
@@ -99,7 +101,7 @@ export default function Header() {
                                 </li>
 
 
-                                {isloginData ? (
+                                {isLogin ? (
                                     <li className='ml-4'>
                                         <button onClick={handleLogout} className="text-black transition hover:text-gray-500/75">로그아웃</button>
                                     </li>
@@ -187,5 +189,3 @@ export default function Header() {
         </header >
     )
 }
-
-

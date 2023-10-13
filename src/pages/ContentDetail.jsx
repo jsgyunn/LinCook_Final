@@ -13,7 +13,7 @@ export default function ContentDetail() {
     // const contentDetailProduct = useRecoilValue(contentDetailProductState);
     const [contentDetailProduct, setContentDetailProduct] = useRecoilState(contentDetailProductState);
     const locationData = useRecoilValue(locationState);
-    console.log("콘텐츠디테일: ", locationData)
+    // console.log("콘텐츠디테일: ", locationData)
     // const contentID = contentDetailProduct.contentsDto.id;
     // console.log("ewqejnqwjkenjqwknejkwqnjk:", contentID)
 
@@ -26,7 +26,7 @@ export default function ContentDetail() {
     const cartItems = useRecoilValue(cartItemState);
     // const productID = cartItems.martDto.mart.productId;
     // const martID = cartItems.martDto.mart.id;
-    console.log("담기 버튼 누르면 저장되는 상품, 마트 정보:", cartItems);
+    // console.log("담기 버튼 누르면 저장되는 상품, 마트 정보:", cartItems);
 
     useEffect(() => {
         // Use the locationData from Recoil state

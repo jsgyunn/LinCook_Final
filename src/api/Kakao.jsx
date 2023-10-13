@@ -7,8 +7,8 @@ import { addressState } from '../recoil/atoms';
 export default function Kakao({ location }) {
     const { kakao } = window;
     const [address, setAddress] = useRecoilState(addressState);
-    console.log("주소", address)
-    console.log("KaKao 컴포넌트: ", location);
+    // console.log("주소", address)
+    // console.log("KaKao 컴포넌트: ", location);
     const lat = location.latitude;
     const lng = location.longitude
     // console.log(location.longitude);
