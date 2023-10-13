@@ -17,3 +17,9 @@ export const refreshTokenState = atom({
     default: "",
     effects_UNSTABLE: [persistAtom]
 })
+
+export const memberIdState = atom({
+    key: "memberIdState",
+    default: 0,
+    effects_UNSTABLE: [persistAtom]
+})

@@ -45,8 +45,3 @@ export const isloginState = atom({
     key: 'isloginState',
     default: false,
 });
-
-export const memberIdState = atom({
-    key: 'memberIdState',
-    default: -1,
-});
