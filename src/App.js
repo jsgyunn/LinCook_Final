@@ -18,18 +18,18 @@ export default function App() {
   return (
     <RecoilRoot>
       {/* <BrowserRouter> */}
-        <Header />
-        <Routes>
-          <Route path='/' element={<Main />}></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/signup' element={<SignUp />}></Route>
-          <Route path='/team' element={<Team />}></Route>
-          <Route path='/test' element={<Test />}></Route>
-          <Route path='/cookingregistration1' element={<CookingRegistration1 />}></Route>
-          <Route path='/cookingregistration2' element={<CookingRegistration2 />}></Route>
-          <Route path='/shoppingcarts' element={<ShoppingCarts />}></Route>
-          <Route path='/contentdetail/:id' element={<ContentDetail />}></Route>
-        </Routes>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Main />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
+        <Route path='/team' element={<Team />}></Route>
+        <Route path='/test' element={<Test />}></Route>
+        <Route path='/cookingregistration1' element={<CookingRegistration1 />}></Route>
+        <Route path='/cookingregistration2' element={<CookingRegistration2 />}></Route>
+        <Route path='/shoppingcarts' element={<ShoppingCarts />}></Route>
+        <Route path='/contentdetail/:id' element={<ContentDetail />}></Route>
+      </Routes>
       {/* </BrowserRouter> */}
     </RecoilRoot>
   );

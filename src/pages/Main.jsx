@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import MainCard from "../components/MainCard";
 import MainHeader from "../components/MainHeader";
 import Pagination from "../components/Pagination";
-import axios from "axios";
+
 
 function Main() {
 
@@ -13,7 +13,7 @@ function Main() {
             {/* <Header /> */}
             <MainHeader />
             <MainCard />
-            <Pagination />
+            {/* <Pagination /> */}
         </div>
     )
 }

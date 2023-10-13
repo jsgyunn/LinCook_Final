@@ -7,7 +7,7 @@ import user from '../assets/User.png';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { contentDetailProductState, cartItemState, addressState } from '../recoil/atoms';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { locationState } from '../recoil/atoms'; // im
 import FindMap from './FindMap';
 
@@ -17,10 +17,10 @@ export default function ContentDetailCard() {
 
 
     const addressName = useRecoilValue(addressState)
-    console.log("주소값:", addressName)
-    console.log("이름값:", addressName.address_name)
+    // console.log("주소값:", addressName)
+    // console.log("이름값:", addressName.address_name)
     const locationData = useRecoilValue(locationState);
-    console.log(locationData)
+    // console.log(locationData)
     const contentDetailProduct = useRecoilValue(contentDetailProductState);
     const contentID = contentDetailProduct.contentsDto.id;
 
@@ -29,7 +29,7 @@ export default function ContentDetailCard() {
     const [selectedTab, setSelectedTab] = useState('전체'); // 초기 탭을 '전체'로 설정
     const setCartItem = useSetRecoilState(cartItemState); // cartItemState 업데이트 함수
     const [shoppingData, setShoppingData] = useState([]);
-
+    // const navigate = useNavigate();
 
     const cartItems = useRecoilValue(cartItemState);
     // const productID = cartItems.martDto.mart.productId;
@@ -51,15 +51,12 @@ export default function ContentDetailCard() {
         // 현재 장바구니 상태를 Recoil 상태로 업데이트
         setCartItem((prevCart) => [...prevCart, { productDto, martDto }]);
         console.log("상품이 장바구니에 추가되었습니다:", productDto, "마트 정보:", martDto);
-    };
 
-
-    //create-basket 통신 
-    const handleShopping = (martDto) => {
         const productID = martDto.productId;
         const martID = martDto.mart.id;
         axios
             .post('http://3.37.4.231:8080/create-basket', {
+                // .post('http://localhost:8080/create-basket', {
                 memberId: 1,
                 contentsId: contentID,
                 productId: productID,
@@ -70,14 +67,13 @@ export default function ContentDetailCard() {
                 console.log('장바구니 요청 성공:', response.data);
                 setShoppingData("쇼핑 데이터:", response.data)
                 alert("상품이 담겼습니다.")
+                // navigate(0);
             })
             .catch((error) => {
                 console.error('장바구니 요청 중 에러 발생:', error);
                 alert("이미 상품이 담겼습니다.")
             });
     };
-
-
 
     return (
         <>
@@ -204,7 +200,6 @@ export default function ContentDetailCard() {
                                                     onClick={() => {
                                                         addToCart(data.productDto, martDtoList);
                                                         console.log("프로덕트:", data.productDto, "마트:", martDtoList);
-                                                        handleShopping(martDtoList);
                                                     }}
                                                 />
                                             </div>

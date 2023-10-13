@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { accessTokenState, refreshTokenState, memberIdState } from "../recoil/persist";
 import { useForm } from "react-hook-form";
 import logo from '../assets/logo.png';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { isloginState } from "../recoil/atoms";
+
 
 export default function Login() {
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, formState: { isSubmitting, isSubmitted, errors } } = useForm();
-
-    const [loginInfo, setLoginInfo] = useState({});
-    const [accessToken, setAccessToken] = useState("");
-
-
-
-    useEffect(() => {
-        console.log("로그인 정보:", loginInfo);
-    }, [loginInfo])
+    const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+    const [refreshToken, setRefreshToken] = useRecoilState(refreshTokenState);
+    const [memberId, setMemberId] = useRecoilState(memberIdState)
+    const [isLogin, setIsLogin] = useRecoilState(isloginState);
 
 
     const onSubmit = (data) => {
@@ -26,25 +25,31 @@ export default function Login() {
         console.log(Password)
 
         axios
-            .post('http://3.37.4.231:8080/auth/signin', {
+            .post('http://3.37.4.231:8080/api/auth/login', {
                 email: Email,
                 password: Password,
             })
             .then((response) => {
                 // 요청이 성공하면 처리
-                console.log('로그인 성공:', response.data.result);
-                setLoginInfo(response.data.result);
-                setAccessToken(response.data.result.token);
-                console.log("토큰 정보 : ", accessToken);
-                console.log("로그인 인포:", loginInfo);
+                console.log('로그인 성공:');
+                console.log("토큰:", response)
+                setAccessToken(response.headers['authorization']);
+                setMemberId(response.data.memberId);
+                // setRefreshToken(response.headers['Set-cookie']);
 
+                setIsLogin(true); // 사용자 로그인 상태 변경
                 alert('로그인 성공!');
                 navigate('/');
             })
             .catch((error) => {
                 console.error('로그인 에러 발생:', error);
+                alert('이메일, 비밀번호를 확인해주세요.')
             });
     }
+
+
+
+
 
     return (
         <div className="flex">
