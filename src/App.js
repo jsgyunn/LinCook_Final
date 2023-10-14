@@ -11,6 +11,7 @@ import ContentDetail from './pages/ContentDetail';
 import { RecoilRoot } from 'recoil';
 import ShoppingCarts from './components/ShoppingCarts';
 import RouteChangeTracker from "./RouteChangeTracker";
+import React, { useEffect } from 'react';
 
 export default function App() {
   RouteChangeTracker();
