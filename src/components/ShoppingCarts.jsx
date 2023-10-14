@@ -57,6 +57,7 @@ export default function ShoppingCarts({ open, onClose }) {
     }, []);
 
     const basketInfoData = useRecoilValue(basketInfoState);
+<<<<<<< Updated upstream
     const basketData = basketInfoData.data || [];
 
     // const kakaoShare = () => {
@@ -109,6 +110,46 @@ export default function ShoppingCarts({ open, onClose }) {
     //       });
     //     }
     //   };
+=======
+    const basketData = basketInfoData.data;
+    console.log("바스켓데이터:", basketData);
+
+    if (!isLoading) {
+        return <div>loading ...</div>;
+    }
+
+
+    const shareKakao = () => { // url이 id값에 따라 변경되기 때문에 route를 인자값으로 받아줌
+        if (window.Kakao) {
+          const kakao = window.Kakao;
+          if (!kakao.isInitialized()) {
+            kakao.init("r1c3cec44f2e4537ecfc7b9f23f6fc3a0"); // 카카오에서 제공받은 javascript key를 넣어줌 -> .env파일에서 호출시킴
+          }
+          console.log("basket=")
+        //   kakao.Link.sendDefault({
+        //     objectType: "feed", // 카카오 링크 공유 여러 type들 중 feed라는 타입 -> 자세한 건 카카오에서 확인
+        //     content: {
+        //       title: title, // 인자값으로 받은 title
+        //       description: "설명", // 인자값으로 받은 title
+        //       imageUrl: "이미지 url",
+        //       link: {
+        //         mobileWebUrl: route, // 인자값으로 받은 route(uri 형태)
+        //         webUrl: route
+        //       }
+        //     },
+        //     buttons: [
+        //       {
+        //         title: "title",
+        //         link: {
+        //           mobileWebUrl: route,
+        //           webUrl: route
+        //         }
+        //       }
+        //     ]
+        //   });
+        }
+      };
+>>>>>>> Stashed changes
 
 
     useEffect(() => {
@@ -324,7 +365,17 @@ export default function ShoppingCarts({ open, onClose }) {
                                                     }, 0).toLocaleString()}원                                                </p>
                                             </div>
                                             <div className="mt-6">
+<<<<<<< Updated upstream
                                                 <KakaoTalkShareButton/>
+=======
+                                                <a
+                                                    href="#"
+                                                    className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-500"
+                                                    onClick={shareKakao}
+                                                >
+                                                    공유하기
+                                                </a>
+>>>>>>> Stashed changes
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                                 {/* 여기에 추가적인 정보 표시 가능 */}
