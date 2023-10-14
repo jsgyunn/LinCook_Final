@@ -10,6 +10,14 @@ import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { locationState } from '../recoil/atoms'; // im
 import FindMap from './FindMap';
+import { memberIdState } from '../recoil/persist';
+
+
+
+
+
+
+
 
 export default function ContentDetailCard() {
     const params = useParams();
@@ -24,6 +32,7 @@ export default function ContentDetailCard() {
     // console.log(locationData)
     const contentDetailProduct = useRecoilValue(contentDetailProductState);
     const contentID = contentDetailProduct.contentsDto.id;
+    const memberid = useRecoilValue(memberIdState)
 
     // console.log("ewqejnqwjkenjqwknejkwqnjk:", contentID)
 
@@ -55,10 +64,11 @@ export default function ContentDetailCard() {
 
         const productID = martDto.productId;
         const martID = martDto.mart.id;
+        console.log("멤버 id:", memberid)
         axios
             .post('http://3.37.4.231:8080/create-basket', {
-                // .post('http://localhost:8080/create-basket', {
-                memberId: 1,
+                memberId: memberid[0],
+                // memberId: 1,
                 contentsId: contentID,
                 productId: productID,
                 martId: martID,
