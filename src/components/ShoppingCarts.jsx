@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { constSelector, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { basketInfoState, cartItemState, locationState } from '../recoil/atoms';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import KakaoTalkShareButton from './ShareButton';
-const { Kakao } = window
-=======
 import { memberIdState } from '../recoil/persist';
->>>>>>> f72f1d0 (update last final)
+const { Kakao } = window
 // import dotenv from "dotenv";
 
 
@@ -71,16 +68,16 @@ export default function ShoppingCarts({ open, onClose }) {
     //     let name = '';
     //     let price = '';
     //     let capacity = '';
-      
+
     //     // 선택된 영상 제목으로 해당 정보 가져오기
     //     const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedTitle);
-      
+
     //     // 만약 선택된 Basket가 없다면 에러 처리나 반환 처리를 추가할 수 있습니다.
     //     if (!selectedBasket) {
     //       console.error("선택된 영상 정보를 찾을 수 없습니다.");
     //       return;
     //     }
-      
+
     //     selectedBasket.basketMartProductList.forEach((mart) => {
     //       mart.basketProductDtoList.forEach((element) => {
     //         name = element.name;
@@ -91,14 +88,14 @@ export default function ShoppingCarts({ open, onClose }) {
     //         console.log('capacity=', capacity);
     //       });
     //     });
-      
-        
+
+
     //     if (window.Kakao) {
     //         const kakao = window.Kakao;
     //       if (!window.Kakao.isInitialized()) {
     //         window.Kakao.init("1c3cec44f2e4537ecfc7b9f23f6fc3a0");
     //       }
-      
+
     //       // Kakao 공유 기능을 호출할 때 수정이 필요
     //       window.Kakao.Link.sendDefault({
     //         objectType: 'feed',
@@ -118,11 +115,11 @@ export default function ShoppingCarts({ open, onClose }) {
 
     useEffect(() => {
         const shouldInitializeKakao = true; // 초기화 여부를 결정하는 조건을 설정
-    
+
         if (shouldInitializeKakao && !Kakao.isInitialized()) {
-          Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 Kakao 앱의 JavaScript 키 입력
+            Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 Kakao 앱의 JavaScript 키 입력
         }
-      }, []);
+    }, []);
 
     const handleRemoveProduct = (productIdToRemove) => {
         // 현재 선택한 비디오 제목
