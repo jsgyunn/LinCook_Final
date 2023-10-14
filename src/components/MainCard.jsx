@@ -71,10 +71,6 @@ export default function MainCard() {
                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
                         {contents.map((content) => (
 
-
-
-
-
                             <Link
                                 to={"/contentdetail/" + content.id}
                                 key={content.id}
@@ -92,10 +88,6 @@ export default function MainCard() {
                                 </div>
                                 <h3 className="mt-4 text-base font-semibold text-gray-700">{content.title}</h3>
                             </Link>
-
-
-
-
                         ))}
                     </div>
                 )}

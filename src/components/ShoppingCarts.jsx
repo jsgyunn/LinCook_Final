@@ -5,8 +5,12 @@ import { constSelector, useRecoilState, useRecoilValue, useSetRecoilState } from
 import { basketInfoState, cartItemState, locationState } from '../recoil/atoms';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import KakaoTalkShareButton from './ShareButton';
 const { Kakao } = window
+=======
+import { memberIdState } from '../recoil/persist';
+>>>>>>> f72f1d0 (update last final)
 // import dotenv from "dotenv";
 
 
@@ -17,6 +21,7 @@ export default function ShoppingCarts({ open, onClose }) {
     const setCartItemState = useSetRecoilState(cartItemState);
     const [selectedBasketIndex, setSelectedBasketIndex] = useState(0);
     const [selectedVideoTitle, setSelectedVideoTitle] = useState('');
+    const memberid = useRecoilState(memberIdState)
     // Deleted basketIds 배열을 선언
     const deletedBasketIds = [];
 
@@ -31,7 +36,7 @@ export default function ShoppingCarts({ open, onClose }) {
         axios
             .get('http://3.37.4.231:8080/basket-info', {
                 params: {
-                    memberId: 1,
+                    memberId: memberid[0],
                     latitude: locationData.latitude,
                     longitude: locationData.longitude,
                 },
@@ -165,7 +170,7 @@ export default function ShoppingCarts({ open, onClose }) {
 
             axios
                 .post('http://3.37.4.231:8080/delete-basket', {
-                    memberId: 1,
+                    memberId: memberid[0],
                     basketId: deletedBasketIds[0],
                 })
                 .then((response) => {
