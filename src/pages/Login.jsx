@@ -26,6 +26,7 @@ export default function Login() {
 
         axios
             .post('http://3.37.4.231:8080/api/auth/login', {
+                // .post('http://192.168.100.31:8080/api/auth/login', {
                 email: Email,
                 password: Password,
             })

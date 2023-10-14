@@ -6,12 +6,14 @@ import registration from '../assets/registrationlogo.png';
 import CookingRegistration2 from '../pages/CookingRegistration2';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
-import { youtubeVideoIdState } from '../recoil/atoms';
+import { isloginState, youtubeVideoIdState } from '../recoil/atoms';
 import { useNavigate } from 'react-router-dom';
 import { registrationDataState } from '../recoil/atoms';
 
 export default function MainHeader() {
     const navigate = useNavigate();
+
+    const loginInfo = useRecoilState(isloginState);
 
     const [showAlert, setShowAlert] = useState(false);
     // 클라이언트가 입력한 유튜브 링크 저장
@@ -34,6 +36,7 @@ export default function MainHeader() {
     // const navigateToCookingRegistration2 = () => {
     //     navigate.push('/cookingregistration2');
     // };
+
 
     // 유튜브 동영상 링크에서 동영상 ID 추출 -> 해당 ID를 사용하여 서버에 GET 요청
     const extractVideoId = () => {
@@ -63,6 +66,19 @@ export default function MainHeader() {
             alert('올바른 주소가 아닙니다.')
         }
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <section
@@ -100,13 +116,17 @@ export default function MainHeader() {
                         <button
                             type="submit"
                             className="group flex items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-white transition sm:w-auto hover:bg-green-700"
-                            onClick={extractVideoId}
+                            onClick={loginInfo[0] ? extractVideoId : () => alert("로그인이 필요합니다.")}
                             disabled={loading} // 로딩 중에 버튼 비활성화
                         >
                             <span className="text-sm font-medium">적용</span>
                         </button>
                         {loading && <Loading />}
                         {showAlert && <Alert duId={duplicateId} />}
+
+
+
+
                     </div>
                 </div>
             </div>
