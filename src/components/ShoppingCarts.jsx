@@ -57,100 +57,13 @@ export default function ShoppingCarts({ open, onClose }) {
     }, []);
 
     const basketInfoData = useRecoilValue(basketInfoState);
-<<<<<<< Updated upstream
-    const basketData = basketInfoData.data || [];
-
-    // const kakaoShare = () => {
-    //     // 현재 선택된 영상 제목
-    //     e.preventDefault();
-    //     const selectedTitle = selectedVideoTitle;
-    //     let name = '';
-    //     let price = '';
-    //     let capacity = '';
-      
-    //     // 선택된 영상 제목으로 해당 정보 가져오기
-    //     const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedTitle);
-      
-    //     // 만약 선택된 Basket가 없다면 에러 처리나 반환 처리를 추가할 수 있습니다.
-    //     if (!selectedBasket) {
-    //       console.error("선택된 영상 정보를 찾을 수 없습니다.");
-    //       return;
-    //     }
-      
-    //     selectedBasket.basketMartProductList.forEach((mart) => {
-    //       mart.basketProductDtoList.forEach((element) => {
-    //         name = element.name;
-    //         price = element.salePrice;
-    //         capacity = element.capacity;
-    //         console.log('name=', name);
-    //         console.log('price=', price);
-    //         console.log('capacity=', capacity);
-    //       });
-    //     });
-      
-        
-    //     if (window.Kakao) {
-    //         const kakao = window.Kakao;
-    //       if (!window.Kakao.isInitialized()) {
-    //         window.Kakao.init("1c3cec44f2e4537ecfc7b9f23f6fc3a0");
-    //       }
-      
-    //       // Kakao 공유 기능을 호출할 때 수정이 필요
-    //       window.Kakao.Link.sendDefault({
-    //         objectType: 'feed',
-    //         content: {
-    //           title: selectedTitle,
-    //           description: `${name} - 가격: ${price}원, 용량: ${capacity}`,
-    //           imageUrl: '이미지_URL을 여기에 넣으세요',
-    //           link: {
-    //             mobileWebUrl: '모바일 웹 URL을 여기에 넣으세요',
-    //             webUrl: '웹 URL을 여기에 넣으세요',
-    //           },
-    //         },
-    //       });
-    //     }
-    //   };
-=======
     const basketData = basketInfoData.data;
     console.log("바스켓데이터:", basketData);
 
     if (!isLoading) {
         return <div>loading ...</div>;
     }
-
-
-    const shareKakao = () => { // url이 id값에 따라 변경되기 때문에 route를 인자값으로 받아줌
-        if (window.Kakao) {
-          const kakao = window.Kakao;
-          if (!kakao.isInitialized()) {
-            kakao.init("r1c3cec44f2e4537ecfc7b9f23f6fc3a0"); // 카카오에서 제공받은 javascript key를 넣어줌 -> .env파일에서 호출시킴
-          }
-          console.log("basket=")
-        //   kakao.Link.sendDefault({
-        //     objectType: "feed", // 카카오 링크 공유 여러 type들 중 feed라는 타입 -> 자세한 건 카카오에서 확인
-        //     content: {
-        //       title: title, // 인자값으로 받은 title
-        //       description: "설명", // 인자값으로 받은 title
-        //       imageUrl: "이미지 url",
-        //       link: {
-        //         mobileWebUrl: route, // 인자값으로 받은 route(uri 형태)
-        //         webUrl: route
-        //       }
-        //     },
-        //     buttons: [
-        //       {
-        //         title: "title",
-        //         link: {
-        //           mobileWebUrl: route,
-        //           webUrl: route
-        //         }
-        //       }
-        //     ]
-        //   });
-        }
-      };
->>>>>>> Stashed changes
-
+    
 
     useEffect(() => {
         const shouldInitializeKakao = true; // 초기화 여부를 결정하는 조건을 설정
@@ -365,17 +278,7 @@ export default function ShoppingCarts({ open, onClose }) {
                                                     }, 0).toLocaleString()}원                                                </p>
                                             </div>
                                             <div className="mt-6">
-<<<<<<< Updated upstream
                                                 <KakaoTalkShareButton/>
-=======
-                                                <a
-                                                    href="#"
-                                                    className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-500"
-                                                    onClick={shareKakao}
-                                                >
-                                                    공유하기
-                                                </a>
->>>>>>> Stashed changes
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                                 {/* 여기에 추가적인 정보 표시 가능 */}

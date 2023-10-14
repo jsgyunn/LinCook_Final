@@ -198,7 +198,7 @@ export default function ContentDetailCard() {
                                             {`지금까지 32명이 담았습니다.`}
                                             <div className="ml-auto">
                                                 <AddButton
-                                                    onClick={loginInfo[0] ? addToCart(data.productDto, martDtoList) : () => alert("로그인이 필요합니다.")}
+                                                    onClick={() => (loginInfo[0] ? addToCart(data.productDto, martDtoList) : alert("로그인이 필요합니다."))}
                                                 />
                                             </div>
                                         </h3>
