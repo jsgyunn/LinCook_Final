@@ -59,7 +59,7 @@ export default function ShoppingCarts({ open, onClose }) {
     const basketInfoData = useRecoilValue(basketInfoState);
     const basketData = basketInfoData.data || [];
 
-    // const kakaoShare = (e) => {
+    // const kakaoShare = () => {
     //     // 현재 선택된 영상 제목
     //     e.preventDefault();
     //     const selectedTitle = selectedVideoTitle;
