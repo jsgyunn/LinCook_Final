@@ -5,7 +5,6 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { basketInfoState, cartItemState, locationState } from '../recoil/atoms';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import KakaoTalkShareButton from './ShareButton';
 import { memberIdState } from '../recoil/persist';
 const { Kakao } = window
 // import dotenv from "dotenv";
@@ -60,58 +59,6 @@ export default function ShoppingCarts({ open, onClose }) {
 
     const basketInfoData = useRecoilValue(basketInfoState);
     const basketData = basketInfoData.data || [];
-
-    // const kakaoShare = () => {
-    //     // 현재 선택된 영상 제목
-    //     e.preventDefault();
-    //     const selectedTitle = selectedVideoTitle;
-    //     let name = '';
-    //     let price = '';
-    //     let capacity = '';
-
-    //     // 선택된 영상 제목으로 해당 정보 가져오기
-    //     const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedTitle);
-
-    //     // 만약 선택된 Basket가 없다면 에러 처리나 반환 처리를 추가할 수 있습니다.
-    //     if (!selectedBasket) {
-    //       console.error("선택된 영상 정보를 찾을 수 없습니다.");
-    //       return;
-    //     }
-
-    //     selectedBasket.basketMartProductList.forEach((mart) => {
-    //       mart.basketProductDtoList.forEach((element) => {
-    //         name = element.name;
-    //         price = element.salePrice;
-    //         capacity = element.capacity;
-    //         console.log('name=', name);
-    //         console.log('price=', price);
-    //         console.log('capacity=', capacity);
-    //       });
-    //     });
-
-
-    //     if (window.Kakao) {
-    //         const kakao = window.Kakao;
-    //       if (!window.Kakao.isInitialized()) {
-    //         window.Kakao.init("1c3cec44f2e4537ecfc7b9f23f6fc3a0");
-    //       }
-
-    //       // Kakao 공유 기능을 호출할 때 수정이 필요
-    //       window.Kakao.Link.sendDefault({
-    //         objectType: 'feed',
-    //         content: {
-    //           title: selectedTitle,
-    //           description: `${name} - 가격: ${price}원, 용량: ${capacity}`,
-    //           imageUrl: '이미지_URL을 여기에 넣으세요',
-    //           link: {
-    //             mobileWebUrl: '모바일 웹 URL을 여기에 넣으세요',
-    //             webUrl: '웹 URL을 여기에 넣으세요',
-    //           },
-    //         },
-    //       });
-    //     }
-    //   };
-
 
     useEffect(() => {
         const shouldInitializeKakao = true; // 초기화 여부를 결정하는 조건을 설정
@@ -188,7 +135,7 @@ export default function ShoppingCarts({ open, onClose }) {
 
         const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedVideoTitle);
 
-        console.log("selectedBasket: ", selectedBasket);
+        // console.log("selectedBasket: ", selectedBasket);
 
         if (!selectedBasket) {
             return <p className='mt-28 text-center font-semibold'>재료를 추가해주세요.</p>;
@@ -243,6 +190,59 @@ export default function ShoppingCarts({ open, onClose }) {
             );
         };
     }
+
+      
+    const shareMessage = () => {
+        const selectedBasket2 = basketData.find((basket) => basket.contentsDto.title === selectedVideoTitle);
+        
+        console.log("in shareMessage", selectedBasket2.contentsDto.title);
+        if (selectedBasket2) {
+            const basketItems = selectedBasket2.basketMartProductList;
+    
+            // basketMartProductList 배열의 길이가 3보다 큰 경우, 처음 3개만 가져옵니다.
+            const basketItemsToDisplay = basketItems.slice(0, 3);
+    
+            const contents = basketItemsToDisplay.map((item) => {
+                return {
+                    title: item.martDto.name,
+                    description: `가격: ${item.basketProductDtoList[0].salePrice.toLocaleString()}원`,
+                    imageUrl: item.basketProductDtoList[0].imgUrl,
+                    link: {
+                        mobileWebUrl: 'https://developers.kakao.com',
+                        webUrl: 'https://developers.kakao.com',
+                    },
+                };
+            });
+    
+            // basketMartProductList 배열의 길이가 3보다 작은 경우, 나머지 위치에 "아이템이 없어요" 메시지를 추가합니다.
+            if (basketItems.length < 3) {
+                const emptyItemSlots = 3 - basketItems.length;
+                for (let i = 0; i < emptyItemSlots; i++) {
+                    contents.push({
+                        title: "아이템이 없어요",
+                        description: "",
+                        imageUrl: "",
+                        link: {
+                            mobileWebUrl: 'https://developers.kakao.com',
+                            webUrl: 'https://developers.kakao.com',
+                        },
+                    });
+                }
+            }
+    
+            Kakao.Share.sendDefault({
+                objectType: 'list',
+                headerTitle: `${selectedBasket2.contentsDto.title}`,
+                headerLink: {
+                    mobileWebUrl: 'https://developers.kakao.com',
+                    webUrl: 'https://developers.kakao.com',
+                },
+                contents,
+            });
+        }
+    };
+
+
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -326,9 +326,8 @@ export default function ShoppingCarts({ open, onClose }) {
                                                     }, 0).toLocaleString()}원                                                </p>
                                             </div>
                                             <div className="mt-6">
-                                                <KakaoTalkShareButton>
-                                                    공유하기
-                                                </KakaoTalkShareButton>
+                                                <a className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-500"
+                                                onClick={shareMessage}>KakaoTalk 공유</a>
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                                 {/* 여기에 추가적인 정보 표시 가능 */}
