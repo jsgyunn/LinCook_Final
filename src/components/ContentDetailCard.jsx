@@ -5,7 +5,7 @@ import location2 from '../assets/location2.png';
 import phone from '../assets/phone.png';
 import user from '../assets/User.png';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { contentDetailProductState, cartItemState, addressState } from '../recoil/atoms';
+import { contentDetailProductState, cartItemState, addressState, isloginState } from '../recoil/atoms';
 import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { locationState } from '../recoil/atoms'; // im
@@ -15,6 +15,7 @@ export default function ContentDetailCard() {
     const params = useParams();
     // const contentDetailProduct = useRecoilValue(contentDetailProductState);
 
+    const loginInfo = useRecoilState(isloginState);
 
     const addressName = useRecoilValue(addressState)
     // console.log("주소값:", addressName)
@@ -197,10 +198,7 @@ export default function ContentDetailCard() {
                                             {`지금까지 32명이 담았습니다.`}
                                             <div className="ml-auto">
                                                 <AddButton
-                                                    onClick={() => {
-                                                        addToCart(data.productDto, martDtoList);
-                                                        console.log("프로덕트:", data.productDto, "마트:", martDtoList);
-                                                    }}
+                                                    onClick={loginInfo[0] ? addToCart(data.productDto, martDtoList) : () => alert("로그인이 필요합니다.")}
                                                 />
                                             </div>
                                         </h3>

@@ -75,10 +75,12 @@ export default function ShoppingCarts({ open, onClose }) {
 
         })
 
-        if (window.Kakao) {
-            const kakao = window.Kakao;
+        if (window.kakao) {
+            console.log("카카오 콘솔")
+            const kakao = window.kakao;
             if (!kakao.isInitialized()) {
                 kakao.init("1c3cec44f2e4537ecfc7b9f23f6fc3a0");
+                console.log("카카오 콘솔2")
             }
 
             // 공유하기 기능 구현
