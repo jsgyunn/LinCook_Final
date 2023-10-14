@@ -110,46 +110,12 @@ export default function ShoppingCarts({ open, onClose }) {
     //     }
     //   };
 
-<<<<<<< HEAD
-        })
-
-        if (window.kakao) {
-            console.log("카카오 콘솔")
-            const kakao = window.kakao;
-            if (!kakao.isInitialized()) {
-                kakao.init("1c3cec44f2e4537ecfc7b9f23f6fc3a0");
-                console.log("카카오 콘솔2")
-            }
-
-            // 공유하기 기능 구현
-            kakao.Link.sendDefault({
-                objectType: "feed",
-                content: {
-                    title: "title",
-                    imageUrl: "imageUrl",
-                    link: {
-                        mobileWebUrl: "route",
-                        webUrl: "route",
-                    },
-                },
-                buttons: [
-                    {
-                        title: "title",
-                        link: {
-                            mobileWebUrl: "route",
-                            webUrl: "route",
-                        },
-                    },
-                ],
-            });
-=======
 
     useEffect(() => {
         const shouldInitializeKakao = true; // 초기화 여부를 결정하는 조건을 설정
     
         if (shouldInitializeKakao && !Kakao.isInitialized()) {
           Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 Kakao 앱의 JavaScript 키 입력
->>>>>>> share
         }
       }, []);
 
