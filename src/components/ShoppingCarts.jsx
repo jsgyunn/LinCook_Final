@@ -324,9 +324,7 @@ export default function ShoppingCarts({ open, onClose }) {
                                                     }, 0).toLocaleString()}원                                                </p>
                                             </div>
                                             <div className="mt-6">
-                                                <KakaoTalkShareButton>
-                                                    공유하기
-                                                </KakaoTalkShareButton>
+                                                <KakaoTalkShareButton/>
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                                 {/* 여기에 추가적인 정보 표시 가능 */}
