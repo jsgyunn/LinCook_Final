@@ -64,7 +64,7 @@ export default function ShoppingCarts({ open, onClose }) {
         const shouldInitializeKakao = true; // 초기화 여부를 결정하는 조건을 설정
 
         if (shouldInitializeKakao && !Kakao.isInitialized()) {
-            Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 Kakao 앱의 JavaScript 키 입력
+            Kakao.init('1c3cec44f2e4537ecfc7b9f23f6fc3a0'); // 사용하려는 Kakao 앱의 JavaScript 키 입력
         }
     }, []);
 
