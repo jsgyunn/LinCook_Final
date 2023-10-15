@@ -208,8 +208,8 @@ export default function ShoppingCarts({ open, onClose }) {
                     description: `가격: ${item.basketProductDtoList[0].salePrice.toLocaleString()}원`,
                     imageUrl: item.basketProductDtoList[0].imgUrl,
                     link: {
-                        mobileWebUrl: 'https://developers.kakao.com',
-                        webUrl: 'https://developers.kakao.com',
+                        mobileWebUrl: 'https://jsgyunn.github.io/LinCook_Final/',
+                        webUrl: 'https://jsgyunn.github.io/LinCook_Final/',
                     },
                 };
             });
@@ -223,8 +223,8 @@ export default function ShoppingCarts({ open, onClose }) {
                         description: "",
                         imageUrl: "",
                         link: {
-                            mobileWebUrl: 'https://developers.kakao.com',
-                            webUrl: 'https://developers.kakao.com',
+                            mobileWebUrl: 'https://jsgyunn.github.io/LinCook_Final/',
+                            webUrl: 'https://jsgyunn.github.io/LinCook_Final/',
                         },
                     });
                 }
@@ -234,8 +234,8 @@ export default function ShoppingCarts({ open, onClose }) {
                 objectType: 'list',
                 headerTitle: `${selectedBasket2.contentsDto.title}`,
                 headerLink: {
-                    mobileWebUrl: 'https://developers.kakao.com',
-                    webUrl: 'https://developers.kakao.com',
+                    mobileWebUrl: 'https://jsgyunn.github.io/LinCook_Final/',
+                    webUrl: 'https://jsgyunn.github.io/LinCook_Final/',
                 },
                 contents,
             });
