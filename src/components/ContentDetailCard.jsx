@@ -65,9 +65,11 @@ export default function ContentDetailCard() {
         const productID = martDto.productId;
         const martID = martDto.mart.id;
         console.log("멤버 id:", memberid)
+        // console.log("멤버 아이딩:", memberid[0])
         axios
             .post('http://3.37.4.231:8080/create-basket', {
-                memberId: memberid[0],
+                // .post('http://192.168.73.91:8080/create-basket', {
+                memberId: memberid,
                 // memberId: 1,
                 contentsId: contentID,
                 productId: productID,
