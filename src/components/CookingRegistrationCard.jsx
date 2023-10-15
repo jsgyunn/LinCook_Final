@@ -67,7 +67,7 @@ export default function CookingRegistrationCard() {
                                 <span>
                                     <h2 className="font-bold text-xl ml-3">{productName}</h2>
                                 </span>
-                                <ExceptButton />
+                                {/* <ExceptButton /> */}
                             </div>
 
 
