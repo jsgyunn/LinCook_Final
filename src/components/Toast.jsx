@@ -3,6 +3,7 @@ import logo2 from '../assets/logo2.png';
 import copy from '../assets/copy.png';
 import PackageJson from '../../package.json';
 import { useLocation } from 'react-router-dom';
+import { handleCopyClipBoard } from '../common/ClipBoard'; 
 
 export default function Toast() {
     const [open, setOpen] = useState(false);
@@ -30,15 +31,6 @@ export default function Toast() {
     const closeToast = () => {
         setOpen(false);
     };
-
-    const handleCopyClipBoard = async (text) => {
-        try {
-            await navigator.clipboard.writeText(text);
-            alert("클립보드에 링크가 복사되었어요.");
-        } catch (err) {
-            console.log(err);
-        }
-    }
 
     useEffect(() => {
         // 여기에서 Alpine.js 초기화 로직을 구현할 필요가 없습니다.

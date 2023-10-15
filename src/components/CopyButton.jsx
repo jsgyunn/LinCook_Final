@@ -1,11 +1,12 @@
 import React from 'react'
 import copy from '../assets/copy.png'
 
-export default function CopyButton() {
+export default function CopyButton({ onClick }) {
     return (
         <button
             type="submit"
             className={`flex items-center justify-center gap-1 bg-white rounded-md px-1 py-1 text-gray-400 transition sm:w-auto hover:bg-gray-300`}
+            onClick={onClick}
         >
             <span className="w-4 h-4">
                 <img src={copy} alt="복사" />

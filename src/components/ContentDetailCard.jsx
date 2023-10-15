@@ -11,7 +11,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { locationState } from '../recoil/atoms'; // im
 import FindMap from './FindMap';
 import { memberIdState } from '../recoil/persist';
-
+import { handleCopyClipBoard } from '../common/ClipBoard';
 
 
 
@@ -54,7 +54,9 @@ export default function ContentDetailCard() {
     };
 
 
-
+    const copyPhoneNumber = (phoneNumber) => {
+        handleCopyClipBoard(phoneNumber);
+    };
 
     // 장바구니에 상품 추가하는 함수
     const addToCart = (productDto, martDto) => {
@@ -67,8 +69,7 @@ export default function ContentDetailCard() {
         console.log("멤버 id:", memberid)
         // console.log("멤버 아이딩:", memberid[0])
         axios
-            .post('http://3.37.4.231:8080/create-basket', {
-                // .post('http://192.168.73.91:8080/create-basket', {
+            .post('http://3.37.4.231:8080/create-basket', {                
                 memberId: memberid,
                 // memberId: 1,
                 contentsId: contentID,
@@ -197,7 +198,9 @@ export default function ContentDetailCard() {
                                             />
                                             {martDtoList.mart.mart_call}
                                             <div className="ml-auto">
-                                                <CopyButton />
+                                                <CopyButton 
+                                                    onClick={() => copyPhoneNumber(martDtoList.mart.mart_call)} 
+                                                    />
                                             </div>
                                         </h3>
 
