@@ -31,8 +31,8 @@ export default function ContentDetail() {
     useEffect(() => {
         // Use the locationData from Recoil state
         axios
-            // .get('http://3.37.4.231:8080/detail-content', {
-            .get('http://192.168.73.91:8080/detail-content', {
+            .get('http://3.37.4.231:8080/detail-content', {
+                // .get('http://192.168.73.91:8080/detail-content', {
                 params: {
                     contents_id: params.id,
                     url: '',

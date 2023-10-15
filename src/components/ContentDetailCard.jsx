@@ -65,9 +65,7 @@ export default function ContentDetailCard() {
         // console.log("멤버 아이딩:", memberid[0])
         axios
             .post('http://3.37.4.231:8080/create-basket', {
-                // .post('http://192.168.73.91:8080/create-basket', {
                 memberId: memberid,
-                // memberId: 1,
                 contentsId: contentID,
                 productId: productID,
                 martId: martID,
