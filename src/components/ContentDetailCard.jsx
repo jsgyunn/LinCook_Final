@@ -202,12 +202,6 @@ export default function ContentDetailCard() {
                                         </h3>
 
                                         <h3 className="mt-4 text-sm text-gray-700 flex items-center">
-                                            <img
-                                                className="h-4 w-4 mr-1"
-                                                src={user}
-                                                alt="폰 로고"
-                                            />
-                                            {`지금까지 32명이 담았습니다.`}
                                             <div className="ml-auto">
                                                 <AddButton
                                                     onClick={() => (loginInfo[0] ? addToCart(data.productDto, martDtoList) : alert("로그인이 필요합니다."))}
