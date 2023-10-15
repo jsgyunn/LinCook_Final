@@ -10,6 +10,14 @@ import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { locationState } from '../recoil/atoms'; // im
 import FindMap from './FindMap';
+import { memberIdState } from '../recoil/persist';
+
+
+
+
+
+
+
 
 export default function ContentDetailCard() {
     const params = useParams();
@@ -24,6 +32,7 @@ export default function ContentDetailCard() {
     // console.log(locationData)
     const contentDetailProduct = useRecoilValue(contentDetailProductState);
     const contentID = contentDetailProduct.contentsDto.id;
+    const memberid = useRecoilValue(memberIdState)
 
     // console.log("ewqejnqwjkenjqwknejkwqnjk:", contentID)
 
@@ -55,10 +64,13 @@ export default function ContentDetailCard() {
 
         const productID = martDto.productId;
         const martID = martDto.mart.id;
+        console.log("멤버 id:", memberid)
+        // console.log("멤버 아이딩:", memberid[0])
         axios
             .post('http://3.37.4.231:8080/create-basket', {
-                // .post('http://localhost:8080/create-basket', {
-                memberId: 1,
+                // .post('http://192.168.73.91:8080/create-basket', {
+                memberId: memberid,
+                // memberId: 1,
                 contentsId: contentID,
                 productId: productID,
                 martId: martID,
@@ -198,7 +210,7 @@ export default function ContentDetailCard() {
                                             {`지금까지 32명이 담았습니다.`}
                                             <div className="ml-auto">
                                                 <AddButton
-                                                    onClick={loginInfo[0] ? addToCart(data.productDto, martDtoList) : () => alert("로그인이 필요합니다.")}
+                                                    onClick={() => (loginInfo[0] ? addToCart(data.productDto, martDtoList) : alert("로그인이 필요합니다."))}
                                                 />
                                             </div>
                                         </h3>

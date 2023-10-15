@@ -7,7 +7,7 @@ import ShoppingCarts from './ShoppingCarts'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { basketInfoState, isloginState, locationState } from '../recoil/atoms'
 import axios from 'axios'
-import { accessTokenState } from '../recoil/persist'
+import { accessTokenState, memberIdState } from '../recoil/persist'
 
 
 export default function Header() {
@@ -16,6 +16,8 @@ export default function Header() {
     const locationData = useRecoilValue(locationState);
     const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
     const tokenData = useRecoilValue(accessTokenState);
+    const memberid = useRecoilState(memberIdState)
+    console.log("멤버 아이디:", memberid[0])
     console.log("토큰 데이터:", tokenData)
     // console.log("위치 데이터:", locationData);
 
@@ -39,7 +41,7 @@ export default function Header() {
         axios
             .get('http://3.37.4.231:8080/basket-info', {
                 params: {
-                    memberId: 1,
+                    memberId: memberid[0],
                     latitude: locationData.latitude,
                     longitude: locationData.longitude,
                 },

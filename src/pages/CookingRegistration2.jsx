@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import InputYoutubeLink2 from '../components/InputYoutubeLink2';
 import CookingRegistrationCard from '../components/CookingRegistrationCard';
 import axios from 'axios';
-import { useRecoilValue, useResetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { locationState, registrationDataState, selectedProductsState } from '../recoil/atoms';
 import { youtubeVideoIdState } from '../recoil/atoms';
 import { useNavigate } from 'react-router-dom';
+import { memberIdState } from '../recoil/persist';
 
 
 export default function CookingRegistration2() {
@@ -20,6 +21,8 @@ export default function CookingRegistration2() {
     const productIds = selectedProducts.map(product => product.product_id)
     const [uniqueID, setUniqueID] = useState("")
     const locationData = useRecoilValue(locationState);
+    const memberid = useRecoilState(memberIdState)
+    console.log("멤버 아이디:", memberid[0])
 
     console.log(registrationData.title);
     console.log(registrationData.description_2);
@@ -40,11 +43,12 @@ export default function CookingRegistration2() {
         } else {
             axios
                 .post('http://3.37.4.231:8080/create-contents', {
-                    member_id: 1,
+                    // .post('http://192.168.100.31:8080/create-contents', {
+                    memberId: memberid[0],
+                    // memberId: 1,
                     title: title,
                     description: description_2,
                     url: youtubeVideoId,
-                    name: "꽃게탕",
                     ids: productIds, // ids 값을 요청 본문에 포함
                 })
                 .then((response) => {

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import logo2 from '../assets/logo2.png';
 import copy from '../assets/copy.png';
+import PackageJson from '../../package.json';
+import { useLocation } from 'react-router-dom';
 
 export default function Toast() {
     const [open, setOpen] = useState(false);
+    const location = useLocation();
     let timer;
 
     const openToast = () => {
@@ -11,6 +14,13 @@ export default function Toast() {
         setOpen(true);
 
         clearTimeout(timer);
+
+        // 링크 복사        
+        const rootUrl = PackageJson.homepage;
+        console.log(rootUrl);
+        console.log(location.pathname);
+
+        handleCopyClipBoard(`${rootUrl}${location.pathname}`);
 
         timer = setTimeout(() => {
             setOpen(false);
@@ -20,6 +30,15 @@ export default function Toast() {
     const closeToast = () => {
         setOpen(false);
     };
+
+    const handleCopyClipBoard = async (text) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            alert("클립보드에 링크가 복사되었어요.");
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     useEffect(() => {
         // 여기에서 Alpine.js 초기화 로직을 구현할 필요가 없습니다.
