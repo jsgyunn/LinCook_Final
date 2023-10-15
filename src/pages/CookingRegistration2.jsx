@@ -116,13 +116,13 @@ export default function CookingRegistration2() {
                 </div>
                 <div className="mt-1 h-0.5 bg-gray-200"></div>
 
-                <div className="flex justify-left mt-5 text-lg font-semibold">
+                <div className="flex justify-left mt-5 text-lg font-semibold bg-gray-100">
                     📄설명 <br />
 
                     [재료]
                 </div>
 
-                <div className="flex justify-center mt-3">
+                <div className="flex justify-center bg-gray-100">
                     <div className="text-center">
                         {registrationData.description_2 ? (
                             // description 내용을 '\n'로 분할하여 각 항목을 보여줌

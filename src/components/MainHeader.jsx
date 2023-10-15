@@ -5,10 +5,11 @@ import Loading from './Loading'
 import registration from '../assets/registrationlogo.png';
 import CookingRegistration2 from '../pages/CookingRegistration2';
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
-import { isloginState, youtubeVideoIdState } from '../recoil/atoms';
+import { useRecoilState, } from 'recoil';
+import { isloginState, youtubeVideoIdState, youtubeLinkState } from '../recoil/atoms';
 import { useNavigate } from 'react-router-dom';
 import { registrationDataState } from '../recoil/atoms';
+import InputYoutubeLink2 from './InputYoutubeLink2';
 
 export default function MainHeader() {
     const navigate = useNavigate();
@@ -16,14 +17,17 @@ export default function MainHeader() {
     const loginInfo = useRecoilState(isloginState);
 
     const [showAlert, setShowAlert] = useState(false);
+
     // 클라이언트가 입력한 유튜브 링크 저장
-    const [youtubeLink, setYoutubeLink] = useState('');
+    const [youtubeLink, setYoutubeLink] = useRecoilState(youtubeLinkState);
+
     //메인 카드에 중복된 콘텐츠 검사
     const [duplicateId, setDuplicateId] = useState("");
+
     // 유튜브 동영상 ID 값 저장
     const [youtubeVideoId, setYoutubeVideoId] = useRecoilState(youtubeVideoIdState);
-    // 서버에서 받은 동영상 데이터 저장
 
+    // 서버에서 받은 동영상 데이터 저장
     const [registrationData, setRegistrationData] = useRecoilState(registrationDataState);
 
     const [videoData, setVideoData] = useState(null);
@@ -32,11 +36,6 @@ export default function MainHeader() {
     const handleInputChange = (e) => {
         setYoutubeLink(e.target.value);
     };
-
-    // const navigateToCookingRegistration2 = () => {
-    //     navigate.push('/cookingregistration2');
-    // };
-
 
     // 유튜브 동영상 링크에서 동영상 ID 추출 -> 해당 ID를 사용하여 서버에 GET 요청
     const extractVideoId = () => {
@@ -66,19 +65,6 @@ export default function MainHeader() {
             alert('올바른 주소가 아닙니다.')
         }
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return (
         <section
@@ -123,10 +109,6 @@ export default function MainHeader() {
                         </button>
                         {loading && <Loading />}
                         {showAlert && <Alert duId={duplicateId} />}
-
-
-
-
                     </div>
                 </div>
             </div>

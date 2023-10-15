@@ -191,17 +191,17 @@ export default function ShoppingCarts({ open, onClose }) {
         };
     }
 
-      
+
     const shareMessage = () => {
         const selectedBasket2 = basketData.find((basket) => basket.contentsDto.title === selectedVideoTitle);
-        
+
         console.log("in shareMessage", selectedBasket2.contentsDto.title);
         if (selectedBasket2) {
             const basketItems = selectedBasket2.basketMartProductList;
-    
+
             // basketMartProductList 배열의 길이가 3보다 큰 경우, 처음 3개만 가져옵니다.
             const basketItemsToDisplay = basketItems.slice(0, 3);
-    
+
             const contents = basketItemsToDisplay.map((item) => {
                 return {
                     title: item.martDto.name,
@@ -213,7 +213,7 @@ export default function ShoppingCarts({ open, onClose }) {
                     },
                 };
             });
-    
+
             // basketMartProductList 배열의 길이가 3보다 작은 경우, 나머지 위치에 "아이템이 없어요" 메시지를 추가합니다.
             if (basketItems.length < 3) {
                 const emptyItemSlots = 3 - basketItems.length;
@@ -229,7 +229,7 @@ export default function ShoppingCarts({ open, onClose }) {
                     });
                 }
             }
-    
+
             Kakao.Share.sendDefault({
                 objectType: 'list',
                 headerTitle: `${selectedBasket2.contentsDto.title}`,
@@ -327,7 +327,7 @@ export default function ShoppingCarts({ open, onClose }) {
                                             </div>
                                             <div className="mt-6">
                                                 <a className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-500"
-                                                onClick={shareMessage}>KakaoTalk 공유</a>
+                                                    onClick={shareMessage}>KakaoTalk 공유</a>
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                                 {/* 여기에 추가적인 정보 표시 가능 */}

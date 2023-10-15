@@ -6,6 +6,12 @@ export const youtubeVideoIdState = atom({
     default: '', // 초기값은 빈 문자열로 설정
 });
 
+export const youtubeLinkState = atom({
+    key: 'youtubeLinkState',
+    default: '', // 초기값은 빈 문자열로 설정
+});
+
+
 export const registrationDataState = atom({
     key: 'registrationDataState',
     default: [],

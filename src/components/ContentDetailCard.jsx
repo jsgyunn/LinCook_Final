@@ -130,12 +130,12 @@ export default function ContentDetailCard() {
                                         {data.productDto.capacity}
                                     </p>
                                     <div className="mt-4 flex justify-center sm:justify-between">
-                                        <button
+                                        {/* <button
                                             type="submit"
                                             className="group flex items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-white transition hover:bg-green-700"
                                         >
                                             <span className="text-sm font-medium">자세히 보기</span>
-                                        </button>
+                                        </button> */}
                                     </div>
                                     <div className="mt-4 flex justify-center sm:justify-between">
                                         <button
