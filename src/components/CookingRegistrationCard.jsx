@@ -90,6 +90,11 @@ export default function CookingRegistrationCard() {
                                                 <p className="mt-1 text-lg font-medium text-gray-900">
                                                     {`${descriptionItem._source.sale_price.toLocaleString()} 원`}
                                                 </p>
+
+                                                <p className="mt-1 text-sm font-semibold text-gray-900">
+                                                    {descriptionItem._source.capacity}
+                                                </p>
+
                                                 <p className="flex justify-center">
                                                     {selectedProduct && selectedProduct.selected ? (
                                                         <button

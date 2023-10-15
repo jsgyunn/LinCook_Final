@@ -31,7 +31,8 @@ export default function ContentDetail() {
     useEffect(() => {
         // Use the locationData from Recoil state
         axios
-            .get('http://3.37.4.231:8080/detail-content', {
+            // .get('http://3.37.4.231:8080/detail-content', {
+            .get('http://192.168.73.91:8080/detail-content', {
                 params: {
                     contents_id: params.id,
                     url: '',
@@ -40,9 +41,10 @@ export default function ContentDetail() {
                 },
             })
             .then((response) => {
-                console.log(response);
-                const detailProduct = response.data.result;
-                setContentDetailProduct(detailProduct);
+                console.log("들어옴", response.data.result);
+                // const detailProduct = response.data.result;
+                // console.log("eqweqwewqeqwewq", detailProduct)
+                setContentDetailProduct(response.data.result);
                 console.log("컨텐트디테일프로덕트:", contentDetailProduct)
                 setIsLoading(true);
                 // console.log(contentDetailProduct.contentsDto)
@@ -51,6 +53,13 @@ export default function ContentDetail() {
                 console.error('디테일 데이터를 불러오는 중 에러 발생:', error);
             });
     }, [locationData.latitude, locationData.longitude])
+
+
+
+
+
+
+
 
 
     return (

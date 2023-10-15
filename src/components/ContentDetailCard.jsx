@@ -14,11 +14,6 @@ import { memberIdState } from '../recoil/persist';
 import { handleCopyClipBoard } from '../common/ClipBoard';
 
 
-
-
-
-
-
 export default function ContentDetailCard() {
     const params = useParams();
     // const contentDetailProduct = useRecoilValue(contentDetailProductState);
@@ -59,10 +54,10 @@ export default function ContentDetailCard() {
     };
 
     // 장바구니에 상품 추가하는 함수
-    const addToCart = (productDto, martDto) => {
+    const addToCart = (simpleProductDto, martDto) => {
         // 현재 장바구니 상태를 Recoil 상태로 업데이트
-        setCartItem((prevCart) => [...prevCart, { productDto, martDto }]);
-        console.log("상품이 장바구니에 추가되었습니다:", productDto, "마트 정보:", martDto);
+        setCartItem((prevCart) => [...prevCart, { simpleProductDto, martDto }]);
+        console.log("상품이 장바구니에 추가되었습니다:", simpleProductDto, "마트 정보:", martDto);
 
         const productID = martDto.productId;
         const martID = martDto.mart.id;
@@ -70,6 +65,7 @@ export default function ContentDetailCard() {
         // console.log("멤버 아이딩:", memberid[0])
         axios
             .post('http://3.37.4.231:8080/create-basket', {
+                // .post('http://192.168.73.91:8080/create-basket', {
                 memberId: memberid,
                 // memberId: 1,
                 contentsId: contentID,
@@ -103,31 +99,31 @@ export default function ContentDetailCard() {
                 {contentDetailProduct.data.map((data, index) => (
                     <button
                         key={index}
-                        onClick={() => handleTabClick(data.productDto.name)}
-                        className={`${selectedTab === data.productDto.name ? 'bg-green-600 text-white' : 'bg-gray-300 text-gray-700'
+                        onClick={() => handleTabClick(data.simpleProductDto.name)}
+                        className={`${selectedTab === data.simpleProductDto.name ? 'bg-green-600 text-white' : 'bg-gray-300 text-gray-700'
                             } px-4 py-2 rounded-md mx-2 my-2`}
                     >
-                        {data.productDto.name}
+                        {data.simpleProductDto.name}
                     </button>
                 ))}
             </div>
 
             <div className="bg-white">
                 {contentDetailProduct.data.map((data, index) => (
-                    <div key={index} className={`border border-solid rounded-lg border-gray-300 w-4/5 mx-auto mt-10 ${selectedTab === '전체' || selectedTab === data.productDto.name ? 'block' : 'hidden'}`}>
+                    <div key={index} className={`border border-solid rounded-lg border-gray-300 w-4/5 mx-auto mt-10 ${selectedTab === '전체' || selectedTab === data.simpleProductDto.name ? 'block' : 'hidden'}`}>
                         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
                             <div className="flex flex-col sm:flex-row items-center justify-between">
                                 <div className="w-full sm:w-1/3">
                                     <img
                                         className="w-full h-auto"
-                                        src={data.productDto.img_url}
+                                        src={data.simpleProductDto.img_url}
                                         alt="상품"
                                     />
                                 </div>
                                 <div className="mt-4 text-center sm:mt-0 sm:ml-4 sm:w-2/3">
                                     <p className="text-lg lg:text-xl">
-                                        {data.productDto.name} <br />
-                                        {data.productDto.capacity}
+                                        {data.simpleProductDto.name} <br />
+                                        {data.simpleProductDto.capacity}
                                     </p>
                                     <div className="mt-4 flex justify-center sm:justify-between">
                                         {/* <button
@@ -145,7 +141,7 @@ export default function ContentDetailCard() {
                                             <span className="text-sm font-medium">평균 판매가</span>
                                         </button>
                                         <p className="text-xl font-medium">
-                                            {`${data.productDto.sale_price.toLocaleString()}원`}
+                                            {`${data.simpleProductDto.avg_price.toLocaleString()}원`}
                                         </p>
                                     </div>
                                 </div>
@@ -207,7 +203,7 @@ export default function ContentDetailCard() {
                                         <h3 className="mt-4 text-sm text-gray-700 flex items-center">
                                             <div className="ml-auto">
                                                 <AddButton
-                                                    onClick={() => (loginInfo[0] ? addToCart(data.productDto, martDtoList) : alert("로그인이 필요합니다."))}
+                                                    onClick={() => (loginInfo[0] ? addToCart(data.simpleProductDto, martDtoList) : alert("로그인이 필요합니다."))}
                                                 />
                                             </div>
                                         </h3>
