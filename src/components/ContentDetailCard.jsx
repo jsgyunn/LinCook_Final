@@ -69,7 +69,7 @@ export default function ContentDetailCard() {
         console.log("멤버 id:", memberid)
         // console.log("멤버 아이딩:", memberid[0])
         axios
-            .post('http://3.37.4.231:8080/create-basket', {                
+            .post('http://3.37.4.231:8080/create-basket', {
                 memberId: memberid,
                 // memberId: 1,
                 contentsId: contentID,
@@ -92,20 +92,20 @@ export default function ContentDetailCard() {
     return (
         <>
             {/* 탭 버튼 */}
-            <div className="flex justify-center mt-4">
+            <div className="flex flex-wrap justify-center mt-4"> {/* 변경된 부분 */}
                 <button
-                    onClick={() => handleTabClick('전체')} // '전체' 탭을 클릭하면 모든 정보 표시
+                    onClick={() => handleTabClick('전체')}
                     className={`${selectedTab === '전체' ? 'bg-green-600 text-white' : 'bg-gray-300 text-gray-700'
-                        } px-4 py-2 rounded-md mx-2`}
+                        } px-4 py-2 rounded-md mx-2 my-2`}
                 >
                     전체
                 </button>
                 {contentDetailProduct.data.map((data, index) => (
                     <button
                         key={index}
-                        onClick={() => handleTabClick(data.productDto.name)} // 각 상품명을 클릭하면 해당 상품 정보 표시
+                        onClick={() => handleTabClick(data.productDto.name)}
                         className={`${selectedTab === data.productDto.name ? 'bg-green-600 text-white' : 'bg-gray-300 text-gray-700'
-                            } px-4 py-2 rounded-md mx-2`}
+                            } px-4 py-2 rounded-md mx-2 my-2`}
                     >
                         {data.productDto.name}
                     </button>
@@ -198,9 +198,9 @@ export default function ContentDetailCard() {
                                             />
                                             {martDtoList.mart.mart_call}
                                             <div className="ml-auto">
-                                                <CopyButton 
-                                                    onClick={() => copyPhoneNumber(martDtoList.mart.mart_call)} 
-                                                    />
+                                                <CopyButton
+                                                    onClick={() => copyPhoneNumber(martDtoList.mart.mart_call)}
+                                                />
                                             </div>
                                         </h3>
 
@@ -222,11 +222,3 @@ export default function ContentDetailCard() {
         </>
     );
 }
-
-
-
-
-
-
-
-

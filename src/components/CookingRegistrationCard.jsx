@@ -9,7 +9,6 @@ import axios from 'axios';
 export default function CookingRegistrationCard() {
     const registrationData = useRecoilValue(registrationDataState);
     const { description_1 } = registrationData;
-
     const [descriptionCard, setDescriptionCard] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedProducts, setSelectedProducts] = useRecoilState(selectedProductsState);
@@ -23,12 +22,10 @@ export default function CookingRegistrationCard() {
     };
 
     const handleRemoveFromCart = (product_id) => {
-        setSelectedProducts((prevState) =>
-            prevState.map((product) =>
-                product.product_id === product_id ? { ...product, selected: false } : product
-            )
-        );
+        const updatedProducts = selectedProducts.filter(product => product.product_id !== product_id);
+        setSelectedProducts(updatedProducts);
     };
+
 
     useEffect(() => {
         axios
@@ -119,8 +116,8 @@ export default function CookingRegistrationCard() {
                     </div>
                 ))}
             </div>
-            선택한 상품들의 product_id와 선택 여부를 출력합니다.
-            <div>
+            {/* 선택한 상품들의 product_id와 선택 여부를 출력합니다. */}
+            {/* <div>
                 <h2>선택한 상품들:</h2>
                 <ul>
                     {selectedProducts.map((product) => (
@@ -129,8 +126,7 @@ export default function CookingRegistrationCard() {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div> */}
         </>
     );
 }
-

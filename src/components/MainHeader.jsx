@@ -69,7 +69,8 @@ export default function MainHeader() {
     return (
         <section
             className="relative bg-[url(https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2934&q=80)] 
-            bg-cover bg-center bg-no-repeat "
+            bg-cover bg-center bg-no-repeat"
+            style={{ height: "600px" }}
         >
             <div
                 className="absolute inset-0 backdrop-blur-md bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l backdrop-opacity-10"
