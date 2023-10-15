@@ -22,6 +22,7 @@ export default function CookingRegistration2() {
     const [uniqueID, setUniqueID] = useState("")
     const locationData = useRecoilValue(locationState);
     const memberid = useRecoilState(memberIdState)
+    console.log("멤버 아이디:", memberid[0])
 
     console.log(registrationData.title);
     console.log(registrationData.description_2);
@@ -42,11 +43,12 @@ export default function CookingRegistration2() {
         } else {
             axios
                 .post('http://3.37.4.231:8080/create-contents', {
+                    // .post('http://192.168.100.31:8080/create-contents', {
                     memberId: memberid[0],
+                    // memberId: 1,
                     title: title,
                     description: description_2,
                     url: youtubeVideoId,
-                    name: "꽃게탕",
                     ids: productIds, // ids 값을 요청 본문에 포함
                 })
                 .then((response) => {
