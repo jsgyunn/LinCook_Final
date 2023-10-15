@@ -18,10 +18,8 @@ export default function Toast() {
 
         // 링크 복사        
         const rootUrl = PackageJson.homepage;
-        console.log(rootUrl);
-        console.log(location.pathname);
-
-        handleCopyClipBoard(`${rootUrl}${location.pathname}`);
+        const message = "지금 보고 있는 요리 준비는 링쿡으로 쉽게! \n"
+        handleCopyClipBoard(`${message}${rootUrl}${location.pathname}`);
 
         timer = setTimeout(() => {
             setOpen(false);
