@@ -10,6 +10,7 @@ import { isloginState, youtubeVideoIdState, youtubeLinkState } from '../recoil/a
 import { useNavigate } from 'react-router-dom';
 import { registrationDataState } from '../recoil/atoms';
 import InputYoutubeLink2 from './InputYoutubeLink2';
+import Swal from 'sweetalert2';
 
 export default function MainHeader() {
     const navigate = useNavigate();
@@ -61,8 +62,18 @@ export default function MainHeader() {
                     setShowAlert(true);
                     setLoading(false);
                 });
+            setShowAlert(false);
         } else {
-            alert('올바른 주소가 아닙니다.')
+            Swal.fire({
+                position: 'top',
+                title: '올바른 주소가 아닙니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#16A34A',
+                customClass: {
+                    title: 'text-lg',
+                    popup: 'w-90'
+                }
+            })
         }
     };
 
@@ -70,7 +81,7 @@ export default function MainHeader() {
         <section
             className="relative bg-[url(https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2934&q=80)] 
             bg-cover bg-center bg-no-repeat"
-            style={{ height: "600px" }}
+        // style={{ height: "600px" }}
         >
             <div
                 className="absolute inset-0 backdrop-blur-md bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l backdrop-opacity-10"
@@ -79,7 +90,7 @@ export default function MainHeader() {
             <div
                 className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
             >
-                <div className="max-w-xl mx-auto text-center ltr:sm:text-left rtl:sm:text-right">
+                <div className="max-w-4xl mx-auto text-center ltr:sm:text-left rtl:sm:text-right">
                     <h1 className="text-3xl font-extrabold sm:text-5xl">
                         Click the Link!
                         <strong className="block font-extrabold text-green-600">
@@ -103,7 +114,20 @@ export default function MainHeader() {
                         <button
                             type="submit"
                             className="group flex items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-white transition sm:w-auto hover:bg-green-700"
-                            onClick={loginInfo[0] ? extractVideoId : () => alert("로그인이 필요합니다.")}
+                            onClick={loginInfo[0] ? extractVideoId : () => {
+                                Swal.fire({
+                                    position: 'top',
+                                    title: '로그인이 필요합니다.',
+                                    confirmButtonText: '확인',
+                                    confirmButtonColor: '#16A34A',
+                                    footer: '<a href="/LinCook_Final/login">로그인 하시겠습니까?</a>',
+                                    customClass: {
+                                        title: 'text-lg',
+                                        popup: 'w-90'
+                                    }
+                                });
+                            }
+                            }
                             disabled={loading} // 로딩 중에 버튼 비활성화
                         >
                             <span className="text-sm font-medium">적용</span>
@@ -113,6 +137,6 @@ export default function MainHeader() {
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }

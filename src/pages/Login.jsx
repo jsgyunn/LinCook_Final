@@ -21,8 +21,8 @@ export default function Login() {
         const Email = getValues('email');
         const Password = getValues('password');
 
-        console.log(Email)
-        console.log(Password)
+        // console.log(Email)
+        // console.log(Password)
 
         axios
             .post('http://3.37.4.231:8080/api/auth/login', {
@@ -32,18 +32,17 @@ export default function Login() {
             })
             .then((response) => {
                 // 요청이 성공하면 처리
-                console.log('로그인 성공:');
-                console.log("토큰:", response)
+                // console.log('로그인 성공:');
+                // console.log("토큰:", response)
                 setAccessToken(response.headers['authorization']);
                 setMemberId(response.data.memberId);
                 // setRefreshToken(response.headers['Set-cookie']);
 
                 setIsLogin(true); // 사용자 로그인 상태 변경
-                alert('로그인 성공!');
                 navigate('/');
             })
             .catch((error) => {
-                console.error('로그인 에러 발생:', error);
+                // console.error('로그인 에러 발생:', error);
                 alert('이메일, 비밀번호를 확인해주세요.')
             });
     }

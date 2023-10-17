@@ -17,8 +17,8 @@ export default function Header() {
     const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
     const tokenData = useRecoilValue(accessTokenState);
     const memberid = useRecoilState(memberIdState)
-    console.log("멤버 아이디:", memberid[0])
-    console.log("토큰 데이터:", tokenData)
+    // console.log("멤버 아이디:", memberid[0])
+    // console.log("토큰 데이터:", tokenData)
     // console.log("위치 데이터:", locationData);
 
 
@@ -71,7 +71,6 @@ export default function Header() {
     const handleLogout = () => {
         localStorage.removeItem('localStorage'); // 로컬 스토리지에서 값 제거
         setIsLogin(false); // 로그인 상태 해제
-        alert("로그아웃 되었습니다.")
         window.location.reload(); // 페이지 새로고침
     };
 
@@ -134,15 +133,6 @@ export default function Header() {
                     <div className="hidden md:block">
                         <nav aria-label="Global">
                             <ul className="flex items-center gap-6 text-sm">
-
-                                <li className='ml-4'>
-                                    <Link
-                                        className="text-black transition hover:text-gray-500/75"
-                                        to="/"
-                                    >
-                                        설정
-                                    </Link>
-                                </li>
 
                                 <li className='ml-4'>
                                     <Link
@@ -217,14 +207,13 @@ export default function Header() {
 
                     <div className="flex items-center gap-6 text-sm mt-0">
                         <div className="sm:flex sm:gap-4 mr-20">
-                            <Link to="/">
-                                <img
-                                    className="h-5"
-                                    src={location}
-                                    alt='location'
-                                >
-                                </img>
-                            </Link>
+                            <img
+                                className="h-5"
+                                src={location}
+                                alt='location'
+                                onClick={() => window.location.reload()}
+                            >
+                            </img>
                             <span>
                                 <UseCurrentLocation
                                     addressChecked={addressChecked}
@@ -237,7 +226,6 @@ export default function Header() {
                                     className="text-black transition"
                                     to="/signup"
                                 >
-
                                 </Link>
                             </div>
 

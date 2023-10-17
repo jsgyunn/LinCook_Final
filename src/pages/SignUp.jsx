@@ -9,10 +9,6 @@ export default function SignUp() {
     const [signupInfo, setSignupInfo] = useState();
 
 
-    // useEffect(() => {
-    //     // signupInfo 상태가 업데이트될 때마다 이 부분이 실행됩니다.
-    //     console.log("회원 정보:", signupInfo);
-    // }, [signupInfo]);
 
 
     const onSubmit = async (data) => {
@@ -21,10 +17,10 @@ export default function SignUp() {
         const Name = data.name;
         const Gender = data.gender;
 
-        console.log(Email);
-        console.log(Password);
-        console.log(Name);
-        console.log(Gender);
+        // console.log(Email);
+        // console.log(Password);
+        // console.log(Name);
+        // console.log(Gender);
 
         try {
             const response = await axios.post('http://3.37.4.231:8080/api/auth/signup', {
@@ -38,14 +34,13 @@ export default function SignUp() {
                 longitude: 126.97962084516
             });
 
-            console.log('회원가입 성공:', response.data.result);
+            // console.log('회원가입 성공:', response.data.result);
             setSignupInfo(response.data.result);
-            console.log("회원정보:", signupInfo)
-            alert('회원가입 성공!');
+            // console.log("회원정보:", signupInfo)
             navigate('/login');
         } catch (error) {
-            console.error('회원가입 에러 발생:', error);
-            console.log("이미 등록된 회원입니다.");
+            // console.error('회원가입 에러 발생:', error);
+            // console.log("이미 등록된 회원입니다.");
             alert("이미 등록된 회원입니다.");
         }
     };

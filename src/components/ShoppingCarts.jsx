@@ -277,14 +277,6 @@ export default function ShoppingCarts({ open, onClose }) {
                                             <div className="flex items-start justify-between">
                                                 <Dialog.Title className="text-lg font-medium text-gray-900">장바구니</Dialog.Title>
                                                 <div className="ml-3 flex h-7 items-center">
-                                                    <button
-                                                        type="button"
-                                                        className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                                                        onClick={onClose}
-                                                    >
-                                                        <span className="absolute -inset-0.5" />
-                                                        <span className="sr-only">Close panel</span>
-                                                    </button>
                                                 </div>
                                             </div>
 

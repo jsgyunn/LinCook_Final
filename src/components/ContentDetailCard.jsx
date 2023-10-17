@@ -12,6 +12,9 @@ import { locationState } from '../recoil/atoms'; // im
 import FindMap from './FindMap';
 import { memberIdState } from '../recoil/persist';
 import { handleCopyClipBoard } from '../common/ClipBoard';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 
 export default function ContentDetailCard() {
@@ -74,12 +77,12 @@ export default function ContentDetailCard() {
                 // 요청이 성공하면 처리
                 console.log('장바구니 요청 성공:', response.data);
                 setShoppingData("쇼핑 데이터:", response.data)
-                alert("상품이 담겼습니다.")
+                toast.success("상품이 담겼습니다."); // 토스트 메시지 사용
                 // navigate(0);
             })
             .catch((error) => {
                 console.error('장바구니 요청 중 에러 발생:', error);
-                alert("이미 상품이 담겼습니다.")
+                toast.error("이미 상품이 담겼습니다."); // 토스트 메시지 사용
             });
     };
 
@@ -201,7 +204,19 @@ export default function ContentDetailCard() {
                                         <h3 className="mt-4 text-sm text-gray-700 flex items-center">
                                             <div className="ml-auto">
                                                 <AddButton
-                                                    onClick={() => (loginInfo[0] ? addToCart(data.simpleProductDto, martDtoList) : alert("로그인이 필요합니다."))}
+                                                    onClick={() => (loginInfo[0] ? addToCart(data.simpleProductDto, martDtoList) :
+                                                        Swal.fire({
+                                                            position: 'top',
+                                                            title: '로그인이 필요합니다.',
+                                                            confirmButtonText: '확인',
+                                                            confirmButtonColor: '#16A34A',
+                                                            footer: '<a href="https://jsgyunn.github.io/LinCook_Final/login">로그인 하시겠습니까?</a>',
+                                                            customClass: {
+                                                                title: 'text-lg',
+                                                                popup: 'w-90'
+                                                            }
+                                                        })
+                                                    )}
                                                 />
                                             </div>
                                         </h3>
@@ -213,6 +228,10 @@ export default function ContentDetailCard() {
                 ))
                 }
             </div >
+            <ToastContainer
+                autoClose={1500}
+                hideProgressBar
+                pauseOnHover={false} />
         </>
     );
 }

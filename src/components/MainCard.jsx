@@ -63,27 +63,23 @@ export default function MainCard() {
 
     return (
         <div className="bg-white">
-            <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8">
+            <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-8 lg:px-8">
                 <h2 className="sr-only">Contents</h2>
                 {loading ? (
                     <p>Loading...</p>
                 ) : (
                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
                         {contents.map((content) => (
-
                             <Link
                                 to={"/contentdetail/" + content.id}
                                 key={content.id}
-                                // href={content.href}
-                                // member_id={content.member_id}
-                                className="group"
-                            // onClick={() => navigateToContentDetail(content.id)}
+                                className="group w-full"
                             >
-                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                                <div className="aspect-w-1 aspect-h-1 sm:aspect-w-2 sm:aspect-h-2 xl:aspect-h-8 xl:aspect-w-7">
                                     <img
                                         src={`https://img.youtube.com/vi/${content.url}/maxresdefault.jpg`}
                                         alt="이미지 없음"
-                                        className="h-full w-full object-cover object-center group-hover:opacity-75"
+                                        className="object-cover w-full h-full rounded-lg bg-gray-200 group-hover:opacity-75"
                                     />
                                 </div>
                                 <h3 className="mt-4 text-base font-semibold text-gray-700">{content.title}</h3>
