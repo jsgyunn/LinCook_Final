@@ -47,7 +47,7 @@ export default function Login() {
                 Swal.fire({
                     position: 'top',
                     icon: 'warning',
-                    title: '이미 등록된 회원입니다.',
+                    title: '아이디, 비밀번호를 확인해주세요.',
                     confirmButtonText: '확인',
                     confirmButtonColor: '#16A34A',
                     customClass: {

@@ -54,6 +54,7 @@ export default function SignUp() {
             // console.log("이미 등록된 회원입니다.");
             Swal.fire({
                 position: 'top',
+                icon: 'warning',
                 title: '이미 등록된 회원입니다.',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#16A34A',
