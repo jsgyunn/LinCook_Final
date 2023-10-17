@@ -6,8 +6,6 @@ import ShoppingCarts from '../components/ShoppingCarts'
 export default function Team() {
     return (
         <div>
-            {/* <ShoppingCarts /> */}
-            {/* <Header /> */}
             <TeamCard />
         </div>
     )

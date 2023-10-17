@@ -1,4 +1,8 @@
 import React from 'react';
+import 이지연 from '../assets/이지연.png'
+import 정승균 from '../assets/정승균.png'
+import 김범기 from '../assets/김범기.png'
+import 이민재 from '../assets/이민재.png'
 
 export default function TeamCard() {
     return (
@@ -28,19 +32,21 @@ export default function TeamCard() {
                 <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
                         <img className="object-center object-cover h-auto w-full"
-                            src="#"
+                            src={김범기}
                             alt="photo" />
                     </div>
                     <div className="text-center py-8 sm:py-6">
                         <p className="text-xl text-gray-700 font-bold mb-2">김범기</p>
-                        <p className="text-base text-gray-400 font-normal">포지션</p>
+                        <p className="text-base text-gray-400 font-normal">
+                            기획, UX/UI, backend, data analysis
+                        </p>
                     </div>
                 </div>
 
                 <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
                         <img className="object-center object-cover h-auto w-full"
-                            src="#"
+                            src={이지연}
                             alt="photo" />
                     </div>
                     <div className="text-center py-8 sm:py-6">
@@ -52,7 +58,7 @@ export default function TeamCard() {
                 <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
                         <img className="object-center object-cover h-auto w-full"
-                            src="#"
+                            src={이민재}
                             alt="photo" />
                     </div>
                     <div className="text-center py-8 sm:py-6">
@@ -64,12 +70,12 @@ export default function TeamCard() {
                 <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
                         <img className="object-center object-cover h-auto w-full"
-                            src="#"
+                            src={정승균}
                             alt="photo" />
                     </div>
                     <div className="text-center py-8 sm:py-6">
                         <p className="text-xl text-gray-700 font-bold mb-2">정승균</p>
-                        <p className="text-base text-gray-400 font-normal">포지션</p>
+                        <p className="text-base text-gray-400 font-normal">Frontend, UX/UI</p>
                     </div>
                 </div>
             </div>

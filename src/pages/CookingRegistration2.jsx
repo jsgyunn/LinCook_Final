@@ -8,6 +8,7 @@ import { locationState, registrationDataState, selectedProductsState } from '../
 import { youtubeVideoIdState } from '../recoil/atoms';
 import { useNavigate } from 'react-router-dom';
 import { memberIdState } from '../recoil/persist';
+import Swal from 'sweetalert2';
 
 
 export default function CookingRegistration2() {
@@ -39,7 +40,17 @@ export default function CookingRegistration2() {
 
     const navigateToContentDetail = () => {
         if (selectedProducts.length === 0) {
-            alert("재료를 선택해주세요.")
+            Swal.fire({
+                position: 'top',
+                title: '재료를 선택해주세요.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#16A34A',
+                customClass: {
+                    title: 'text-lg',
+                    popup: 'w-90'
+                }
+            })
+
         } else {
             axios
                 .post('http://3.37.4.231:8080/create-contents', {
