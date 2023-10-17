@@ -51,7 +51,7 @@ export default function TeamCard() {
                     </div>
                     <div className="text-center py-8 sm:py-6">
                         <p className="text-xl text-gray-700 font-bold mb-2">이지연</p>
-                        <p className="text-base text-gray-400 font-normal">포지션</p>
+                        <p className="text-base text-gray-400 font-normal">검색 엔진 구축, 데이터 분석</p>
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@ export default function TeamCard() {
                     </div>
                     <div className="text-center py-8 sm:py-6">
                         <p className="text-xl text-gray-700 font-bold mb-2">이민재</p>
-                        <p className="text-base text-gray-400 font-normal">포지션</p>
+                        <p className="text-base text-gray-400 font-normal">데이터 파이프라인 구축, 데이터 적재</p>
                     </div>
                 </div>
 
