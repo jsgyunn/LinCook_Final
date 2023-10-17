@@ -315,11 +315,13 @@ export default function ShoppingCarts({ open, onClose }) {
                                                             }, 0);
                                                         }
                                                         return total;
-                                                    }, 0).toLocaleString()}원                                                </p>
+                                                    }, 0).toLocaleString()}원
+                                                </p>
                                             </div>
                                             <div className="mt-6">
-                                                <a className="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-500"
-                                                    onClick={shareMessage}>KakaoTalk 공유</a>
+                                                <a className="flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-semibold text-black shadow-sm"
+                                                    style={{ backgroundColor: '#F7E600' }}
+                                                    onClick={shareMessage}>카카오톡 공유</a>
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                                 {/* 여기에 추가적인 정보 표시 가능 */}

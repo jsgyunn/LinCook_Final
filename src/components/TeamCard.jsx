@@ -16,12 +16,12 @@ export default function TeamCard() {
                 <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
                         <img className="object-center object-cover h-auto w-full"
-                            src="#"
+                            src="https://w7.pngwing.com/pngs/113/90/png-transparent-one-piece-monkey-d-luffy-illustration-monkey-d-luffy-brook-vinsmoke-sanji-goku-chibi-one-piece-food-hand-cartoon.png"
                             alt="photo" />
                     </div>
                     <div className="text-center py-8 sm:py-6">
                         <p className="text-xl text-gray-700 font-bold mb-2">홍량택</p>
-                        <p className="text-base text-gray-400 font-normal">포지션</p>
+                        <p className="text-base text-gray-400 font-normal">Backend</p>
                     </div>
                 </div>
 

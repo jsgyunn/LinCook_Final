@@ -48,7 +48,6 @@ export default function SignUp() {
                     popup: 'w-90'
                 }
             })
-
             navigate('/login');
         } catch (error) {
             // console.error('회원가입 에러 발생:', error);
