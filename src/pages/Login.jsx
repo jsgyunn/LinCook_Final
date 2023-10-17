@@ -3,9 +3,10 @@ import { useRecoilState } from "recoil";
 import { accessTokenState, refreshTokenState, memberIdState } from "../recoil/persist";
 import { useForm } from "react-hook-form";
 import logo from '../assets/logo.png';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { isloginState } from "../recoil/atoms";
+import Swal from "sweetalert2";
 
 
 export default function Login() {
@@ -43,7 +44,18 @@ export default function Login() {
             })
             .catch((error) => {
                 // console.error('로그인 에러 발생:', error);
-                alert('이메일, 비밀번호를 확인해주세요.')
+                Swal.fire({
+                    position: 'top',
+                    icon: 'warning',
+                    title: '이미 등록된 회원입니다.',
+                    confirmButtonText: '확인',
+                    confirmButtonColor: '#16A34A',
+                    customClass: {
+                        title: 'text-lg',
+                        popup: 'w-90'
+                    }
+                })
+
             });
     }
 
@@ -171,9 +183,9 @@ export default function Login() {
                     {/* 회원 가입 링크 */}
                     <p className="mt-5 text-center text-sm text-gray-500">
                         계정이 없으신가요?{' '}
-                        <a href="/signup" className="font-semibold leading-6 text-green-600 hover:text-green-500">
+                        <Link to="/signup" className="font-semibold leading-6 text-green-600 hover:text-green-500">
                             가입하기
-                        </a>
+                        </Link>
                     </p>
                 </div>
             </div>

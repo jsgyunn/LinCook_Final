@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -36,31 +37,35 @@ export default function SignUp() {
 
             // console.log('회원가입 성공:', response.data.result);
             setSignupInfo(response.data.result);
-            // console.log("회원정보:", signupInfo)
+            Swal.fire({
+                position: 'top',
+                icon: 'success',
+                title: '회원가입 성공!',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#16A34A',
+                customClass: {
+                    title: 'text-lg',
+                    popup: 'w-90'
+                }
+            })
+
             navigate('/login');
         } catch (error) {
             // console.error('회원가입 에러 발생:', error);
             // console.log("이미 등록된 회원입니다.");
-            alert("이미 등록된 회원입니다.");
+            Swal.fire({
+                position: 'top',
+                title: '이미 등록된 회원입니다.',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#16A34A',
+                customClass: {
+                    title: 'text-lg',
+                    popup: 'w-90'
+                }
+            })
+
         }
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // const onSubmit = async (data) => {
     //     // 사용자가 입력한 정보를 변수에 담음
