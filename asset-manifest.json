@@ -1,16 +1,20 @@
 {
   "files": {
     "main.css": "/LinCook_Final/static/css/main.0ff54702.css",
-    "main.js": "/LinCook_Final/static/js/main.b232ee90.js",
+    "main.js": "/LinCook_Final/static/js/main.ad3a76b6.js",
     "static/js/787.71df535f.chunk.js": "/LinCook_Final/static/js/787.71df535f.chunk.js",
     "static/media/registrationlogo.png": "/LinCook_Final/static/media/registrationlogo.ce70ba0d5e5889dd0067.png",
+    "static/media/이지연.png": "/LinCook_Final/static/media/이지연.5ae7e9cf3121e5c9d2b8.png",
+    "static/media/이민재.png": "/LinCook_Final/static/media/이민재.820c693a76d5e26b8d78.png",
+    "static/media/정승균.png": "/LinCook_Final/static/media/정승균.040b8659349405e7768f.png",
+    "static/media/김범기.png": "/LinCook_Final/static/media/김범기.1a015960f8865f5cd8bd.png",
     "index.html": "/LinCook_Final/index.html",
     "main.0ff54702.css.map": "/LinCook_Final/static/css/main.0ff54702.css.map",
-    "main.b232ee90.js.map": "/LinCook_Final/static/js/main.b232ee90.js.map",
+    "main.ad3a76b6.js.map": "/LinCook_Final/static/js/main.ad3a76b6.js.map",
     "787.71df535f.chunk.js.map": "/LinCook_Final/static/js/787.71df535f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0ff54702.css",
-    "static/js/main.b232ee90.js"
+    "static/js/main.ad3a76b6.js"
   ]
 }
