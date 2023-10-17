@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/LinCook_Final/static/css/main.d48e692e.css",
-    "main.js": "/LinCook_Final/static/js/main.ba1279e1.js",
+    "main.css": "/LinCook_Final/static/css/main.ac095b80.css",
+    "main.js": "/LinCook_Final/static/js/main.1817ab0f.js",
     "static/js/787.71df535f.chunk.js": "/LinCook_Final/static/js/787.71df535f.chunk.js",
     "static/media/registrationlogo.png": "/LinCook_Final/static/media/registrationlogo.ce70ba0d5e5889dd0067.png",
     "index.html": "/LinCook_Final/index.html",
-    "main.d48e692e.css.map": "/LinCook_Final/static/css/main.d48e692e.css.map",
-    "main.ba1279e1.js.map": "/LinCook_Final/static/js/main.ba1279e1.js.map",
+    "main.ac095b80.css.map": "/LinCook_Final/static/css/main.ac095b80.css.map",
+    "main.1817ab0f.js.map": "/LinCook_Final/static/js/main.1817ab0f.js.map",
     "787.71df535f.chunk.js.map": "/LinCook_Final/static/js/787.71df535f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d48e692e.css",
-    "static/js/main.ba1279e1.js"
+    "static/css/main.ac095b80.css",
+    "static/js/main.1817ab0f.js"
   ]
 }
