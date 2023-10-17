@@ -116,8 +116,8 @@ export default function CookingRegistration2() {
                 </div>
                 <div className="mt-1 h-0.5 bg-gray-200"></div>
 
-                <div className="flex justify-left mt-5 text-lg font-semibold bg-gray-100">
-                    📄설명 <br />
+                <div className="flex justify-left mt-5 ml-4 text-lg font-semibold bg-gray-100">
+                    {/* 📄설명 <br /> */}
 
                     [재료]
                 </div>

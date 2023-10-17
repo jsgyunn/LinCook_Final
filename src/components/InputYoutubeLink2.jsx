@@ -21,7 +21,7 @@ export default function InputYoutubeLink2() {
                             <label className="sr-only" htmlFor="url"> URL </label>
 
                             <input
-                                className="w-full rounded-full border-gray-200 bg-gray-100 p-4 pe-30 text-sm font-medium"
+                                className="w-full rounded-full border-white bg-gray-200 p-4 pe-30 text-sm font-medium"
                                 id="url"
                                 type="url"
                                 placeholder="https://www.youtube.com/"
