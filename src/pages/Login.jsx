@@ -59,10 +59,6 @@ export default function Login() {
             });
     }
 
-
-
-
-
     return (
         <div className="flex">
             {/* 이미지 부분 */}
@@ -124,11 +120,11 @@ export default function Login() {
                                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                                     비밀번호
                                 </label>
-                                <div className="text-sm">
+                                {/* <div className="text-sm">
                                     <a href="#" className="font-semibold text-green-600 hover:text-green-500">
                                         비밀번호 찾기
                                     </a>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="mt-2">
                                 <input
