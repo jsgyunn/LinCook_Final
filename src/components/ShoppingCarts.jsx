@@ -281,15 +281,15 @@ export default function ShoppingCarts({ open, onClose }) {
                                             </div>
 
                                             <div className="mt-3">
-                                                <label htmlFor="videoTitle" className="block text-lg font-medium text-gray-700 text-center">
+                                                {/* <label htmlFor="videoTitle" className="block text-lg font-medium text-gray-700 text-center">
                                                     영상 제목 선택
-                                                </label>
+                                                </label> */}
                                                 <select
                                                     id="videoTitle"
                                                     name="videoTitle"
                                                     value={selectedVideoTitle}
                                                     onChange={handleVideoTitleChange}
-                                                    className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm font-semibold"
+                                                    className="mt-1.5 w-full border-2 rounded-lg border-gray-500 text-gray-700 sm:text-base font-semibold"
                                                 >
                                                     {basketData.map((basket) => (
                                                         <option key={basket.contentsDto.title} value={basket.contentsDto.title}>
