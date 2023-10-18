@@ -3,7 +3,7 @@ import logo2 from '../assets/logo2.png';
 import copy from '../assets/copy.png';
 import PackageJson from '../../package.json';
 import { useLocation } from 'react-router-dom';
-import { handleCopyClipBoard } from '../common/ClipBoard'; 
+import { handleCopyClipBoard } from '../common/ClipBoard';
 
 export default function Toast() {
     const [open, setOpen] = useState(false);
@@ -41,7 +41,7 @@ export default function Toast() {
                 <button
                     type="button"
                     onClick={closeToast}
-                    className="fixed right-4 top-20 z-50 rounded-md bg-green-500 px-1 py-1 text-white transition hover:bg-green-600 text-sm"
+                    className="fixed right-4 top-20 z-50 rounded-md bg-green-600 px-1 py-1 text-white transition hover:bg-green-600 text-sm"
                     style={{ transitionDuration: '300ms' }}
                 >
                     <div className=" flex items-center space-x-2">
@@ -57,7 +57,7 @@ export default function Toast() {
 
             <button
                 type="button"
-                className="rounded-md bg-green-500 px-4 py-2 text-2xl font-bold text-white transition"
+                className="rounded-md bg-green-500 w-4/5 px-40 py-2 text-2xl font-bold text-white transition"
             >
                 <div className="flex items-center space-x-4">
                     <img

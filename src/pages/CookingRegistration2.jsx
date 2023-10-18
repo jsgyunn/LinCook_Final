@@ -96,23 +96,23 @@ export default function CookingRegistration2() {
             <div className="absolute top-1/5 right-0 mr-6 rounded-lg bg-gray-100 shadow-2xl h-screen">
                 {/* 나머지 코드는 그대로 유지 */}
                 <div className="flex justify-center items-start mt-5">
-                    <div className="bg-gray-100">
+                    <div className="bg-gray-100 ml-6 mr-6">
                         <button
                             onClick={navigateToContentDetail}
-                            className="rounded-xl bg-green-600 px-28 py-4 text-lg font-semibold text-white transition hover:bg-green-700"
+                            className="rounded-xl bg-green-600 px-36 py-4 text-xl font-semibold text-white transition hover:bg-green-700"
                             type="submit">
                             요리 생성하기
                         </button>
                     </div>
                 </div>
 
-                <div className="mt-3">
+                {/* <div className="mt-3">
                     <InputYoutubeLink2 />
-                </div>
+                </div> */}
 
-                <div className="flex justify-center mt-3">
+                <div className="flex justify-center mt-7">
                     <img
-                        className="rounded-lg w-72 h-48"
+                        className="rounded-lg w-96"
                         src={`https://img.youtube.com/vi/${youtubeVideoId}/maxresdefault.jpg`}
                         alt="#"
                     />
@@ -127,14 +127,14 @@ export default function CookingRegistration2() {
                 </div>
                 <div className="mt-1 h-0.5 bg-gray-200"></div>
 
-                <div className="flex justify-left mt-5 ml-4 text-lg font-semibold bg-gray-100">
+                <div className="flex justify-left mt-5 ml-4 text-lg font-semibold bg-gray-100 text-gray-500">
                     {/* 📄설명 <br /> */}
 
-                    [재료]
+                    [ 재료 ]
                 </div>
 
                 <div className="flex justify-center bg-gray-100">
-                    <div className="text-center">
+                    <div className="text-center text-gray-400">
                         {registrationData.description_2 ? (
                             // description 내용을 '\n'로 분할하여 각 항목을 보여줌
                             registrationData.description_2.split('\n').map((item, index) => (

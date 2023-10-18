@@ -94,7 +94,7 @@ export default function ContentDetailCard() {
             <div className="flex flex-wrap justify-center mt-4"> {/* 변경된 부분 */}
                 <button
                     onClick={() => handleTabClick('전체')}
-                    className={`${selectedTab === '전체' ? 'bg-green-600 text-white' : 'bg-gray-300 text-gray-700'
+                    className={`${selectedTab === '전체' ? 'bg-green-500 text-white' : 'bg-white text-gray-400 border-2'
                         } px-4 py-2 rounded-md mx-2 my-2`}
                 >
                     전체
@@ -103,8 +103,8 @@ export default function ContentDetailCard() {
                     <button
                         key={index}
                         onClick={() => handleTabClick(data.simpleProductDto.name)}
-                        className={`${selectedTab === data.simpleProductDto.name ? 'bg-green-600 text-white' : 'bg-gray-300 text-gray-700'
-                            } px-4 py-2 rounded-md mx-2 my-2`}
+                        className={`${selectedTab === data.simpleProductDto.name ? 'bg-green-500 text-white' : 'bg-white text-gray-400 border-2'
+                            } px-3 py-2 rounded-md mx-2 my-2`}
                     >
                         {data.simpleProductDto.name}
                     </button>
@@ -115,70 +115,104 @@ export default function ContentDetailCard() {
                 {contentDetailProduct.data.map((data, index) => (
                     <div key={index} className={`border border-solid rounded-lg border-gray-300 w-4/5 mx-auto mt-10 ${selectedTab === '전체' || selectedTab === data.simpleProductDto.name ? 'block' : 'hidden'}`}>
                         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
-                            <div className="flex flex-col sm:flex-row items-center justify-between">
+                            <div className="flex flex-col sm:flex-row items-start justify-between w-full">
                                 <div className="w-full sm:w-1/3">
                                     <img
-                                        className="w-full h-auto"
+                                        className="w-full sm:w-40 sm:h-40"
                                         src={data.simpleProductDto.img_url}
                                         alt="상품"
                                     />
                                 </div>
-                                <div className="mt-4 text-center sm:mt-0 sm:ml-4 sm:w-2/3">
-                                    <p className="text-lg lg:text-xl">
-                                        {data.simpleProductDto.name} <br />
-                                        {data.simpleProductDto.capacity}
-                                    </p>
-                                    <div className="mt-4 flex justify-center sm:justify-between">
-                                        {/* <button
-                                            type="submit"
-                                            className="group flex items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-white transition hover:bg-green-700"
-                                        >
-                                            <span className="text-sm font-medium">자세히 보기</span>
-                                        </button> */}
-                                    </div>
-                                    <div className="mt-4 flex justify-center sm:justify-between">
-                                        <button
-                                            type="button"
-                                            className="group flex items-center justify-center gap-2 rounded-md bg-gray-300 px-5 py-3 text-black transition"
-                                        >
-                                            <span className="text-sm font-medium">평균 판매가</span>
-                                        </button>
-                                        <p className="text-xl font-medium">
-                                            {`${data.simpleProductDto.avg_price.toLocaleString()}원`}
-                                        </p>
+
+                                <div className="flex justify-between items-start sm:items-end w-full sm:w-2/3">
+                                    <div className="w-full">
+                                        <div className="flex justify-between items-start">
+                                            <div className="flex flex-col justify-start">
+                                                <div className="font-bold">
+                                                    {data.simpleProductDto.name}
+                                                </div>
+                                                <div className="text-gray-500">
+                                                    {data.simpleProductDto.capacity}
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col justify-end">
+                                                <div className="flex flex-col justify-end">
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br></div>
+
+
+
+
+                                                <div className="h-1/2 flex flex-col justify-end">
+                                                    <div
+                                                        className="group flex items-center justify-center gap-2 rounded-md bg-white px-4 py-1 text-black transition
+                                                        border-2 border-gray-300"
+                                                    >
+
+                                                        <span className="text-sm font-medium">
+                                                            평균 판매가
+                                                        </span>
+
+                                                    </div>
+                                                    <p className=" ml-3 text-2xl font-bold text-green-500">
+                                                        {`${data.simpleProductDto.avg_price.toLocaleString()}원`}
+                                                    </p>
+                                                </div>
+
+
+
+
+
+
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
                         </div>
+
+
 
                         <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
                             <h2 className="sr-only">contentDetailProduct</h2>
                             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
                                 {data.martDtoList.map((martDtoList) => (
-                                    <div key={martDtoList.id} className="group border border-solid border-black rounded-lg p-4">
+
+
+
+
+                                    <div key={martDtoList.id} className="group border-2 border-gray-200 rounded-lg p-4">
+
                                         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7 text-xl font-bold flex justify-between">
-                                            <div>
+                                            <div className=" flex-1">
                                                 {martDtoList.mart.name}
                                                 <div className="text-sm font-normal text-green-500 mt-1">
                                                     {`현 위치로부터 ${martDtoList.mart.distance}km`}
                                                 </div>
                                             </div>
-                                            <div className="mt-5 text-green-500">
+                                            <div className="mt-5 text-green-500 flex-initial">
                                                 {`${martDtoList.price.toLocaleString()}원`}
                                             </div>
                                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
                                         <h3 className="mt-4 text-sm text-gray-700 flex items-center">
                                             <img
@@ -186,12 +220,12 @@ export default function ContentDetailCard() {
                                                 src={location2}
                                                 alt="위치 로고"
                                             />
-                                            <p className="">
+                                            <div className="flex flex-1">
                                                 {martDtoList.mart.address}
-                                            </p>
-                                            <div className="ml-auto">
+                                            </div>
+                                            <div className="flex-initial">
                                                 <a
-                                                    className="text-gray-500 underline text-sm"
+                                                    className="text-gray-500 underline text-sm "
                                                     // onClick={handleMapNavigation}
                                                     href={`http://map.naver.com/index.nhn?slng=${locationData.longitude}&slat=${locationData.latitude}&stext=${encodeURIComponent(addressName.address_name)}&elng=${martDtoList.longitude}&elat=${martDtoList.latitude}&pathType=0&showMap=true&etext=${encodeURIComponent(martDtoList.mart.name)}&menu=route&pathType=3`}
                                                     target="_blank"
@@ -200,26 +234,6 @@ export default function ContentDetailCard() {
                                                 </a>
                                             </div>
                                         </h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                         <h3 className="mt-4 text-sm text-gray-700 flex items-center">
                                             <img
                                                 className="h-4 w-4 mr-1"

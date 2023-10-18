@@ -115,7 +115,7 @@ export default function Header() {
         <header className="bg-white">
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
-                    <div className="md:flex md:items-center md:gap-12">
+                    <div className="md:flex md:items-center md:gap-4">
                         <Link to="/">
                             <img
                                 className="h-10"
@@ -126,7 +126,7 @@ export default function Header() {
                         </Link>
 
                         <Link to="/">
-                            <span className='text-2xl font-semibold'>LinCook</span>
+                            <span className='text-3xl font-bold text-green-500'>링쿡</span>
                         </Link>
                     </div>
 

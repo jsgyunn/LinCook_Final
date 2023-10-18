@@ -46,7 +46,7 @@ export default function CookingRegistrationCard() {
             <div className="bg-white">
                 {Object.keys(descriptionCard).map((productName) => (
                     <div key={productName}>
-                        <div className="bg-white border border-gray-200 border-2 mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-8 lg:max-w-3xl lg:px-1 lg:py-2 rounded-lg mt-5">
+                        <div className="bg-white border border-gray-200 border-2 mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-8 lg:max-w-3xl lg:px-1 lg:py-2 rounded-lg mt-5" style={{ maxWidth: '52rem' }}>
                             <h2 className="sr-only">descriptionCards</h2>
                             <div className="flex justify-between mb-2 items-center">
                                 <span>
@@ -95,13 +95,13 @@ export default function CookingRegistrationCard() {
                                                     {descriptionItem._source.capacity}
                                                 </p>
 
-                                                <p className="flex justify-center">
+                                                <p className="flex justify-center mt-2">
                                                     {selectedProduct && selectedProduct.selected ? (
                                                         <button
                                                             onClick={() => handleRemoveFromCart(descriptionItem._source.product_id)}
                                                             className="group flex items-center justify-center gap-2 rounded-md bg-gray-400 px-5 py-3 text-white transition hover:bg-gray-500"
                                                         >
-                                                            <span className="text-sm font-medium">삭제하기</span>
+                                                            <span className="text-sm font-medium">제외하기</span>
                                                         </button>
                                                     ) : (
                                                         <button
