@@ -186,7 +186,6 @@ export default function ContentDetailCard() {
                                                 src={location2}
                                                 alt="위치 로고"
                                             />
-
                                             <p className="">
                                                 {martDtoList.mart.address}
                                             </p>
