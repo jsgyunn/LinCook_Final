@@ -54,6 +54,8 @@ export default function ContentDetailCard() {
 
     const copyPhoneNumber = (phoneNumber) => {
         handleCopyClipBoard(phoneNumber);
+        toast.success("전화번호 복사 완료.")
+
     };
 
     // 장바구니에 상품 추가하는 함수
@@ -166,12 +168,25 @@ export default function ContentDetailCard() {
                                             </div>
                                         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
                                         <h3 className="mt-4 text-sm text-gray-700 flex items-center">
                                             <img
                                                 className="h-4 w-4 mr-1"
                                                 src={location2}
                                                 alt="위치 로고"
                                             />
+
                                             <p className="">
                                                 {martDtoList.mart.address}
                                             </p>
@@ -186,6 +201,25 @@ export default function ContentDetailCard() {
                                                 </a>
                                             </div>
                                         </h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                         <h3 className="mt-4 text-sm text-gray-700 flex items-center">
                                             <img
