@@ -140,68 +140,30 @@ export default function ContentDetailCard() {
                                                     <br></br>
                                                     <br></br>
                                                     <br></br></div>
-
-
-
-
                                                 <div className="h-1/2 flex flex-col justify-end">
                                                     <div
                                                         className="group flex items-center justify-center gap-2 rounded-md bg-white px-4 py-1 text-black transition
                                                         border-2 border-gray-300"
                                                     >
-
                                                         <span className="text-sm font-medium">
                                                             평균 판매가
                                                         </span>
-
                                                     </div>
                                                     <p className=" ml-3 text-2xl font-bold text-green-500">
                                                         {`${data.simpleProductDto.avg_price.toLocaleString()}원`}
                                                     </p>
                                                 </div>
-
-
-
-
-
-
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             </div>
                         </div>
-
-
-
                         <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
                             <h2 className="sr-only">contentDetailProduct</h2>
                             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
                                 {data.martDtoList.map((martDtoList) => (
-
-
-
-
                                     <div key={martDtoList.id} className="group border-2 border-gray-200 rounded-lg p-4">
-
                                         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7 text-xl font-bold flex justify-between">
                                             <div className=" flex-1">
                                                 {martDtoList.mart.name}
@@ -213,7 +175,6 @@ export default function ContentDetailCard() {
                                                 {`${martDtoList.price.toLocaleString()}원`}
                                             </div>
                                         </div>
-
                                         <h3 className="mt-4 text-sm text-gray-700 flex items-center">
                                             <img
                                                 className="h-4 w-4 mr-1"

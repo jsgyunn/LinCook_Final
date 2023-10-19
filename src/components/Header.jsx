@@ -11,7 +11,6 @@ import { accessTokenState, memberIdState } from '../recoil/persist'
 
 
 export default function Header() {
-
     const [isLogin, setIsLogin] = useRecoilState(isloginState);
     const locationData = useRecoilValue(locationState);
     const [basketInfo, setBasketInfo] = useRecoilState(basketInfoState);
