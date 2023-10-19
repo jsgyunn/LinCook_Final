@@ -29,6 +29,7 @@ export default function ContentDetailCard() {
     const locationData = useRecoilValue(locationState);
     // console.log(locationData)
     const contentDetailProduct = useRecoilValue(contentDetailProductState);
+    // console.log("컨텐트마트뭐시기:", contentDetailProduct.data)
     const contentID = contentDetailProduct.contentsDto.id;
     const memberid = useRecoilValue(memberIdState)
 
@@ -91,7 +92,7 @@ export default function ContentDetailCard() {
     return (
         <>
             {/* 탭 버튼 */}
-            <div className="flex flex-wrap justify-center mt-4"> {/* 변경된 부분 */}
+            <div className="flex flex-wrap justify-center mt-4">
                 <button
                     onClick={() => handleTabClick('전체')}
                     className={`${selectedTab === '전체' ? 'bg-green-500 text-white' : 'bg-white text-gray-400 border-2'
@@ -110,7 +111,6 @@ export default function ContentDetailCard() {
                     </button>
                 ))}
             </div>
-
             <div className="bg-white">
                 {contentDetailProduct.data.map((data, index) => (
                     <div key={index} className={`border border-solid rounded-lg border-gray-300 w-4/5 mx-auto mt-10 ${selectedTab === '전체' || selectedTab === data.simpleProductDto.name ? 'block' : 'hidden'}`}>
@@ -162,74 +162,80 @@ export default function ContentDetailCard() {
                         <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
                             <h2 className="sr-only">contentDetailProduct</h2>
                             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
-                                {data.martDtoList.map((martDtoList) => (
-                                    <div key={martDtoList.id} className="group border-2 border-gray-200 rounded-lg p-4">
-                                        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7 text-xl font-bold flex justify-between">
-                                            <div className=" flex-1">
-                                                {martDtoList.mart.name}
-                                                <div className="text-sm font-normal text-green-500 mt-1">
-                                                    {`현 위치로부터 ${martDtoList.mart.distance}km`}
+                                {data.martDtoList.length === 0 ? (
+                                    <div className="text-center text-xl mt-6 text-gray-400">
+                                        주변에 판매하는 마트 정보가 없습니다.
+                                    </div>
+                                ) : (
+                                    data.martDtoList.map((martDtoList) => (
+                                        <div key={martDtoList.id} className="group border-2 border-gray-200 rounded-lg p-4">
+                                            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7 text-xl font-bold flex justify-between">
+                                                <div className=" flex-1">
+                                                    {martDtoList.mart.name}
+                                                    <div className="text-sm font-normal text-green-500 mt-1">
+                                                        {`현 위치로부터 ${martDtoList.mart.distance}km`}
+                                                    </div>
+                                                </div>
+                                                <div className="mt-5 text-green-500 flex-initial">
+                                                    {`${martDtoList.price.toLocaleString()}원`}
                                                 </div>
                                             </div>
-                                            <div className="mt-5 text-green-500 flex-initial">
-                                                {`${martDtoList.price.toLocaleString()}원`}
-                                            </div>
-                                        </div>
-                                        <h3 className="mt-4 text-sm text-gray-700 flex items-center">
-                                            <img
-                                                className="h-4 w-4 mr-1"
-                                                src={location2}
-                                                alt="위치 로고"
-                                            />
-                                            <div className="flex flex-1">
-                                                {martDtoList.mart.address}
-                                            </div>
-                                            <div className="flex-initial">
-                                                <a
-                                                    className="text-gray-500 underline text-sm "
-                                                    // onClick={handleMapNavigation}
-                                                    href={`http://map.naver.com/index.nhn?slng=${locationData.longitude}&slat=${locationData.latitude}&stext=${encodeURIComponent(addressName.address_name)}&elng=${martDtoList.longitude}&elat=${martDtoList.latitude}&pathType=0&showMap=true&etext=${encodeURIComponent(martDtoList.mart.name)}&menu=route&pathType=3`}
-                                                    target="_blank"
-                                                >
-                                                    길찾기
-                                                </a>
-                                            </div>
-                                        </h3>
-                                        <h3 className="mt-4 text-sm text-gray-700 flex items-center">
-                                            <img
-                                                className="h-4 w-4 mr-1"
-                                                src={phone}
-                                                alt="폰 로고"
-                                            />
-                                            {martDtoList.mart.mart_call}
-                                            <div className="ml-auto">
-                                                <CopyButton
-                                                    onClick={() => copyPhoneNumber(martDtoList.mart.mart_call)}
+                                            <h3 className="mt-4 text-sm text-gray-700 flex items-center">
+                                                <img
+                                                    className="h-4 w-4 mr-1"
+                                                    src={location2}
+                                                    alt="위치 로고"
                                                 />
-                                            </div>
-                                        </h3>
+                                                <div className="flex flex-1">
+                                                    {martDtoList.mart.address}
+                                                </div>
+                                                <div className="flex-initial">
+                                                    <a
+                                                        className="text-gray-500 underline text-sm "
+                                                        // onClick={handleMapNavigation}
+                                                        href={`http://map.naver.com/index.nhn?slng=${locationData.longitude}&slat=${locationData.latitude}&stext=${encodeURIComponent(addressName.address_name)}&elng=${martDtoList.longitude}&elat=${martDtoList.latitude}&pathType=0&showMap=true&etext=${encodeURIComponent(martDtoList.mart.name)}&menu=route&pathType=3`}
+                                                        target="_blank"
+                                                    >
+                                                        길찾기
+                                                    </a>
+                                                </div>
+                                            </h3>
+                                            <h3 className="mt-4 text-sm text-gray-700 flex items-center">
+                                                <img
+                                                    className="h-4 w-4 mr-1"
+                                                    src={phone}
+                                                    alt="폰 로고"
+                                                />
+                                                {martDtoList.mart.mart_call}
+                                                <div className="ml-auto">
+                                                    <CopyButton
+                                                        onClick={() => copyPhoneNumber(martDtoList.mart.mart_call)}
+                                                    />
+                                                </div>
+                                            </h3>
 
-                                        <h3 className="mt-4 text-sm text-gray-700 flex items-center">
-                                            <div className="ml-auto">
-                                                <AddButton
-                                                    onClick={() => (loginInfo[0] ? addToCart(data.simpleProductDto, martDtoList) :
-                                                        Swal.fire({
-                                                            position: 'top',
-                                                            title: '로그인이 필요합니다.',
-                                                            confirmButtonText: '확인',
-                                                            confirmButtonColor: '#16A34A',
-                                                            footer: '<a href="https://jsgyunn.github.io/LinCook_Final/login">로그인 하시겠습니까?</a>',
-                                                            customClass: {
-                                                                title: 'text-lg',
-                                                                popup: 'w-90'
-                                                            }
-                                                        })
-                                                    )}
-                                                />
-                                            </div>
-                                        </h3>
-                                    </div>
-                                ))}
+                                            <h3 className="mt-4 text-sm text-gray-700 flex items-center">
+                                                <div className="ml-auto">
+                                                    <AddButton
+                                                        onClick={() => (loginInfo[0] ? addToCart(data.simpleProductDto, martDtoList) :
+                                                            Swal.fire({
+                                                                position: 'top',
+                                                                title: '로그인이 필요합니다.',
+                                                                confirmButtonText: '확인',
+                                                                confirmButtonColor: '#16A34A',
+                                                                footer: '<a href="https://jsgyunn.github.io/LinCook_Final/login">로그인 하시겠습니까?</a>',
+                                                                customClass: {
+                                                                    title: 'text-lg',
+                                                                    popup: 'w-90'
+                                                                }
+                                                            })
+                                                        )}
+                                                    />
+                                                </div>
+                                            </h3>
+                                        </div>
+                                    ))
+                                )}
                             </div>
                         </div>
                     </div >
