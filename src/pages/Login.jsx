@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { isloginState } from "../recoil/atoms";
 import Swal from "sweetalert2";
+import loginPng from "../assets/loginPng.png"
 
 
 export default function Login() {
@@ -60,30 +61,23 @@ export default function Login() {
     }
 
     return (
-        <div className="flex">
-            {/* 이미지 부분 */}
-            <div className="w-1/2 flex justify-end">
+        <div className="flex justify-center">
+            <div className="w-1/2 flex max-w-4xl">
                 <img
                     alt="Welcome"
-                    src="https://images.unsplash.com/photo-1630450202872-e0829c9d6172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-                    className="h-screen w-full object-cover"
-
+                    src={loginPng}
+                    className="h-auto w-full "
                 />
             </div>
 
             {/* 폼 부분 */}
             <div className="w-1/2 p-10 flex flex-col justify-center">
-                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <a href="/">
-                        <img
-                            className="mx-auto h-20 w-auto"
-                            src={logo}
-                            alt="LinCook"
-                        />
-                    </a>
-                    <h2 className="mt-10 text-center text-5xl font-bold leading-9 tracking-tight text-green-500">
-                        LinCook
+                <div className="sm:mx-auto sm:w-full sm:max-w-sm" style={{ marginTop: '20px', marginLeft: '90px' }}>
+
+                    <h2 className="mt-10 text-left text-4xl font-bold leading-9 tracking-tight text-black">
+                        로그인
                     </h2>
+
 
                 </div>
 

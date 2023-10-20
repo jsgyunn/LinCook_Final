@@ -9,6 +9,7 @@ import { youtubeVideoIdState } from '../recoil/atoms';
 import { useNavigate } from 'react-router-dom';
 import { memberIdState } from '../recoil/persist';
 import Swal from 'sweetalert2';
+import cookPng from "../assets/cookPng.png"
 
 
 export default function CookingRegistration2() {
@@ -83,9 +84,8 @@ export default function CookingRegistration2() {
             {/* 이미지 */}
             <div className="lg:col-span-2 text-center overflow-auto flex justify-center items-start mt-5 bg-gray-300 ml-20 mr-10">
                 <img
-                    src="#"
+                    src={cookPng}
                     alt="이미지 사진"
-                    style={{ width: '200px', height: '250px' }}
                 />
             </div>
 

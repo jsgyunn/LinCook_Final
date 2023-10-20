@@ -126,7 +126,7 @@ export default function SignUp() {
                                             {...field}
                                             type="text"
                                             className="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 w-full"
-                                            placeholder="Enter your name"
+                                            placeholder="이름을 입력해주세요."
                                         />
                                         {errors.name && (
                                             <p className="text-red-600">{errors.name.message}</p>
@@ -153,7 +153,7 @@ export default function SignUp() {
                                             {...field}
                                             type="email"
                                             className="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 w-full"
-                                            placeholder="Enter your email"
+                                            placeholder="email@example.com"
                                         />
                                         {errors.email && (
                                             <p className="text-red-600">{errors.email.message}</p>
@@ -182,7 +182,7 @@ export default function SignUp() {
                                             {...field}
                                             type="password"
                                             className="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 w-full"
-                                            placeholder="Enter your password"
+                                            placeholder="6자리 이상 입력해주세요."
                                         />
                                         {errors.password && (
                                             <p className="text-red-600">{errors.password.message}</p>
@@ -207,7 +207,7 @@ export default function SignUp() {
                                             {...field}
                                             type="password"
                                             className="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 w-full"
-                                            placeholder="Confirm your password"
+                                            placeholder="비밀번호를 확인해주세요."
                                         />
                                         {errors.passwordConfirm && (
                                             <p className="text-red-600">{errors.passwordConfirm.message}</p>

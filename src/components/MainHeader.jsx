@@ -11,6 +11,11 @@ import { useNavigate } from 'react-router-dom';
 import { registrationDataState } from '../recoil/atoms';
 import InputYoutubeLink2 from './InputYoutubeLink2';
 import Swal from 'sweetalert2';
+import mainPage from "../assets/mainPage.png"
+import main from 'os-browserify';
+import logo2 from "../assets/logo2.png"
+import mainContent from "../assets/mainContent.png"
+import mainContent2 from "../assets/mainContent2.png"
 
 export default function MainHeader() {
     const navigate = useNavigate();
@@ -79,41 +84,52 @@ export default function MainHeader() {
 
     return (
         <section
-            className="relative bg-[url(https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2934&q=80)] 
-            bg-cover bg-center bg-no-repeat"
-        // style={{ height: "600px" }}
+            style={{
+                backgroundImage: `url(${mainPage})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+            }}
         >
-            <div
+            {/* <div
                 className="absolute inset-0 backdrop-blur-md bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l backdrop-opacity-10"
-            ></div>
+            ></div> */}
 
             <div
-                className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
+                className="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:flex lg:items-center lg:px-8"
             >
-                <div className="max-w-4xl mx-auto text-center ltr:sm:text-left rtl:sm:text-right">
-                    <h1 className="text-3xl font-extrabold sm:text-5xl">
-                        Click the Link!
-                        <strong className="block font-extrabold text-green-600">
-                            간편한 장보기, 링쿡하세요.
+                <div className="max-w-4xl text-left ltr:sm:text-left rtl:sm:text-right mt-12">
+                    <img className="w-20 h-20" src={logo2}
+                        alt="사진" />
+
+                    <h1 className="text-3xl font-medium sm:text-5xl text-white">
+                        지금 보고있는 요리
+                        <strong className="block font-medium text-white mt-3">
+                            재료 준비는
+                            <span className="text-gray-200 font-extrabold"> 링쿡</span>
+                            으로 쉽게!
                         </strong>
                     </h1>
 
-                    <p className="mt-6 sm:mt-8 text-base sm:text-xl/relaxed font-bold">
-                        링쿡은 지금 보고 있는 요리 영상에 필요한 재료들을 빠르게 찾아주고, <br /> 편리한 서비스로 당신의 요리 경험을 더욱 완벽하게 만들어드립니다!
+                    <p className="sm:mt-40 text-base sm:text-xl/relaxed font-bold text-white">
+                        혹시 요리 유튜버이신가요?🧑‍🍳 <br />
+                        영상 링크만 입력하면 1분만에 링쿡 등록 완료!
                     </p>
 
-                    <div className="mt-8 flex flex-wrap gap-4 items-center justify-center">
+                    <div className="mt-3 mb-5 flex flex-wrap items-center">
                         <input
                             value={youtubeLink}
                             type="url"
-                            placeholder="유튜브 링크를 입력해주세요!"
-                            className="w-full sm:max-w-md rounded-md bg-white p-3 text-gray-700 shadow-sm transition focus:border-white focus:outline-none focus:ring focus:ring-green-500"
+                            placeholder="유튜브 링크를 입력 후 '적용' 버튼 클릭!"
+                            className="w-full sm:max-w-sm rounded-2xl bg-white p-3 text-gray-700 shadow-sm transition focus:border-white focus:outline-none focus:ring focus:ring-green-500 text-lg"
                             onChange={handleInputChange}
                         />
 
                         <button
                             type="submit"
-                            className="group flex items-center justify-center gap-2 rounded-md bg-green-600 px-5 py-3 text-white transition sm:w-auto hover:bg-green-700"
+                            className={`w-full flex items-center justify-center gap-4 rounded-md bg-white px-1 py-2 text-green-400 transition sm:max-w-sm mt-3
+                            ${loading ? 'pointer-events-none' : 'hover:bg-gray-300'}`}
+
                             onClick={loginInfo[0] ? extractVideoId : () => {
                                 Swal.fire({
                                     position: 'top',
@@ -130,12 +146,20 @@ export default function MainHeader() {
                             }
                             disabled={loading} // 로딩 중에 버튼 비활성화
                         >
-                            <span className="text-sm font-medium">적용</span>
+                            <span className="text-xl font-semibold">재료 찾기</span>
                         </button>
                         {loading && <Loading />}
                         {showAlert && <Alert duId={duplicateId} />}
                     </div>
                 </div>
+
+                <div className="w-full sm:w-1/2 ml-20">
+                    <img className=" max-w-full w-full h-auto"
+                        src={mainContent}
+                        alt="메인 사진"
+                    />
+                </div>
+
             </div>
         </section >
     );
