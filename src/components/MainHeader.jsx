@@ -16,6 +16,7 @@ import main from 'os-browserify';
 import logo2 from "../assets/logo2.png"
 import mainContent from "../assets/mainContent.png"
 import mainContent2 from "../assets/mainContent2.png"
+import mainPng3 from "../assets/mainPng3.png"
 
 export default function MainHeader() {
     const navigate = useNavigate();
@@ -106,7 +107,7 @@ export default function MainHeader() {
                         지금 보고있는 요리
                         <strong className="block font-medium text-white mt-3">
                             재료 준비는
-                            <span className="text-gray-200 font-extrabold"> 링쿡</span>
+                            <span className="text-gray-200 font-bold"> 링쿡</span>
                             으로 쉽게!
                         </strong>
                     </h1>
@@ -155,7 +156,7 @@ export default function MainHeader() {
 
                 <div className="w-full sm:w-1/2 ml-20">
                     <img className=" max-w-full w-full h-auto"
-                        src={mainContent}
+                        src={mainPng3}
                         alt="메인 사진"
                     />
                 </div>
