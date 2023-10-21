@@ -99,11 +99,11 @@ export default function MainHeader() {
             <div
                 className="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:flex lg:items-center lg:px-8"
             >
-                <div className="max-w-4xl text-left ltr:sm:text-left rtl:sm:text-right mt-12">
+                <div className="max-w-3xl text-left ltr:sm:text-left rtl:sm:text-right mt-12">
                     <img className="w-20 h-20" src={logo2}
                         alt="사진" />
 
-                    <h1 className="text-3xl font-medium sm:text-5xl text-white">
+                    <h1 className="text-3xl font-medium sm:text-4xl text-white">
                         지금 보고있는 요리
                         <strong className="block font-medium text-white mt-3">
                             재료 준비는
@@ -154,7 +154,7 @@ export default function MainHeader() {
                     </div>
                 </div>
 
-                <div className="w-full sm:w-1/2 ml-20">
+                <div className="w-full sm:w-1/2 ml-56">
                     <img className=" max-w-full w-full h-auto"
                         src={mainPng3}
                         alt="메인 사진"
