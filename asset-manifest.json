@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/LinCook_Final/static/css/main.6b1ab161.css",
-    "main.js": "/LinCook_Final/static/js/main.06153880.js",
+    "main.js": "/LinCook_Final/static/js/main.08bb801d.js",
     "static/js/787.71df535f.chunk.js": "/LinCook_Final/static/js/787.71df535f.chunk.js",
     "static/media/mainPage.png": "/LinCook_Final/static/media/mainPage.cde62352c5e8dc73fb94.png",
     "static/media/registrationlogo.png": "/LinCook_Final/static/media/registrationlogo.ce70ba0d5e5889dd0067.png",
@@ -16,11 +16,11 @@
     "static/media/김범기.png": "/LinCook_Final/static/media/김범기.1a015960f8865f5cd8bd.png",
     "index.html": "/LinCook_Final/index.html",
     "main.6b1ab161.css.map": "/LinCook_Final/static/css/main.6b1ab161.css.map",
-    "main.06153880.js.map": "/LinCook_Final/static/js/main.06153880.js.map",
+    "main.08bb801d.js.map": "/LinCook_Final/static/js/main.08bb801d.js.map",
     "787.71df535f.chunk.js.map": "/LinCook_Final/static/js/787.71df535f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6b1ab161.css",
-    "static/js/main.06153880.js"
+    "static/js/main.08bb801d.js"
   ]
 }
