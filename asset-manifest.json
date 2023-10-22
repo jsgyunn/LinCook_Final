@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/LinCook_Final/static/css/main.8c04b938.css",
-    "main.js": "/LinCook_Final/static/js/main.6ed80cf7.js",
+    "main.css": "/LinCook_Final/static/css/main.955418fb.css",
+    "main.js": "/LinCook_Final/static/js/main.e848eada.js",
     "static/js/787.71df535f.chunk.js": "/LinCook_Final/static/js/787.71df535f.chunk.js",
     "static/media/mainPage.png": "/LinCook_Final/static/media/mainPage.cde62352c5e8dc73fb94.png",
     "static/media/registrationlogo.png": "/LinCook_Final/static/media/registrationlogo.ce70ba0d5e5889dd0067.png",
@@ -10,17 +10,13 @@
     "static/media/mainPng3.png": "/LinCook_Final/static/media/mainPng3.22f9b4e59fdc02624998.png",
     "static/media/loginPng.png": "/LinCook_Final/static/media/loginPng.7c110eb3893380ad9372.png",
     "static/media/cookPng.png": "/LinCook_Final/static/media/cookPng.b53cc27dc9c2c0adbf09.png",
-    "static/media/이지연.png": "/LinCook_Final/static/media/이지연.5ae7e9cf3121e5c9d2b8.png",
-    "static/media/이민재.png": "/LinCook_Final/static/media/이민재.820c693a76d5e26b8d78.png",
-    "static/media/정승균.png": "/LinCook_Final/static/media/정승균.040b8659349405e7768f.png",
-    "static/media/김범기.png": "/LinCook_Final/static/media/김범기.1a015960f8865f5cd8bd.png",
     "index.html": "/LinCook_Final/index.html",
-    "main.8c04b938.css.map": "/LinCook_Final/static/css/main.8c04b938.css.map",
-    "main.6ed80cf7.js.map": "/LinCook_Final/static/js/main.6ed80cf7.js.map",
+    "main.955418fb.css.map": "/LinCook_Final/static/css/main.955418fb.css.map",
+    "main.e848eada.js.map": "/LinCook_Final/static/js/main.e848eada.js.map",
     "787.71df535f.chunk.js.map": "/LinCook_Final/static/js/787.71df535f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8c04b938.css",
-    "static/js/main.6ed80cf7.js"
+    "static/css/main.955418fb.css",
+    "static/js/main.e848eada.js"
   ]
 }
