@@ -80,12 +80,12 @@ export default function ContentDetailCard() {
                 // 요청이 성공하면 처리
                 console.log('장바구니 요청 성공:', response.data);
                 setShoppingData("쇼핑 데이터:", response.data)
-                toast.success("상품이 담겼습니다."); // 토스트 메시지 사용
+                toast.success("상품이 담겼습니다.");
                 // navigate(0);
             })
             .catch((error) => {
                 console.error('장바구니 요청 중 에러 발생:', error);
-                toast.error("이미 상품이 담겼습니다."); // 토스트 메시지 사용
+                toast.error("이미 상품이 담겼습니다.");
             });
     };
 

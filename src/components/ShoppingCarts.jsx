@@ -130,12 +130,7 @@ export default function ShoppingCarts({ open, onClose }) {
 
     const renderBasketItemsForSelectedVideo = () => {
 
-        console.log("basketData: ", basketData);
-        console.log("selectedVideoTitle: ", selectedVideoTitle);
-
         const selectedBasket = basketData.find((basket) => basket.contentsDto.title === selectedVideoTitle);
-
-        // console.log("selectedBasket: ", selectedBasket);
 
         if (!selectedBasket) {
             return <p className='mt-28 text-center font-semibold'>재료를 추가해주세요.</p>;

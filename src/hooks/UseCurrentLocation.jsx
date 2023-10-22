@@ -27,7 +27,7 @@ const useCurrentLocation = ({ addressChecked, setAddressChecked }) => {
 
     useEffect(() => {
         if (addressChecked === true) {
-            // console.log(location)
+
         } else {
             const { geolocation } = navigator;
             if (!geolocation) {
@@ -35,7 +35,6 @@ const useCurrentLocation = ({ addressChecked, setAddressChecked }) => {
 
             }
             geolocation.getCurrentPosition(handleSuccess, handleError, {});
-            sessionStorage.setItem("location", JSON.stringify(location));
             setAddressChecked(true);
         }
 

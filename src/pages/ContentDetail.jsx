@@ -29,38 +29,23 @@ export default function ContentDetail() {
     // console.log("담기 버튼 누르면 저장되는 상품, 마트 정보:", cartItems);
 
     useEffect(() => {
-        // Use the locationData from Recoil state
         axios
             .get('http://3.37.4.231:8080/detail-content', {
-                // .get('http://192.168.73.91:8080/detail-content', {
                 params: {
                     contents_id: params.id,
                     url: '',
-                    latitude: locationData.latitude, // Use latitude from Recoil state
-                    longitude: locationData.longitude, // Use longitude from Recoil state
+                    latitude: locationData.latitude, // 위도
+                    longitude: locationData.longitude, // 경도
                 },
             })
             .then((response) => {
-                console.log("들어옴", response.data.result);
-                // const detailProduct = response.data.result;
-                // console.log("eqweqwewqeqwewq", detailProduct)
                 setContentDetailProduct(response.data.result);
-                console.log("컨텐트디테일프로덕트:", contentDetailProduct)
                 setIsLoading(true);
-                // console.log(contentDetailProduct.contentsDto)
             })
             .catch((error) => {
                 console.error('디테일 데이터를 불러오는 중 에러 발생:', error);
             });
     }, [locationData.latitude, locationData.longitude])
-
-
-
-
-
-
-
-
 
     return (
         <div>

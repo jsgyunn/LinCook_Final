@@ -1,8 +1,5 @@
 import React from 'react';
-import 이지연 from '../assets/이지연.png'
-import 정승균 from '../assets/정승균.png'
-import 김범기 from '../assets/김범기.png'
-import 이민재 from '../assets/이민재.png'
+
 
 export default function TeamCard() {
     return (
@@ -33,7 +30,7 @@ export default function TeamCard() {
                 <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
                         <img className="object-center object-cover h-auto w-full"
-                            src={김범기}
+                            src='https://lh3.googleusercontent.com/fife/AK0iWDyqQoP667xItH45bqyx_cxKR5GzRhWKmI_YUE0ex4pDKHLzCqqfQYPfTR4SJtWrg-UBklJXwz8Jasct7TvbQdAgwslnPFJiIlxb-81NoOp3p6MP-ywc49e8q7352o2jsLoadO8jXxz6l76J_N4Z9mIAEj2kDXnmJf7GN6Eg-gNNgNEH1uNlU-M2QXvpxjgvK2pYUroy_JnxU92NvqtzkxsS-ANlsX8dSPlR4bB7oSKD17J522hCEYU279QleL7Vn-emOA1dAVEBP1xw9S-1iyUZXtcyfw6JVdcGguZGRUm6Baks-LQpWQEg5Xu6K8EFEh1JRNWOdy70y8IzD4iXhWsmQxTcyUycLfpuQyoRBPvTZWvMw97HsaY1CA0lFU6l3EEeXyIJyia7d1fS0GdR2-naXjIndgP0DxWB_VkE87at5xj6TFAR2A9Pa-EdSfUytsowjZX2HAx25Y7_6cjwa7qQ4mbMz7Y0T9IAxcy1eOcFOEWmiwm3tXSWKih_5RL12F03wsS3Ii3n9ItDpV6FwWlbFLCZnY3fNX66fCrvmoGXmapiFAl-mXWasjwXHE2cqWD-k_185flonehgP6kg0PFNkWYzwaYJm3NBM4_l7K-On6l4Xb80GvItMHCC2zTh1MutmRC6-I9xgTVF-ANiyVk3yz_yjpU7D4kHuVLb_WxtPkuyogRUYfuZ6bdEsyMgU--SZT00t1_oCPPo3UGO_47ELtrg0CYVFdLF6JLDreirPJi2ufLRMVbqTYWQlP_cFzJoEir7Jh1hrPSwp4lVRMGtk4rjpRwJTwl5eXbDPOG3Ixm-e-afEZFSMMIEMrkWVJG0pq_IQ7symRTpQdoCw1eSdNyNrZYemom4Bc5uIRPDvrwN3QOKYEfSqa0vn28tNfV0jKcIxlEYbmist80La-LxR7XDamuqOncvrSKe_T4SoGpAyjJFGX8sNeheQf2RQGM7kwyUvoCBhWqnb8GO-HIdGkEJUiF_sre4knsFExkAvxZYrc4fo9zXuGVnnQ9fHxg4NrU8sc-fEBwM4q6KowRx3eZoJz9Ou2WJi_1E6rcMtU-reawcm3s_qhAcqMEdj73HkXs0QcaWUw2EwEHpcQriMJIeQiUGS9PS6yF7a6f5q9qopiwGM9ehixTg0hM7qJrsgDsUrl0CRDW1zDh9XcnLJ-_4lQIwFpD-N0rs8VbDF7Ht_RAAM7NTBf0g3jzYxz-6LJ1Hd2HKVOPiyvJDVgH9WGTCPX8Tb8Lo7AqIAiYwAgKEOXwDMTXSwj3DytOmsR0c9hXwOfyOUdR0ugSz1Y4Xynq9WHQn60CCRYozBHZ76hxZQIND-dbTer0qG1Com-p5tXZV20P8wWk2q9GpssbL_iJN_dNIFlhUfN2r5k4bcV3Yxn3VA8-G0brYMtxvZoSZauI1dMA2UJZ03LCxukZYHA6t9ya07bP4Dzv295pJXp11IAwqEx08k5ilbY9VIPdIbrQ8VZw-z2FbFRWF3AsRzR0O79u-4XwHcRaCrU8Jby2GDmBb2PNN277LpDGfqfDHAQXeJiYsnUt3OdcM=w1686-h868'
                             alt="photo" />
                     </div>
                     <div className="text-center py-8 sm:py-6">
@@ -47,7 +44,7 @@ export default function TeamCard() {
                 <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
                         <img className="object-center object-cover h-auto w-full"
-                            src={이지연}
+                            src="https://lh3.googleusercontent.com/fife/AK0iWDyF1l9uXHMFdQSH5ThOl3kK4jsai7Se4OECmr-v_ZIz57_t0FjCjACANO0iI3ygSseYIv_emt0GJidkGhZhFcEBr9vFOCiGngd6n_1uGmb4qu_kyyzhFa_xtTcoiTC5-Fimr68irDdk1-7m8PvbuwQDsFKln0kT99fzoHgIP12T0tZKCIHwHWMZzMlNKxdzMJtoZKXtDkLgG4bwKZgby7-MQSBqdUYu6SsSvhgBhoVQtTwO70BZRTSUwOUMcRLhNSBzUCPsoy5hSFCnfMmUTUpPy6vBfyo_cWviFTJ8g3swBr-RWwcZAmKt2yuFh1i93hnP_XVMP8KLeRJMP4-sqD4xDbKfXBRZO44-ChR6xt8hnQXUrXmblmOhaX78BqqJchV76EqLWyTWEmBKzdBKjsMeAXz7bxr6jrxk8FZbqqPNXwHvkhpaNNcPC80JZcuegVksZoQUzktxbGW9TGcrxc8tcIWTm5cRDY6nOSSl5ayicxVJPustZ76ILAThARgSVIdDjE-CbfrJrGvP6EwZpuqkxQ9ZbF8XaNrQQKhv_SbLeKBb4749QsLsaMG4kZoxRXNsmCuKPUtySt52rcWP__fgjnswjTMHKzUGRKbECdkSjfKNpi4byhl-vefrF-1ti3kZ-W8JR_IkmfXncMxREe0Xve8P4NPDm75Ppfs_2WCjH1hXDJv9Vd_JHCFHqPGZ0Cdv36pVmXSPK2Skkmi7wS1ZbLtKce9G5Afo_l1sFekt4i0-2PQaEElUGUkKB0ppibzVBugM5Lg1inNFB4f6WH-kSOIPX4De2rDZdDsMQYAZYZMWO8u3LzsayqyuwvlyLdT5jtzIS2VKSlZaNiQ0F0qCvJhTZF4Z9keUoRNpS7BwJ8GPWMydd1evFWSYcHfXREoc9sKxWqrogUzoEcb_7JudJmV0BI8HXDunKgIl6krBWOjFg_UrNIag2KGH8eq4FZ8kre99TqT36qxZBFB98falAiWolHoj_SLkhWTmaSxIsBRaX9SUoCSwF6VpeZtWjNEivxBV8D-vG6n4OM65wnEEfYeirZz3JAKvHkd1qe1qzuIEWi_tIyu2JLCWINK6oN41DVNS22aSCR_jVhhS9gFbOQWHzuuMZ4vjaJdwqMAGHmrRLCi9bEwMn3Izh0WOtBRqDsiY8z76k4y-OoWoVFuT8zkwSuXE4UfAlqf1Apj4drectecL_or9lA1Bus-qQOLZ0IKA1_GmIOTEOZbeaD__3Uo1dTjuxHob1V4DafSyVFshbbWVqd_dXpJNZlqdstFHYS8YFQTTZYaVjHbGyTPOhP8i4DnPlA_KQ6F7B6taKf_uxkRnTDLOqV80gArFOzZu2IZ-91VgGg7twvU4sehv4TbUpqgV8mYsSNp2is2nqeOZHHBTfbXFxgyXjW5Yd_3UJy-a1RrW9iJ6V3JXx4weaEofnby6v1RyQNm4aLb4sD20Ebshu-0BTvBBjCO2NifnhYry3q4mVMV5_bZBGB009FIN5t5oKonR9zVsw1kT2WozBZAd4aocKvEoxadJp_IlwQfUIeQ=w1098-h868"
                             alt="photo" />
                     </div>
                     <div className="text-center py-8 sm:py-6">
@@ -59,7 +56,7 @@ export default function TeamCard() {
                 <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
                         <img className="object-center object-cover h-auto w-full"
-                            src={이민재}
+                            src="https://lh3.googleusercontent.com/fife/AK0iWDxqw9dU-85OHuJsOOAoVW4dE44FiriNXjtpSvc7Qb9k-4rAWRCZiaC5ldKB1Cfk-jvCI3ej1I3Zn45LkXhw8YHefMHM_fq0Dx74JRJzLxlb3CDtVtedYQNqwMCy2GOca40MTdKqS5Kk11GrF4lAUpshlVK-GCqEA2peAmJX51kgkwCANgNQOJvdQUZ4-mTr9Y1L6lLfQV4P-6-Roamg2TQJqO81b5csvEYn23im-k3-xp8fK901Y2i2oLAVUA0RoeBchNp91YmmbVSPohrxd9cLfE4_YWPcVMcUQ3OiMSlT8TRqHgU5izUIWOL9E-1reC03bwbbwG9ksCgwmV2h9ZkxDrg2EaP0diVZGfFwktIB4LKmAbK_fEKdiby7ophuvtIgvSpnAs3pVeWzHMjFZvSuX5M93IwkZHrVmSB5hiYqHAOKiXcvHAUlbXNJ03q9JrOZSPNM562zKElWM6Wwm4c4KO9HVFxE7wlQvBA4oXH-7Lj9-FjCJTfhtwtJIK8qAmNKpemh3XJBC00MBNHRpwj5wmf_n5BBBmxky_me6Eznns6u2nh753oIvT1ny3liLx3UHkEu1J99RLWrTR6uwJacicphsSYf0ERo-H3s3HUSaaw-frt5pj-RIonuZVS56SWjxpa7uRcTERezcMkGPaBdy3ClQXv1Jy-BHERklkgQQBvNnGo6db5Lo3M5hnj3gHQ77qfjeQ6RtbK3IqcRlqHXXVAQNThkSRYe7rAMiqbXWg7IFaY-HWEMRVG3c5SjU5oyWyEXbbMlJPOEWQpxnY_5qVfQe2IUXiOIXCS90sPfLZaYbu8QdmlDKHF3miShX6HMxhvbS5q-lK7UQZNrks4GCgQ7lnRcrudZpgItkIpcPzswmy9lX_eh3MBUlJENTU25ToFSPhCP75LWGxHmRhIpx3mOj5CvzeryMzkTdRuVcU9CMR4bQEO-eXsmfvkBoRlYxbOEEQGxKydYd4W3TkMpirMITdCpS4VuJXqZFU6k5AimShjHPKoXg_eEdQj1f0G_h_tDFMYRgaOUhJ8ebmsfFTX_s2tGy7P34qA09EkyQgrm0dWXvBEK89Q-oY17mELzZzWKp3lcEdHBUUoSMJRYvluuELF_uK-21QlRaLqDciX_Suf0-ODhHGZRLD_idaZvgvCUpng3R72GQorJL_bVWN6OYMb-HFjRoeCxjHJYMyxq1Y4U3JrkJqGz77LO7shGKcF06aGZyYzDOFAGedGiF1Ylwzmw2DQ5rEPxlohZWCgF02NeKj-Hk7NRC-6ulySiTqMRe6Jzr4Xe9NSi6E7XOCi9fwHVFQW5Xj8PWjI1aQ3k-cb3ROKc7wLFd8OZjrPdRz-DAI8sCngm4JT5Ejr2W77D5WbMJW6lyDYNPlDTg8h8QWfd5sVGL35Ny2aunKYncp4xcb0Q1fJWhoOJEaLhjIBJDy24gDhKZiDOX7vWnus89RSI6Rk3w9RpOKHjEMQxWTBjMFkP0kgxVjeg_BpEWVAjUwsTtpcm5fMcNWz_8lKphAe7Xi7MaXQrUW53uieIUKequKg=w1098-h868"
                             alt="photo" />
                     </div>
                     <div className="text-center py-8 sm:py-6">
@@ -71,7 +68,7 @@ export default function TeamCard() {
                 <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center">
                     <div>
                         <img className="object-center object-cover h-auto w-full"
-                            src={정승균}
+                            src="https://lh3.googleusercontent.com/fife/AK0iWDyqQoP667xItH45bqyx_cxKR5GzRhWKmI_YUE0ex4pDKHLzCqqfQYPfTR4SJtWrg-UBklJXwz8Jasct7TvbQdAgwslnPFJiIlxb-81NoOp3p6MP-ywc49e8q7352o2jsLoadO8jXxz6l76J_N4Z9mIAEj2kDXnmJf7GN6Eg-gNNgNEH1uNlU-M2QXvpxjgvK2pYUroy_JnxU92NvqtzkxsS-ANlsX8dSPlR4bB7oSKD17J522hCEYU279QleL7Vn-emOA1dAVEBP1xw9S-1iyUZXtcyfw6JVdcGguZGRUm6Baks-LQpWQEg5Xu6K8EFEh1JRNWOdy70y8IzD4iXhWsmQxTcyUycLfpuQyoRBPvTZWvMw97HsaY1CA0lFU6l3EEeXyIJyia7d1fS0GdR2-naXjIndgP0DxWB_VkE87at5xj6TFAR2A9Pa-EdSfUytsowjZX2HAx25Y7_6cjwa7qQ4mbMz7Y0T9IAxcy1eOcFOEWmiwm3tXSWKih_5RL12F03wsS3Ii3n9ItDpV6FwWlbFLCZnY3fNX66fCrvmoGXmapiFAl-mXWasjwXHE2cqWD-k_185flonehgP6kg0PFNkWYzwaYJm3NBM4_l7K-On6l4Xb80GvItMHCC2zTh1MutmRC6-I9xgTVF-ANiyVk3yz_yjpU7D4kHuVLb_WxtPkuyogRUYfuZ6bdEsyMgU--SZT00t1_oCPPo3UGO_47ELtrg0CYVFdLF6JLDreirPJi2ufLRMVbqTYWQlP_cFzJoEir7Jh1hrPSwp4lVRMGtk4rjpRwJTwl5eXbDPOG3Ixm-e-afEZFSMMIEMrkWVJG0pq_IQ7symRTpQdoCw1eSdNyNrZYemom4Bc5uIRPDvrwN3QOKYEfSqa0vn28tNfV0jKcIxlEYbmist80La-LxR7XDamuqOncvrSKe_T4SoGpAyjJFGX8sNeheQf2RQGM7kwyUvoCBhWqnb8GO-HIdGkEJUiF_sre4knsFExkAvxZYrc4fo9zXuGVnnQ9fHxg4NrU8sc-fEBwM4q6KowRx3eZoJz9Ou2WJi_1E6rcMtU-reawcm3s_qhAcqMEdj73HkXs0QcaWUw2EwEHpcQriMJIeQiUGS9PS6yF7a6f5q9qopiwGM9ehixTg0hM7qJrsgDsUrl0CRDW1zDh9XcnLJ-_4lQIwFpD-N0rs8VbDF7Ht_RAAM7NTBf0g3jzYxz-6LJ1Hd2HKVOPiyvJDVgH9WGTCPX8Tb8Lo7AqIAiYwAgKEOXwDMTXSwj3DytOmsR0c9hXwOfyOUdR0ugSz1Y4Xynq9WHQn60CCRYozBHZ76hxZQIND-dbTer0qG1Com-p5tXZV20P8wWk2q9GpssbL_iJN_dNIFlhUfN2r5k4bcV3Yxn3VA8-G0brYMtxvZoSZauI1dMA2UJZ03LCxukZYHA6t9ya07bP4Dzv295pJXp11IAwqEx08k5ilbY9VIPdIbrQ8VZw-z2FbFRWF3AsRzR0O79u-4XwHcRaCrU8Jby2GDmBb2PNN277LpDGfqfDHAQXeJiYsnUt3OdcM=w1686-h868"
                             alt="photo" />
                     </div>
                     <div className="text-center py-8 sm:py-6">

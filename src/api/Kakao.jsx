@@ -19,11 +19,9 @@ export default function Kakao({ location }) {
         const callback = function (result, status) {
             if (status === kakao.maps.services.Status.OK) {
                 setAddress(result[0].address);
-                // sessionStorage.setItem("address", result[0].address.address_name);
             }
         };
         geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
-
     };
 
     useEffect(() => {
