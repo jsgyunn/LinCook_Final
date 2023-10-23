@@ -117,11 +117,11 @@ export default function MainHeader() {
                         영상 링크만 입력하면 1분만에 링쿡 등록 완료!
                     </p>
 
-                    <div className="mt-3 mb-5 flex flex-wrap items-center">
+                    <div className="mt-3 flex flex-wrap items-center">
                         <input
                             value={youtubeLink}
                             type="url"
-                            placeholder="유튜브 링크를 입력 후 '적용' 버튼 클릭!"
+                            placeholder="유튜브 링크를 입력 후 '재료 찾기' 버튼 클릭!"
                             className="w-full sm:max-w-sm rounded-2xl bg-white p-3 text-gray-700 shadow-sm transition focus:border-white focus:outline-none focus:ring focus:ring-green-500 text-lg"
                             onChange={handleInputChange}
                         />
@@ -149,6 +149,8 @@ export default function MainHeader() {
                         >
                             <span className="text-xl font-semibold">재료 찾기</span>
                         </button>
+                    </div>
+                    <div className="flex flex-wrap items-center mb-5">
                         {loading && <Loading />}
                         {showAlert && <Alert duId={duplicateId} />}
                     </div>
