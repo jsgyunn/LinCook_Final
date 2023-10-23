@@ -99,7 +99,7 @@ export default function MainHeader() {
             <div
                 className="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:flex lg:items-center lg:px-8"
             >
-                <div className="max-w-3xl text-left ltr:sm:text-left rtl:sm:text-right mt-12">
+                <div className="w-full text-left ltr:sm:text-left rtl:sm:text-right mt-12">
                     <img className="w-20 h-20" src={logo2}
                         alt="사진" />
 
@@ -154,7 +154,7 @@ export default function MainHeader() {
                     </div>
                 </div>
 
-                <div className="w-full sm:w-1/2 ml-56">
+                <div className="w-full ml-1">
                     <img className=" max-w-full w-full h-auto"
                         src={mainPng3}
                         alt="메인 사진"
